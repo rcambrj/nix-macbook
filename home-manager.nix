@@ -160,8 +160,8 @@ in {
     };
     plugins = [];
     shellAliases = {
-      dwu = "darwin-rebuild switch --flake ~/nix/#rcambrj";
-      hmu = "home-manager switch --flake ~/nix/#rcambrj";
+      dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#rcambrj";
+      hmu = "home-manager switch --flake ~/projects/nix/macbook/#rcambrj";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
 
       g    = "git";
