@@ -1,8 +1,7 @@
-# nix Macbook configuration
+# Nix Macbook configuration
 
 ## Getting started
 
-* Install MacFUSE https://osxfuse.github.io/ (for gdrive)
 * `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#rcambrj`
 * `home-manager switch --flake .#rcambrj`
 * Authenticate:

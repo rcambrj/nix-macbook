@@ -176,7 +176,7 @@ in {
       # Ctrl + scroll = zoom
       #sudo -u ${user} defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
       #sudo -u ${user} defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-      
+
       # Finder
       sudo -u ${user} defaults write com.apple.finder ShowPathbar -bool true
       # Disable .DS_Store File Creation
@@ -197,7 +197,7 @@ in {
       sudo -u ${user} defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
       # Disables automatic period substitutions
       sudo -u ${user} defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-      # Disables smart quotes 
+      # Disables smart quotes
       sudo -u ${user} defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
       # Spotlight
