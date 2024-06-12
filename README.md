@@ -1,11 +1,10 @@
-# MacOS nix configuration
+# nix Macbook configuration
 
 ## Getting started
 
 * Install MacFUSE https://osxfuse.github.io/ (for gdrive)
 * `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#rcambrj`
 * `home-manager switch --flake .#rcambrj`
-* `rclone config` for gdrive
 * Authenticate:
     * 1Password
     * Firefox
@@ -15,16 +14,26 @@
     * Whatsapp
     * Spotify
     * Private Internet Access
-* Choosy
-    * configure licence
-    * set default browser
-    * configure browsers
-    * do not expand URLs
-    * remove rule "prompt from running browsers"
-* Lunar
-    * configure licence
-* Rectangle
-* Hot
+* `rclone config` for gdrive
+* Start once:
+    * Choosy
+        * configure licence
+        * set default browser
+        * configure browsers
+        * do not expand URLs
+        * remove rule "prompt from running browsers"
+    * Lunar
+        * configure licence
+    * Rectangle
+    * Hot
+    * Postman Agent
+    * Topnotch
+        * round corners
+        * enable on macbook screen only
+    * Music Decoy
+* Remove all notification panel widgets
+* Set `Automatically dim brightness` off
+* Set `True Tone` off
 
 ...make changes...
 

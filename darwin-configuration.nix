@@ -64,6 +64,10 @@ in {
       "private-internet-access"
       "rectangle"
       "spotify"
+      "postman-agent"
+      "graphiql"
+      "topnotch" # black menubar hides the notch
+      "music-decoy" # prevents play/pause from opening Apple Music
     ];
     masApps = {
       # for apps which incessantly update themselves
@@ -116,6 +120,9 @@ in {
       # enable this the first time. disable later for speed.
       # softwareupdate --install-rosetta --agree-to-license
 
+      # https://disable-gatekeeper.github.io/
+      spctl --master-disable
+
       # lock screen
       # TODO
 
@@ -128,6 +135,7 @@ in {
       sudo -u ${user} defaults write com.apple.dock tilesize -int 64
 
       # trackpad
+      sudo -u ${user} defaults write NSGlobalDomain com.apple.trackpad.scaling 2
       sudo -u ${user} defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
       sudo -u ${user} defaults write com.apple.AppleMultitouchTrackpad DragLock -int 0
       sudo -u ${user} defaults write com.apple.AppleMultitouchTrackpad Dragging -int 0
@@ -193,6 +201,8 @@ in {
       sudo -u ${user} defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
       # Spotlight
+      sudo -u ${user} defaults write com.apple.Spotlight useCount -int 3
+      sudo -u ${user} defaults write com.apple.Spotlight showedFTE -bool YES
       # this would be shorter with defaults write, but this works
       # TODO: loop
       /usr/libexec/PlistBuddy /Users/${user}/Library/Preferences/com.apple.spotlight.plist -c "Delete :orderedItems"
@@ -308,7 +318,7 @@ in {
       sudo -u ${user} defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
 
       # iTerm2
-      /usr/libexec/PlistBuddy /Users/${user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'HackNFM-Regular 12'"
+      /usr/libexec/PlistBuddy /Users/${user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'HackNFM-Regular 14'"
       /usr/libexec/PlistBuddy /Users/${user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 10000"
       /usr/libexec/PlistBuddy /Users/${user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
 

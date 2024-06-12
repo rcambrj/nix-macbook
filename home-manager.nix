@@ -15,16 +15,17 @@ in {
     htop
     iftop
     ncdu
+    nerdfonts
+    nil # nix language server
     openssh
     ripgrep
+    tig
     tmate
     tmux
     tree
     unrar
     unzip
     wget
-    tig
-    nerdfonts
   ];
 
   fonts.fontconfig.enable = true;
@@ -69,7 +70,6 @@ in {
       mergetool.prompt = false;
       pull.rebase = true;
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
-      #commit.gpgsign = true;
     };
   };
 
@@ -140,13 +140,43 @@ in {
 
   programs.vscode = {
     enable = true;
+    enableUpdateCheck = false;
+    enableExtensionUpdateCheck = false;
+    userSettings = {
+      "liveshare.focusBehavior" = "prompt";
+      "liveshare.guestApprovalRequired" = true;
+      "workbench.startupEditor" = "newUntitledFile";
+      "workbench.editor.enablePreviewFromQuickOpen" = false;
+      "workbench.editor.tabSizing" = "shrink";
+      "workbench.editor.tabActionCloseVisibility" = false;
+      "editor.minimap.enabled" = false;
+      "files.trimFinalNewlines" = true;
+      "files.trimTrailingWhitespace" = true;
+      "editor.parameterHints.enabled" = false;
+      "editor.suggestSelection" = "recentlyUsedByPrefix";
+      "editor.rulers" = [ 80 100 120 ];
+      "editor.acceptSuggestionOnEnter" = "off";
+      "editor.acceptSuggestionOnCommitCharacter" = false;
+      "telemetry.enableCrashReporter" = false;
+      "telemetry.enableTelemetry" = false;
+      "redhat.telemetry.enabled" = false;
+      "liveshare.authenticationProvider" = "GitHub";
+      "liveshare.presence" = true;
+      "gitlens.codeLens.enabled" = false;
+      "gitlens.codeLens.recentChange.enabled" = false;
+      # "go.toolsManagement.autoUpdate" = false; # maybe not necessary with enableExtensionUpdateCheck=false?
+      "search.useIgnoreFiles" = false;
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nil";
+    };
+    mutableExtensionsDir = false;
     extensions = with inputs.nix-vscode-extensions.extensions.${system}; [
       vscode-marketplace.bbenoist.nix
+      vscode-marketplace.jnoortheen.nix-ide
     ];
   };
 
   programs.zsh = {
-    # TODO: change the iterm tab title with printf "\e]1;title\a"
     enable = true;
     autocd = false;
     autosuggestion.enable = false;
@@ -154,7 +184,24 @@ in {
     enableCompletion = true;
     # initExtraFirst = "";
     initExtraBeforeCompInit = builtins.readFile ./autocomplete.zsh;
-    # initExtra = "";
+    initExtra = ''
+      bindkey -e
+      bindkey "^[[3~" delete-char                    # Key Del
+      bindkey "^[[5~" beginning-of-buffer-or-history # Key Page Up
+      bindkey "^[[6~" end-of-buffer-or-history       # Key Page Down
+      bindkey "^[[H" beginning-of-line               # Key Home
+      bindkey "^[[F" end-of-line                     # Key End
+      bindkey "^[^[[C" forward-word                  # Key Alt + Right
+      bindkey "^[^[[D" backward-word                 # Key Alt + Left
+
+      set-window-title() {
+        window_title="\e]0;''${''${PWD/#"$HOME"/~}/projects/p}\a"
+        echo -ne "$window_title"
+      }
+
+      set-window-title
+      add-zsh-hook precmd set-window-title
+    '';
     history = {
       ignoreAllDups = true;
     };
@@ -195,10 +242,13 @@ in {
       gci  = "git commit";
       gcia = "git commit --amend";
       gp   = "git push";
-      gpf  = "git push --force-with-lease --force-if-includes";
+      gpf  = "git push --force-with-lease";
       gh   = "git rev-parse --short HEAD";
 
+      p = "pnpm";
+
       l = "ls -la";
+      vim = "nvim";
       ip = "curl ifconfig.co";
     };
   };
