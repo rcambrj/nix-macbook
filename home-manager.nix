@@ -10,8 +10,10 @@ in {
   home.homeDirectory = "/Users/${user}";
 
   home.packages = with pkgs; [
+    # don't install dev tooling here. use local devshell flake + direnv instead.
     _1password
     curl
+    go # global instance for vscode
     htop
     iftop
     ncdu
@@ -19,6 +21,7 @@ in {
     nil # nix language server
     openssh
     ripgrep
+    terraform # global instance for vscode
     tig
     tmate
     tmux
@@ -168,11 +171,39 @@ in {
       "search.useIgnoreFiles" = false;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
+      "[javascript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[javascriptreact]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[typescript]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[typescriptreact]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[json]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[graphql]" = {
+        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+      };
+      "[terraform]" = {
+        "editor.defaultFormatter" = "hashicorp.terraform";
+      };
+      "[go]" = {
+        "editor.defaultFormatter" = "golang.go";
+        "formatting.gofumpt" = true;
+      };
     };
     mutableExtensionsDir = false;
     extensions = with inputs.nix-vscode-extensions.extensions.${system}; [
       vscode-marketplace.bbenoist.nix
       vscode-marketplace.jnoortheen.nix-ide
+      vscode-marketplace.esbenp.prettier-vscode
+      vscode-marketplace.hashicorp.terraform
+      vscode-marketplace.golang.go
     ];
   };
 
