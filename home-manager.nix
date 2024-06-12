@@ -276,8 +276,6 @@ in {
       gpf  = "git push --force-with-lease";
       gh   = "git rev-parse --short HEAD";
 
-      p = "pnpm";
-
       l = "ls -la";
       vim = "nvim";
       ip = "curl ifconfig.co";
