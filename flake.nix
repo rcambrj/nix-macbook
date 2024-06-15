@@ -53,6 +53,7 @@
     ...
   }: let
     system = "aarch64-darwin";
+    me = import ./me.nix;
     pkgs =
       import nixpkgs {
         inherit system;
@@ -78,7 +79,7 @@
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
-            user = "rcambrj";
+            user = me.user;
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;

@@ -1,13 +1,11 @@
-{ pkgs, inputs, system, nixVscodeExtensions, ... }:
-let name  = "Robert Cambridge";
-    user  = "rcambrj";
-    email = "robert@cambridge.me";
-    hostname = "rcambrj";
+{ pkgs, nixVscodeExtensions, ... }:
+let
+  me = import ./me.nix;
 in {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
-  home.username = user;
-  home.homeDirectory = "/Users/${user}";
+  home.username = me.user;
+  home.homeDirectory = "/Users/${me.user}";
 
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
@@ -52,8 +50,8 @@ in {
 
   programs.git = {
     enable = true;
-    userName = name;
-    userEmail = email;
+    userName = me.name;
+    userEmail = me.email;
     ignores = [
       ".envrc"
       ".vscode"
