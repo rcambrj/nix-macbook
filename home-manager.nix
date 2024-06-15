@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, system, nixVscodeExtensions, ... }:
 let name  = "Robert Cambridge";
     user  = "rcambrj";
     email = "robert@cambridge.me";
@@ -18,7 +18,7 @@ in {
     iftop
     ncdu
     nerdfonts
-    nil # nix language server
+    nil # global instance for vscode
     openssh
     ripgrep
     terraform # global instance for vscode
@@ -29,6 +29,7 @@ in {
     unrar
     unzip
     wget
+    mach-composer # TODO: remove when devshell can build this
   ];
 
   fonts.fontconfig.enable = true;
@@ -198,12 +199,13 @@ in {
       };
     };
     mutableExtensionsDir = false;
-    extensions = with inputs.nix-vscode-extensions.extensions.${system}; [
+    extensions = with nixVscodeExtensions; [
       vscode-marketplace.bbenoist.nix
       vscode-marketplace.jnoortheen.nix-ide
       vscode-marketplace.esbenp.prettier-vscode
       vscode-marketplace.hashicorp.terraform
       vscode-marketplace.golang.go
+      # vscode-marketplace.eamodio.gitlens
     ];
   };
 
@@ -232,6 +234,10 @@ in {
 
       set-window-title
       add-zsh-hook precmd set-window-title
+
+      # completion
+      # TODO: why doesn't /Users/rcambrj/.nix-profile/share/zsh/site-functions/_mach-composer work?
+      eval "$(${pkgs.lib.getExe pkgs.mach-composer} completion zsh)"
     '';
     history = {
       ignoreAllDups = true;

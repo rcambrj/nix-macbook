@@ -1,14 +1,22 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/24.05";
 
-    nix-darwin.url = "github:lnl7/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -20,11 +28,18 @@
     homebrew-cask = {
       url = "github:homebrew/homebrew-cask";
       flake = false;
-    }; 
+    };
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mach-composer = {
+      url = "github:rcambrj/mach-composer-cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
   outputs = inputs@{
     nixpkgs,
     nix-darwin,
@@ -33,18 +48,26 @@
     homebrew-bundle,
     homebrew-core,
     homebrew-cask,
+    nix-vscode-extensions,
+    mach-composer,
     ...
   }: let
     system = "aarch64-darwin";
-    pkgs = import nixpkgs {
-      system = system;
-      config = {
-        allowUnfree = true;
-        #allowBroken = true;
-        allowInsecure = false;
-        #allowUnsupportedSystem = true;
+    pkgs =
+      import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          #allowBroken = true;
+          allowInsecure = false;
+          #allowUnsupportedSystem = true;
+        };
+        overlays = [
+          mach-composer.overlays.default
+        ];
       };
-    };
+
+    nixVscodeExtensions = nix-vscode-extensions.extensions.${system};
   in
   {
     darwinConfigurations.rcambrj = nix-darwin.lib.darwinSystem {
@@ -69,7 +92,7 @@
     };
     homeConfigurations.rcambrj = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs pkgs system; };
+      extraSpecialArgs = { inherit inputs pkgs system nixVscodeExtensions; };
       modules = [
         ./home-manager.nix
       ];
