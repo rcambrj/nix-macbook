@@ -197,13 +197,15 @@ in {
       };
     };
     mutableExtensionsDir = false;
-    extensions = with nixVscodeExtensions; [
-      vscode-marketplace.bbenoist.nix
-      vscode-marketplace.jnoortheen.nix-ide
-      vscode-marketplace.esbenp.prettier-vscode
-      vscode-marketplace.hashicorp.terraform
-      vscode-marketplace.golang.go
-      # vscode-marketplace.eamodio.gitlens
+    extensions = with nixVscodeExtensions.vscode-marketplace; [
+      bbenoist.nix
+      jnoortheen.nix-ide
+      esbenp.prettier-vscode
+      hashicorp.terraform
+      golang.go
+      tamasfe.even-better-toml
+      github.vscode-github-actions
+      signageos.signageos-vscode-sops
     ];
   };
 
