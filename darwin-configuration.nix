@@ -64,7 +64,7 @@ in {
       "spotify"
       "postman-agent"
       "graphiql"
-      "topnotch" # black menubar hides the notch
+      # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "music-decoy" # prevents play/pause from opening Apple Music
     ];
     masApps = {
@@ -123,6 +123,9 @@ in {
 
       # lock screen
       # TODO
+
+      # Wallpaper
+      osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/System/Library/Desktop Pictures/Solid Colors/Black.png\" as POSIX file"
 
       # dock
       sudo -u ${me.user} defaults write com.apple.dock autohide -bool true
