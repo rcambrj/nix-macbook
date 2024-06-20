@@ -320,7 +320,7 @@ in {
 
       # iTerm2
       /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'HackNFM-Regular 14'"
-      /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 10000"
+      /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 100000"
       /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
 
       # refresh settings
