@@ -199,13 +199,14 @@ in {
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
       bbenoist.nix
-      jnoortheen.nix-ide
       esbenp.prettier-vscode
-      hashicorp.terraform
-      golang.go
-      tamasfe.even-better-toml
       github.vscode-github-actions
+      golang.go
+      hashicorp.terraform
+      jnoortheen.nix-ide
+      orsenkucher.vscode-graphql
       signageos.signageos-vscode-sops
+      tamasfe.even-better-toml
     ];
   };
 
