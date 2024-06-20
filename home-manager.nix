@@ -27,7 +27,7 @@ in {
     unrar
     unzip
     wget
-    mach-composer # TODO: remove when devshell can build this
+    mach-composer # TODO: remove when devshell can do completions
   ];
 
   fonts.fontconfig.enable = true;

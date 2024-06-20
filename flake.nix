@@ -35,6 +35,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # newrepo = {
+    #   url = "github:foo/bar";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     mach-composer = {
       url = "github:rcambrj/mach-composer-cli";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +54,7 @@
     homebrew-cask,
     nix-vscode-extensions,
     mach-composer,
+    # newrepo,
     ...
   }: let
     system = "aarch64-darwin";
@@ -59,12 +64,13 @@
         inherit system;
         config = {
           allowUnfree = true;
-          #allowBroken = true;
-          allowInsecure = false;
-          #allowUnsupportedSystem = true;
+          # allowBroken = true;
+          # allowInsecure = false;
+          # allowUnsupportedSystem = true;
         };
         overlays = [
           mach-composer.overlays.default
+          # newrepo.overlays.default
         ];
       };
 
