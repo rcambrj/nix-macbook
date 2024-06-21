@@ -199,6 +199,7 @@ in {
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
       bbenoist.nix
+      eamodio.gitlens
       esbenp.prettier-vscode
       github.vscode-github-actions
       golang.go
