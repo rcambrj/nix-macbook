@@ -37,7 +37,6 @@
 ...make changes...
 
 * `dwu` (darwin update)
-* `dwa` (darwin activate)
 * `hmu` (home manager update)
 
 ## Tips
