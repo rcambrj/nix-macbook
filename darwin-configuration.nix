@@ -121,8 +121,8 @@ in {
       UserName = me.user;
       RunAtLoad = true;
       KeepAlive = true;
-      StandardOutPath = /Users/${me.user}/colima.log;
-      StandardErrorPath = /Users/${me.user}/colima.err;
+      # StandardOutPath = /Users/${me.user}/colima.log;
+      # StandardErrorPath = /Users/${me.user}/colima.err;
     };
   };
 
