@@ -250,6 +250,12 @@ in {
       hmu = "home-manager switch --flake ~/projects/nix/macbook/#rcambrj";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
 
+      flun = "nix flake lock --update-input nixpkgs";
+      fluh = "nix flake lock --update-input home-manager";
+      flub = "nix flake lock --update-input nix-homebrew --update-input homebrew-bundle --update-input homebrew-core --update-input homebrew-cask";
+      fluo = "nix flake lock --update-input nix-vscode-extensions --update-input mach-composer";
+      flua = "flun && fluh && flub && fluo";
+
       g    = "git";
       # git reset
       grs  = "git reset";
