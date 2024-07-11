@@ -191,6 +191,9 @@ in {
       "[terraform]" = {
         "editor.defaultFormatter" = "hashicorp.terraform";
       };
+      "[terraform-vars]" = {
+        "editor.defaultFormatter" = "hashicorp.terraform";
+      };
       "[go]" = {
         "editor.defaultFormatter" = "golang.go";
         "formatting.gofumpt" = true;
@@ -199,7 +202,7 @@ in {
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
       bbenoist.nix
-      eamodio.gitlens
+      # eamodio.gitlens
       esbenp.prettier-vscode
       github.vscode-github-actions
       golang.go
@@ -208,6 +211,7 @@ in {
       orsenkucher.vscode-graphql
       signageos.signageos-vscode-sops
       tamasfe.even-better-toml
+      github.vscode-pull-request-github
     ];
   };
 

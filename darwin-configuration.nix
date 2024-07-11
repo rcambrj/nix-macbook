@@ -59,6 +59,7 @@ in {
       "lunar"
       "macfuse"
       "macs-fan-control"
+      "messenger"
       "microsoft-outlook"
       "microsoft-teams"
       "private-internet-access"
@@ -91,6 +92,7 @@ in {
       { path = "/Applications/Microsoft Teams.app/"; }
       { path = "/Applications/Telegram.app/"; }
       { path = "/Applications/WhatsApp.app/"; }
+      { path = "/Applications/Messenger.app/"; }
     ];
   };
 
@@ -339,6 +341,7 @@ in {
       /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'HackNFM-Regular 14'"
       /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 100000"
       /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
+      /usr/libexec/PlistBuddy /Users/${me.user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Minimum Contrast (Dark)' 0.4"
 
       # refresh settings
       sudo -u ${me.user} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
