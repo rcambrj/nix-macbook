@@ -297,6 +297,7 @@ in {
       l = "ls -la";
       vim = "nvim";
       ip = "curl ifconfig.co";
+      tf = "terraform"
     };
   };
 }
