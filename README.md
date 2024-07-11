@@ -11,6 +11,7 @@
     * Slack
     * Telegram
     * Whatsapp
+    * Messenger
     * Spotify
     * Private Internet Access
 * `rclone config` for gdrive
