@@ -14,7 +14,7 @@ in {
     go # global instance for vscode
     htop
     iftop
-    pkgs-24-05.ncdu
+    pkgs-24-05.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     nil # global instance for vscode
     openssh
