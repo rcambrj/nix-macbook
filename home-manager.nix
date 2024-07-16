@@ -1,4 +1,4 @@
-{ pkgs, nixVscodeExtensions, ... }:
+{ pkgs, pkgs-24-05, pkgs-unstable, nixVscodeExtensions, ... }:
 let
   me = import ./me.nix;
 in {
@@ -14,7 +14,7 @@ in {
     go # global instance for vscode
     htop
     iftop
-    ncdu
+    pkgs-24-05.ncdu
     nerdfonts
     nil # global instance for vscode
     openssh
@@ -159,6 +159,7 @@ in {
       "editor.rulers" = [ 80 100 120 ];
       "editor.acceptSuggestionOnEnter" = "off";
       "editor.acceptSuggestionOnCommitCharacter" = false;
+      "editor.fontSize" = 13;
       "telemetry.enableCrashReporter" = false;
       "telemetry.enableTelemetry" = false;
       "redhat.telemetry.enabled" = false;
@@ -170,6 +171,7 @@ in {
       "search.useIgnoreFiles" = false;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
+      "workbench.colorTheme" = "Dark+ (contrast)";
       "[javascript]" = {
         "editor.defaultFormatter" = "esbenp.prettier-vscode";
       };
@@ -212,6 +214,7 @@ in {
       signageos.signageos-vscode-sops
       tamasfe.even-better-toml
       github.vscode-pull-request-github
+      k3a.theme-dark-plus-contrast
     ];
   };
 
@@ -297,7 +300,7 @@ in {
       l = "ls -la";
       vim = "nvim";
       ip = "curl ifconfig.co";
-      tf = "terraform"
+      tf = "terraform";
     };
   };
 }

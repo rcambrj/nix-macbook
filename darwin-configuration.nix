@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-24-05, pkgs-unstable, ... }:
 let
   me = import ./me.nix;
 in {

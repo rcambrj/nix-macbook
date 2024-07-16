@@ -274,7 +274,7 @@
         "type": "indirect"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs-24-05": {
       "locked": {
         "lastModified": 1717179513,
         "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
@@ -289,6 +289,36 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1721080040,
+        "narHash": "sha256-USDsS90/88RJibP3gEcH1AaVt+JpnX4XCUD9bAJP5I4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b2c1f10bfbb3f617ea8e8669ac13f3f56ceb2ea2",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixpkgs-unstable",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1721117078,
+        "narHash": "sha256-7fXZyWqeBGcOwUwAfVaPxrpK7cw7ndl//j3jbi4LoNs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2af21f1f8ead1349d12ef654ed85968614df5303",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "release-24.05",
+        "type": "indirect"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -299,7 +329,9 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nix-vscode-extensions": "nix-vscode-extensions",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-24-05": "nixpkgs-24-05",
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
     "systems": {
