@@ -211,7 +211,6 @@ in {
       hashicorp.terraform
       jnoortheen.nix-ide
       orsenkucher.vscode-graphql
-      signageos.signageos-vscode-sops
       tamasfe.even-better-toml
       github.vscode-pull-request-github
       k3a.theme-dark-plus-contrast
