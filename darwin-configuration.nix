@@ -62,6 +62,7 @@ in {
       "messenger"
       "microsoft-outlook"
       "microsoft-teams"
+      "orcaslicer"
       "private-internet-access"
       "rectangle"
       "spotify"
@@ -108,8 +109,8 @@ in {
       KeepAlive = {
         NetworkState = true;
       };
-      # StandardOutPath = /Users/${me.user}/gdrive.log;
-      # StandardErrorPath = /Users/${me.user}/gdrive.err;
+      StandardOutPath = /Users/${me.user}/gdrive.log;
+      StandardErrorPath = /Users/${me.user}/gdrive.err;
     };
   };
 

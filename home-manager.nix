@@ -160,6 +160,7 @@ in {
       "editor.acceptSuggestionOnEnter" = "off";
       "editor.acceptSuggestionOnCommitCharacter" = false;
       "editor.fontSize" = 13;
+      "telemetry.telemetryLevel" = "off";
       "telemetry.enableCrashReporter" = false;
       "telemetry.enableTelemetry" = false;
       "redhat.telemetry.enabled" = false;
@@ -203,8 +204,7 @@ in {
     };
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
-      bbenoist.nix
-      # eamodio.gitlens
+      # bbenoist.nix # does this conflict with jnoortheen.nix-ide for runaway CPU? yes, that might be it.
       esbenp.prettier-vscode
       github.vscode-github-actions
       golang.go
