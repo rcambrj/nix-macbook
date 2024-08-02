@@ -6,6 +6,10 @@ in {
   programs.home-manager.enable = true;
   home.username = me.user;
   home.homeDirectory = "/Users/${me.user}";
+  # age.secrets.foo.file = ./secrets/foo.age;
+  # secretservice = {
+  #   secretattr = builtins.readFile config.age.secrets.foo.path;
+  # };
 
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
@@ -252,8 +256,8 @@ in {
     };
     plugins = [];
     shellAliases = {
-      dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#rcambrj";
-      hmu = "home-manager switch --flake ~/projects/nix/macbook/#rcambrj";
+      dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#${me.user}";
+      hmu = "home-manager switch --flake ~/projects/nix/macbook/#${me.user}";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
 
       flun = "nix flake lock --update-input nixpkgs";

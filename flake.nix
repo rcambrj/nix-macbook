@@ -36,15 +36,18 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # newrepo = {
-    #   url = "github:foo/bar";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mach-composer = {
       url = "github:rcambrj/mach-composer-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # newrepo = {
+    #   url = "github:foo/bar";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
   outputs = inputs@{
     nixpkgs,
@@ -56,8 +59,10 @@
     homebrew-bundle,
     homebrew-core,
     homebrew-cask,
+
     nix-vscode-extensions,
     mach-composer,
+    agenix,
     # newrepo,
     ...
   }: let
@@ -74,6 +79,7 @@
         };
         overlays = [
           mach-composer.overlays.default
+          agenix.overlays.default
           # newrepo.overlays.default
         ];
       };
@@ -105,9 +111,10 @@
       };
 
     nixVscodeExtensions = nix-vscode-extensions.extensions.${system};
+
   in
   {
-    darwinConfigurations.rcambrj = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${me.user} = nix-darwin.lib.darwinSystem {
       specialArgs = { inherit inputs pkgs pkgs-24-05 pkgs-unstable system; };
       modules = [
         nix-homebrew.darwinModules.nix-homebrew
@@ -125,9 +132,10 @@
           };
         }
         ./darwin-configuration.nix
+        agenix.nixosModules.default
       ];
     };
-    homeConfigurations.rcambrj = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.${me.user} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = { inherit inputs pkgs pkgs-24-05 pkgs-unstable system nixVscodeExtensions; };
       modules = [

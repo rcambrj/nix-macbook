@@ -50,3 +50,9 @@
 
 for i in `defaults domains | tr ',' '\n'`; do echo "********* READING DEFAULT DOMAIN $i **********"; echo; defaults read $i; done > defaults.txt
 ```
+
+### Edit a secret
+
+```
+nix run github:ryantm/agenix -- -e secrets/foo.age
+```

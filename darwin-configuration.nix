@@ -1,4 +1,4 @@
-{ pkgs, pkgs-24-05, pkgs-unstable, ... }:
+{ pkgs, pkgs-24-05, pkgs-unstable, config, ... }:
 let
   me = import ./me.nix;
 in {
@@ -28,8 +28,13 @@ in {
     computerName = me.hostname;
     hostName = me.hostname;
   };
+  age.secrets.foo.file = ./secrets/foo.age;
+  # secretservice = {
+  #   secretattr = builtins.readFile config.age.secrets.foo.path;
+  # };
 
   environment.systemPackages = with pkgs; [
+    agenix
     colima
     docker-client
     dockutil
