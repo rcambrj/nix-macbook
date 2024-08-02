@@ -6,6 +6,7 @@
 * `home-manager switch --flake .#rcambrj`
 * Authenticate:
     * 1Password
+    * Google Drive
     * Firefox
     * Discord
     * Slack

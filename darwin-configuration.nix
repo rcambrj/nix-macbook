@@ -33,7 +33,7 @@ in {
     colima
     docker-client
     dockutil
-    rclone
+    # rclone
   ];
   # do zsh autocompletion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
@@ -53,6 +53,7 @@ in {
       "discord"
       "firefox"
       "google-chrome"
+      "google-drive"
       "hot" # menubar temperature
       "iterm2"
       "lingon-x" # launchd plists
@@ -97,22 +98,23 @@ in {
     ];
   };
 
-  launchd.user.agents.gdrive = {
-    serviceConfig = {
-      ProgramArguments = [
-        "/bin/sh"
-        "-c"
-        "/bin/wait4path \"${pkgs.lib.getExe pkgs.rclone}\" &amp;&amp; exec \"${pkgs.lib.getExe pkgs.rclone}\" mount gdrive:/ /Users/${me.user}/gdrive"
-      ];
-      UserName = me.user;
-      RunAtLoad = true;
-      KeepAlive = {
-        NetworkState = true;
-      };
-      StandardOutPath = /Users/${me.user}/gdrive.log;
-      StandardErrorPath = /Users/${me.user}/gdrive.err;
-    };
-  };
+  # TODO: figure out how to have rclone cache the remote disk locally. too slow to fetch each item on demand.
+  # launchd.user.agents.gdrive = {
+  #   serviceConfig = {
+  #     ProgramArguments = [
+  #       "/bin/sh"
+  #       "-c"
+  #       "/bin/wait4path \"${pkgs.lib.getExe pkgs.rclone}\" &amp;&amp; exec \"${pkgs.lib.getExe pkgs.rclone}\" mount gdrive:/ /Users/${me.user}/gdrive"
+  #     ];
+  #     UserName = me.user;
+  #     RunAtLoad = true;
+  #     KeepAlive = {
+  #       NetworkState = true;
+  #     };
+  #     StandardOutPath = /Users/${me.user}/gdrive.log;
+  #     StandardErrorPath = /Users/${me.user}/gdrive.err;
+  #   };
+  # };
 
   launchd.user.agents.colima = {
     serviceConfig = {
