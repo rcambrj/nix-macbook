@@ -177,11 +177,11 @@
     "homebrew-bundle": {
       "flake": false,
       "locked": {
-        "lastModified": 1720652420,
-        "narHash": "sha256-Lt2sHb/ShSsx2OnuEBJrHf6pJ84yWo6zaWPFpaG//vY=",
+        "lastModified": 1722552905,
+        "narHash": "sha256-begvXIqmdbgSuFgqzM+DZQ0Fr4n4xsgYoy2TXA0DWWo=",
         "owner": "homebrew",
         "repo": "homebrew-bundle",
-        "rev": "0e8e000753e19b5422efb94a688abfd62c908fcb",
+        "rev": "e97d33cc31c64fdd0c7412c182668783a2d706d6",
         "type": "github"
       },
       "original": {
@@ -193,11 +193,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1720703222,
-        "narHash": "sha256-BLfnbUymhOQ1pny0H3oFAvEl8AU2zf1t8l2z2ZxSwrs=",
+        "lastModified": 1722612821,
+        "narHash": "sha256-vo98h1EBBOIS+PSiSxsptpc1uoQdRAOODLejFUq05+0=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "43647a7f8a3e8a2227995b46c1519efe39ebce5b",
+        "rev": "b391ef8f321f3e40afba5dd859548b3ecbf4baf0",
         "type": "github"
       },
       "original": {
@@ -209,11 +209,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1720707788,
-        "narHash": "sha256-37eJyTstMO2yD8n6EgKsBeXW4Kfdvr4hup2/Q+z6yHU=",
+        "lastModified": 1722613172,
+        "narHash": "sha256-BZ0NuG/bgERIWjxTjukjup71NJs55x4JeaO4XJ8MLmY=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "4ba43fa84f3fbfc50bd25f15ca91ef84d3ddc88c",
+        "rev": "454ea1d50908baaabde71b69035d9068d92183ca",
         "type": "github"
       },
       "original": {
@@ -340,21 +340,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-24-05": {
-      "locked": {
-        "lastModified": 1717179513,
-        "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "63dacb46bf939521bdc93981b4cbb7ecb58427a0",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "24.05",
-        "type": "indirect"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1721080040,
@@ -397,7 +382,6 @@
         "nix-homebrew": "nix-homebrew",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-24-05": "nixpkgs-24-05",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },

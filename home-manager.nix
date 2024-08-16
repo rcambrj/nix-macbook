@@ -1,4 +1,4 @@
-{ pkgs, pkgs-24-05, pkgs-unstable, nixVscodeExtensions, ... }:
+{ pkgs, pkgs-unstable, nixVscodeExtensions, ... }:
 let
   me = import ./me.nix;
 in {
@@ -14,14 +14,16 @@ in {
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
     _1password
+    coreutils
     curl
     go # global instance for vscode
     htop
     iftop
-    pkgs-24-05.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
+    pkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     nil # global instance for vscode
     openssh
+    pv
     ripgrep
     terraform # global instance for vscode
     tig
@@ -259,6 +261,7 @@ in {
       dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#${me.user}";
       hmu = "home-manager switch --flake ~/projects/nix/macbook/#${me.user}";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
+      ngc = "nix-collect-garbage -d";
 
       flun = "nix flake lock --update-input nixpkgs";
       fluh = "nix flake lock --update-input home-manager";
@@ -304,6 +307,8 @@ in {
       vim = "nvim";
       ip = "curl ifconfig.co";
       tf = "terraform";
+
+      dd = "dd status=progress bs=4M conv=fsync"; # if=foo.img of=/dev/disk69 && sync
     };
   };
 }

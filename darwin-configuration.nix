@@ -1,14 +1,25 @@
-{ pkgs, pkgs-24-05, pkgs-unstable, config, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   me = import ./me.nix;
+  builderEmulatesSystems = [
+    "x86_64-linux"
+    # "armv7l-linux"
+  ];
 in {
   imports = [
     ./dock
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+  # qemu machine cache: /private/var/lib/darwin-builder/nixos.qcow2
+  nix.linux-builder.enable = true;
+  nix.linux-builder.systems = builderEmulatesSystems;
+  nix.linux-builder.maxJobs = 10;
+  nix.linux-builder.config = ({ pkgs, ... }:{
+    boot.binfmt.emulatedSystems = builderEmulatesSystems;
+  });
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = true;
+  nix.settings.auto-optimise-store = false; # https://github.com/NixOS/nix/issues/7273
   nix.settings.trusted-users = [
     "root"
     "@wheel"
@@ -53,6 +64,7 @@ in {
     brews = [];
     casks = [
       "1password"
+      "arq"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
       "choosy" # browser selector
       "discord"

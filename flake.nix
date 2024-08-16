@@ -1,6 +1,5 @@
 {
   inputs = {
-    nixpkgs-24-05.url = "nixpkgs/24.05";
     nixpkgs.url = "nixpkgs/release-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
 
@@ -51,7 +50,6 @@
   };
   outputs = inputs@{
     nixpkgs,
-    nixpkgs-24-05,
     nixpkgs-unstable,
     nix-darwin,
     home-manager,
@@ -83,19 +81,6 @@
           # newrepo.overlays.default
         ];
       };
-    pkgs-24-05 = import nixpkgs-24-05 {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          # allowBroken = true;
-          # allowInsecure = false;
-          # allowUnsupportedSystem = true;
-        };
-        overlays = [
-          mach-composer.overlays.default
-          # newrepo.overlays.default
-        ];
-      };
     pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config = {
@@ -115,7 +100,7 @@
   in
   {
     darwinConfigurations.${me.user} = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs pkgs pkgs-24-05 pkgs-unstable system; };
+      specialArgs = { inherit inputs pkgs pkgs-unstable system; };
       modules = [
         nix-homebrew.darwinModules.nix-homebrew
         {
@@ -137,7 +122,7 @@
     };
     homeConfigurations.${me.user} = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = { inherit inputs pkgs pkgs-24-05 pkgs-unstable system nixVscodeExtensions; };
+      extraSpecialArgs = { inherit inputs pkgs pkgs-unstable system nixVscodeExtensions; };
       modules = [
         ./home-manager.nix
       ];
