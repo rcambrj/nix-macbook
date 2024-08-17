@@ -65,6 +65,7 @@ in {
     casks = [
       "1password"
       "arq"
+      "balenaetcher"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
       "choosy" # browser selector
       "discord"
@@ -72,6 +73,7 @@ in {
       "google-chrome"
       "google-drive"
       "hot" # menubar temperature
+      "graphiql"
       "iterm2"
       "lingon-x" # launchd plists
       "lunar"
@@ -81,13 +83,14 @@ in {
       "microsoft-outlook"
       "microsoft-teams"
       "orcaslicer"
+      "postman-agent"
       "private-internet-access"
       "rectangle"
       "spotify"
-      "postman-agent"
-      "graphiql"
-      # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "music-decoy" # prevents play/pause from opening Apple Music
+      # "topnotch" # black menubar hides the notch. not needed with black wallpaper
+      "utm"
+      "zerotier-one"
     ];
     masApps = {
       # for apps which incessantly update themselves

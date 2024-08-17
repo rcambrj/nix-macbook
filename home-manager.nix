@@ -32,6 +32,7 @@ in {
     tree
     unrar
     unzip
+    watch
     wget
     mach-composer # TODO: remove when devshell can do completions
   ];
@@ -213,13 +214,14 @@ in {
       # bbenoist.nix # does this conflict with jnoortheen.nix-ide for runaway CPU? yes, that might be it.
       esbenp.prettier-vscode
       github.vscode-github-actions
+      github.vscode-pull-request-github
       golang.go
       hashicorp.terraform
       jnoortheen.nix-ide
+      k3a.theme-dark-plus-contrast
+      ms-vscode.makefile-tools
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
-      github.vscode-pull-request-github
-      k3a.theme-dark-plus-contrast
     ];
   };
 
@@ -308,7 +310,7 @@ in {
       ip = "curl ifconfig.co";
       tf = "terraform";
 
-      dd = "dd status=progress bs=4M conv=fsync"; # if=foo.img of=/dev/disk69 && sync
+      etch = "dd status=progress bs=4M conv=fsync"; # if=foo.img of=/dev/disk69 && sync
     };
   };
 }

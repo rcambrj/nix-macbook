@@ -17,6 +17,8 @@
     * Private Internet Access
 * `rclone config` for gdrive
 * Start once:
+    * ZeroTier
+        * join network
     * Arq
         * configure licence
         * configure /Users/rcambrj with exceptions:
