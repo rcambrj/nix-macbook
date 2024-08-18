@@ -114,10 +114,9 @@ in {
           StrictHostKeyChecking = "no";
         };
       };
-      "blueberry-vm" = {
-        hostname =  "localhost";
+      "banana" = {
+        hostname =  "banana-nomad";
         user = "nixos";
-        port = 2224;
         extraOptions = {
           StrictHostKeyChecking = "no";
         };

@@ -11,13 +11,26 @@ in {
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    # hostName = "banana-nomad"; # https://github.com/rcambrj/home/blob/63ea665902209285741e5925a1df7b3c58b98db0/hosts/banana/configuration.nix#L20
+    hostName = "192.168.142.x"; # this will change based on where banana is plugged in
+    system = "x86_64-linux";
+    systems = ["aarch64-linux" "armv7l-linux"];
+    sshUser = "nixos";
+    sshKey = "/Users/${me.user}/.ssh/id_ed25519";
+    maxJobs = 100;
+    supportedFeatures = [ "kvm" "big-parallel" ];
+  }];
   # qemu machine cache: /private/var/lib/darwin-builder/nixos.qcow2
-  nix.linux-builder.enable = true;
-  nix.linux-builder.systems = builderEmulatesSystems;
-  nix.linux-builder.maxJobs = 10;
-  nix.linux-builder.config = ({ pkgs, ... }:{
-    boot.binfmt.emulatedSystems = builderEmulatesSystems;
-  });
+  # nix.linux-builder.enable = true;
+  # nix.linux-builder.systems = builderEmulatesSystems;
+  # nix.linux-builder.maxJobs = 10;
+  # nix.linux-builder.config = ({ pkgs, ... }:{
+  #   boot.binfmt.emulatedSystems = builderEmulatesSystems;
+  # });
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = false; # https://github.com/NixOS/nix/issues/7273
   nix.settings.trusted-users = [
