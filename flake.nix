@@ -17,7 +17,6 @@
       url = "github:zhaofengli-wip/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -100,22 +99,10 @@
   in
   {
     darwinConfigurations.${me.user} = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs pkgs pkgs-unstable system; };
+      specialArgs = { inherit inputs pkgs pkgs-unstable system homebrew-core homebrew-cask homebrew-bundle; };
       modules = [
         nix-homebrew.darwinModules.nix-homebrew
-        {
-          nix-homebrew = {
-            enable = true;
-            enableRosetta = true;
-            user = me.user;
-            taps = {
-              "homebrew/homebrew-core" = homebrew-core;
-              "homebrew/homebrew-cask" = homebrew-cask;
-              "homebrew/homebrew-bundle" = homebrew-bundle;
-            };
-            mutableTaps = false;
-          };
-        }
+        # brew-nix.darwinModules.default
         ./darwin-configuration.nix
         agenix.nixosModules.default
       ];

@@ -45,10 +45,9 @@
     * Rectangle
     * Hot
     * Postman Agent
-    * Topnotch
-        * round corners
-        * enable on macbook screen only
     * Music Decoy
+    * Battery
+    * Mac Fan Control
 * Remove all notification panel widgets
 * Set `Automatically dim brightness` off
 * Set `True Tone` off

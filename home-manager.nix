@@ -22,6 +22,7 @@ in {
     pkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     nil # global instance for vscode
+    nixd # global instance for vscode
     openssh
     pv
     ripgrep
@@ -110,16 +111,10 @@ in {
       "blueberry" = {
         hostname =  "blueberry";
         user = "nixos";
-        extraOptions = {
-          StrictHostKeyChecking = "no";
-        };
       };
       "banana" = {
         hostname =  "banana-nomad";
         user = "nixos";
-        extraOptions = {
-          StrictHostKeyChecking = "no";
-        };
       };
       "gooseberry" = {
         hostname =  "192.168.142.23";
@@ -131,6 +126,10 @@ in {
       };
       "tomato" = {
         hostname =  "172.245.118.14";
+        user = "root";
+      };
+      "coconut" = {
+        hostname = "89.117.152.168";
         user = "root";
       };
     };
@@ -176,6 +175,10 @@ in {
       "gitlens.codeLens.recentChange.enabled" = false;
       # "go.toolsManagement.autoUpdate" = false; # maybe not necessary with enableExtensionUpdateCheck=false?
       "search.useIgnoreFiles" = false;
+      "files.watcherExclude" = {
+        "**/.git/objects/**" = true;
+        "**/node_modules/**" = true;
+      };
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
       "workbench.colorTheme" = "Dark+ (contrast)";

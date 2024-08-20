@@ -1,35 +1,17 @@
-{ pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
 let
   me = import ./me.nix;
-  builderEmulatesSystems = [
-    "x86_64-linux"
-    # "armv7l-linux"
-  ];
 in {
   imports = [
     ./dock
+    # ./builders/banana.nix
+    ./builders/local-qemu.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  nix.package = pkgs.nixVersions.nix_2_21;
   nix.distributedBuilds = true;
-  nix.buildMachines = [{
-    # hostName = "banana-nomad"; # https://github.com/rcambrj/home/blob/63ea665902209285741e5925a1df7b3c58b98db0/hosts/banana/configuration.nix#L20
-    hostName = "192.168.142.x"; # this will change based on where banana is plugged in
-    system = "x86_64-linux";
-    systems = ["aarch64-linux" "armv7l-linux"];
-    sshUser = "nixos";
-    sshKey = "/Users/${me.user}/.ssh/id_ed25519";
-    maxJobs = 100;
-    supportedFeatures = [ "kvm" "big-parallel" ];
-  }];
-  # qemu machine cache: /private/var/lib/darwin-builder/nixos.qcow2
-  # nix.linux-builder.enable = true;
-  # nix.linux-builder.systems = builderEmulatesSystems;
-  # nix.linux-builder.maxJobs = 10;
-  # nix.linux-builder.config = ({ pkgs, ... }:{
-  #   boot.binfmt.emulatedSystems = builderEmulatesSystems;
-  # });
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = false; # https://github.com/NixOS/nix/issues/7273
@@ -44,7 +26,6 @@ in {
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
   ];
   services.nix-daemon.enable = true;
-  nix.package = pkgs.nix;
   security.pam.enableSudoTouchIdAuth = true;
   programs.zsh.enable = true;
   users.users.${me.user}.shell = pkgs.zsh;
@@ -67,13 +48,24 @@ in {
   # do zsh autocompletion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
 
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = me.user;
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
+    };
+    mutableTaps = false;
+  };
   homebrew = {
     enable = true;
     onActivation = {
       cleanup = "uninstall";
       upgrade = false;
     };
-    taps = [];
+    taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [];
     casks = [
       "1password"
@@ -88,7 +80,7 @@ in {
       "hot" # menubar temperature
       "graphiql"
       "iterm2"
-      "lingon-x" # launchd plists
+      # "lingon-x" # launchd plists. damnit sha doesnt match
       "lunar"
       "macfuse"
       "macs-fan-control"
@@ -110,6 +102,7 @@ in {
       telegram = 747648890;
       whatsapp = 310633997;
       slack = 803453959;
+      dns-sd-browser = 1381004916;
     };
   };
 
