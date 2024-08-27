@@ -74,6 +74,7 @@ in {
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
       "choosy" # browser selector
       "discord"
+      "element"
       "firefox"
       "google-chrome"
       "google-drive"

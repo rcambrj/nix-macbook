@@ -129,8 +129,13 @@ in {
         user = "root";
       };
       "coconut" = {
-        hostname = "89.117.152.168";
+        hostname = "107.175.193.163";
         user = "root";
+        extraOptions = {
+          # currently setting up this machine
+          UserKnownHostsFile = "/dev/null";
+          StrictHostKeyChecking = "no";
+        };
       };
     };
   };
@@ -150,6 +155,9 @@ in {
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     userSettings = {
+      "editor.tabSize" = 4;
+      "editor.insertSpaces" = false;
+      "editor.detectIndentation" = false;
       "liveshare.focusBehavior" = "prompt";
       "liveshare.guestApprovalRequired" = true;
       "workbench.startupEditor" = "newUntitledFile";
@@ -183,22 +191,22 @@ in {
       "nix.serverPath" = "nil";
       "workbench.colorTheme" = "Dark+ (contrast)";
       "[javascript]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[javascriptreact]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[typescript]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[typescriptreact]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[json]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[graphql]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "editor.defaultFormatter" = "biomejs.biome";
       };
       "[terraform]" = {
         "editor.defaultFormatter" = "hashicorp.terraform";
@@ -214,7 +222,7 @@ in {
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
       # bbenoist.nix # does this conflict with jnoortheen.nix-ide for runaway CPU? yes, that might be it.
-      esbenp.prettier-vscode
+      # esbenp.prettier-vscode # is biome better? let's see
       github.vscode-github-actions
       github.vscode-pull-request-github
       golang.go
@@ -224,6 +232,7 @@ in {
       ms-vscode.makefile-tools
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
+      biomejs.biome
     ];
   };
 
