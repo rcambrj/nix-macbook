@@ -104,6 +104,7 @@ in {
       whatsapp = 310633997;
       slack = 803453959;
       dns-sd-browser = 1381004916;
+      ibar = 6443843900;
     };
   };
 
@@ -156,6 +157,12 @@ in {
       # StandardOutPath = /Users/${me.user}/colima.log;
       # StandardErrorPath = /Users/${me.user}/colima.err;
     };
+  };
+
+  launchd.user.agents.killWallpaperVideoExtension = {
+    # WallpaperVideoExtension comes alive even if not used
+    command = "pgrep WallpaperVideoExtension | xargs kill -9";
+    serviceConfig.StartInterval = 300;
   };
 
   system = {

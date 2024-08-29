@@ -16,7 +16,8 @@
     * Spotify
     * Private Internet Access
 * `rclone config` for gdrive
-* Start once:
+* Start once + start on login:
+	* iBar
     * ZeroTier
         * join network
     * Arq

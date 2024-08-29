@@ -98,6 +98,7 @@ in {
     extraOptionOverrides  = {
       TCPKeepAlive = "yes";
       ServerAliveInterval = "60";
+      ConnectTimeout = "2";
     };
     matchBlocks = {
       "router" = {
@@ -112,7 +113,7 @@ in {
         hostname =  "blueberry";
         user = "nixos";
       };
-      "banana" = {
+      "banana-nomad" = {
         hostname =  "banana-nomad";
         user = "nixos";
       };
@@ -157,7 +158,7 @@ in {
     userSettings = {
       "editor.tabSize" = 4;
       "editor.insertSpaces" = false;
-      "editor.detectIndentation" = false;
+      "editor.detectIndentation" = true;
       "liveshare.focusBehavior" = "prompt";
       "liveshare.guestApprovalRequired" = true;
       "workbench.startupEditor" = "newUntitledFile";
@@ -181,7 +182,6 @@ in {
       "liveshare.presence" = true;
       "gitlens.codeLens.enabled" = false;
       "gitlens.codeLens.recentChange.enabled" = false;
-      # "go.toolsManagement.autoUpdate" = false; # maybe not necessary with enableExtensionUpdateCheck=false?
       "search.useIgnoreFiles" = false;
       "files.watcherExclude" = {
         "**/.git/objects/**" = true;
@@ -221,7 +221,6 @@ in {
     };
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
-      # bbenoist.nix # does this conflict with jnoortheen.nix-ide for runaway CPU? yes, that might be it.
       # esbenp.prettier-vscode # is biome better? let's see
       github.vscode-github-actions
       github.vscode-pull-request-github
