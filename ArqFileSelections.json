@@ -1,0 +1,41 @@
+{
+  "4672EEED-4A06-4CC9-B2D2-87EFD2AE7BBC" : {
+    "backupFolderUUID" : "4672EEED-4A06-4CC9-B2D2-87EFD2AE7BBC",
+    "diskIdentifier" : "ROOT",
+    "blobStorageClass" : "STANDARD",
+    "ignoredRelativePaths" : [
+
+    ],
+    "skipIfNotMounted" : false,
+    "skipDuringBackup" : false,
+    "useDiskIdentifier" : false,
+    "relativePath" : "Users\/rcambrj",
+    "wildcardExcludes" : [
+      "\/Users\/rcambrj\/Downloads",
+      "\/Users\/rcambrj\/My Drive",
+      "\/Users\/rcambrj\/Google Drive",
+      "\/Users\/rcambrj\/Library",
+      "\/Users\/rcambrj\/.ssh\/id_*",
+      ".Trash",
+      "node_modules",
+      ".terraform",
+      "build",
+      "dist",
+      "go\/bin",
+      "go\/pkg",
+      ".next",
+      ".cache"
+    ],
+    "excludedDrives" : [
+
+    ],
+    "localPath" : "\/Users\/rcambrj",
+    "allDrives" : false,
+    "skipTMExcludes" : false,
+    "regexExcludes" : [
+
+    ],
+    "name" : "rcambrj",
+    "localMountPoint" : "\/"
+  }
+}

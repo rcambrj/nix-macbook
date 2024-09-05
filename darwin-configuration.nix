@@ -72,6 +72,7 @@ in {
       "arq"
       "balenaetcher"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
+      "db-browser-for-sqlite"
       "choosy" # browser selector
       "discord"
       "element"

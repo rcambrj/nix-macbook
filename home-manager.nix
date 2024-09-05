@@ -25,6 +25,7 @@ in {
     nixd # global instance for vscode
     openssh
     pv
+    restic
     ripgrep
     terraform # global instance for vscode
     tig
@@ -36,6 +37,7 @@ in {
     watch
     wget
     mach-composer # TODO: remove when devshell can do completions
+    dotnet-sdk_8
   ];
 
   fonts.fontconfig.enable = true;
@@ -105,17 +107,22 @@ in {
         hostname =  "192.168.142.1";
         user = "root";
       };
-      "strawberry" = {
-        hostname =  "192.168.142.20";
-        user = "strawberry";
-      };
       "blueberry" = {
         hostname =  "blueberry";
         user = "nixos";
       };
-      "banana-nomad" = {
-        hostname =  "banana-nomad";
+      "cranberry" = {
+        hostname =  "cranberry";
         user = "nixos";
+      };
+      "banana-nomad" = {
+        hostname =  "banana-nomad.local";
+        user = "nixos";
+        extraOptions = {
+          # this will boot on a variety of shapes
+          UserKnownHostsFile = "/dev/null";
+          StrictHostKeyChecking = "no";
+        };
       };
       "gooseberry" = {
         hostname =  "192.168.142.23";
@@ -232,6 +239,11 @@ in {
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
       biomejs.biome
+
+      # dotnet
+      ms-dotnettools.vscode-dotnet-runtime
+      ms-dotnettools.csharp
+      ms-dotnettools.csdevkit
     ];
   };
 

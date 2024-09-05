@@ -22,19 +22,7 @@
         * join network
     * Arq
         * configure licence
-        * configure /Users/rcambrj with exceptions:
-            ```
-            /Users/rcambrj/Downloads
-            /Users/rcambrj/My Drive
-            /Users/rcambrj/Library
-            /Users/rcambrj/.ssh/id_*
-            .Trash
-            node_modules
-            build
-            dist
-            go/bin
-            go/pkg
-            ```
+        * configure /Users/rcambrj with `ArqFileSelections.json`
     * Choosy
         * configure licence
         * set default browser
