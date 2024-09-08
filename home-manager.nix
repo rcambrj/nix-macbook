@@ -115,8 +115,17 @@ in {
         hostname =  "cranberry";
         user = "nixos";
       };
-      "banana-nomad" = {
-        hostname =  "banana-nomad.local";
+      "minimal-intel-nomad" = {
+        hostname =  "minimal-intel-nomad.local";
+        user = "nixos";
+        extraOptions = {
+          # this will boot on a variety of shapes
+          UserKnownHostsFile = "/dev/null";
+          StrictHostKeyChecking = "no";
+        };
+      };
+      "minimal-raspi-nomad" = {
+        hostname =  "minimal-raspi-nomad.local";
         user = "nixos";
         extraOptions = {
           # this will boot on a variety of shapes
