@@ -36,6 +36,7 @@
     * Postman Agent
     * Music Decoy
     * Battery
+        * `battery maintain 60`
     * Mac Fan Control
 * Remove all notification panel widgets
 * Set `Automatically dim brightness` off

@@ -97,6 +97,7 @@ in {
       "music-decoy" # prevents play/pause from opening Apple Music
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
+      "winbox"
       "zerotier-one"
     ];
     masApps = {
@@ -106,6 +107,7 @@ in {
       slack = 803453959;
       dns-sd-browser = 1381004916;
       ibar = 6443843900;
+      quick-camera = 598853070;
     };
   };
 

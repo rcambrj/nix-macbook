@@ -14,17 +14,24 @@ in {
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
     _1password
+    asciinema
     coreutils
     curl
+    dotnet-sdk_8
     go # global instance for vscode
+    gnupg
+    gnutar # required to support zstd
     htop
     iftop
+    nodePackages.localtunnel
+    mach-composer # TODO: remove when devshell can do completions
     pkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     nil # global instance for vscode
     nixd # global instance for vscode
     openssh
     pv
+    qemu
     restic
     ripgrep
     terraform # global instance for vscode
@@ -36,8 +43,6 @@ in {
     unzip
     watch
     wget
-    mach-composer # TODO: remove when devshell can do completions
-    dotnet-sdk_8
   ];
 
   fonts.fontconfig.enable = true;
@@ -115,7 +120,7 @@ in {
         hostname =  "cranberry";
         user = "nixos";
       };
-      "minimal-intel-nomad" = {
+      "minimal-intel" = {
         hostname =  "minimal-intel-nomad.local";
         user = "nixos";
         extraOptions = {
@@ -124,7 +129,7 @@ in {
           StrictHostKeyChecking = "no";
         };
       };
-      "minimal-raspi-nomad" = {
+      "minimal-raspi" = {
         hostname =  "minimal-raspi-nomad.local";
         user = "nixos";
         extraOptions = {
@@ -324,6 +329,8 @@ in {
       # git other
       gcl  = "git clone";
       gst  = "git status";
+      gsp  = "git stash push";
+      gsa  = "git stash apply";
       gf   = "git fetch --all --prune --jobs=10";
       gpr  = "git pull --rebase";
       gd   = "git diff";
