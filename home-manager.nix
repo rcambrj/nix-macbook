@@ -301,10 +301,10 @@ in {
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
       ngc = "nix-collect-garbage -d";
 
-      flun = "nix flake lock --update-input nixpkgs";
-      fluh = "nix flake lock --update-input home-manager";
-      flub = "nix flake lock --update-input nix-homebrew --update-input homebrew-bundle --update-input homebrew-core --update-input homebrew-cask";
-      fluo = "nix flake lock --update-input nix-vscode-extensions --update-input mach-composer";
+      flun = "nix flake update nixpkgs";
+      fluh = "nix flake update home-manager";
+      flub = "nix flake update nix-homebrew homebrew-bundle homebrew-core homebrew-cask";
+      fluo = "nix flake update nix-vscode-extensions mach-composer";
       flua = "flun && fluh && flub && fluo";
 
       g    = "git";
