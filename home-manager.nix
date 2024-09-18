@@ -348,7 +348,7 @@ in {
       ip = "curl ifconfig.co";
       tf = "terraform";
 
-      etch = "dd status=progress bs=4M conv=fsync"; # if=foo.img of=/dev/disk69 && sync
+      etch = "sudo dd status=progress bs=4M conv=fsync"; # if=foo.img of=/dev/disk69 && sync
     };
   };
 }
