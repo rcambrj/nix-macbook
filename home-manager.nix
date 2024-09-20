@@ -113,11 +113,11 @@ in {
         user = "root";
       };
       "blueberry" = {
-        hostname =  "blueberry";
+        hostname =  "blueberry.cambridge.me";
         user = "nixos";
       };
       "cranberry" = {
-        hostname =  "cranberry";
+        hostname =  "cranberry.cambridge.me";
         user = "nixos";
       };
       "minimal-intel" = {
@@ -147,17 +147,22 @@ in {
         user = "pi";
       };
       "tomato" = {
-        hostname =  "172.245.118.14";
+        hostname =  "tomato.cambridge.me";
         user = "root";
       };
       "coconut" = {
-        hostname = "107.175.193.163";
+        hostname = "coconut.cambridge.me";
         user = "root";
         extraOptions = {
           # currently setting up this machine
           UserKnownHostsFile = "/dev/null";
           StrictHostKeyChecking = "no";
         };
+      };
+      "lime" = {
+        hostname = "51.255.83.152";
+        user = "root";
+        port = 15120;
       };
     };
   };
