@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, homebrew-core, homebrew-cask, homebrew-bundle, ... }:
+{ config, pkgs, pkgs-unstable, homebrew-core, homebrew-cask, homebrew-bundle, lib, ... }:
 let
   me = import ./me.nix;
 in {
@@ -18,12 +18,18 @@ in {
   nix.settings.trusted-users = [
     "root"
     "@wheel"
+    "@admin"
   ];
+  nix.settings.substituters = lib.mkForce config.nix.settings.trusted-substituters;
   nix.settings.trusted-substituters = [
     "https://cache.nixos.org/"
+    "https://nix-community.cachix.org"
+    "https://cache.garnix.io"
   ];
   nix.settings.trusted-public-keys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
   ];
   services.nix-daemon.enable = true;
   security.pam.enableSudoTouchIdAuth = true;
@@ -89,12 +95,15 @@ in {
       "messenger"
       "microsoft-outlook"
       "microsoft-teams"
+      "music-decoy" # prevents play/pause from opening Apple Music
       "orcaslicer"
       "postman-agent"
       "private-internet-access"
       "rectangle"
+      "rustdesk"
+      "signal"
       "spotify"
-      "music-decoy" # prevents play/pause from opening Apple Music
+      "tailscale"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
       "winbox"
@@ -125,6 +134,7 @@ in {
       { path = "/Applications/Microsoft Teams.app/"; }
       { path = "/Applications/Telegram.app/"; }
       { path = "/Applications/WhatsApp.app/"; }
+      { path = "/Applications/Signal.app/"; }
       { path = "/Applications/Messenger.app/"; }
     ];
   };
@@ -165,7 +175,7 @@ in {
   launchd.user.agents.killWallpaperVideoExtension = {
     # WallpaperVideoExtension comes alive even if not used
     command = "pgrep WallpaperVideoExtension | xargs kill -9";
-    serviceConfig.StartInterval = 300;
+    serviceConfig.StartInterval = 30;
   };
 
   system = {

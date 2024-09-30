@@ -14,11 +14,11 @@ in {
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
     _1password
+    agenix
     asciinema
     coreutils
     curl
     dotnet-sdk_8
-    go # global instance for vscode
     gnupg
     gnutar # required to support zstd
     htop
@@ -27,14 +27,11 @@ in {
     mach-composer # TODO: remove when devshell can do completions
     pkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
-    nil # global instance for vscode
-    nixd # global instance for vscode
     openssh
     pv
     qemu
     restic
     ripgrep
-    terraform # global instance for vscode
     tig
     tmate
     tmux
@@ -43,6 +40,14 @@ in {
     unzip
     watch
     wget
+    zed-editor
+
+    # vscode tools
+    biome
+    go
+    nil
+    nixd
+    terraform
   ];
 
   fonts.fontconfig.enable = true;
@@ -213,8 +218,11 @@ in {
         "**/.git/objects/**" = true;
         "**/node_modules/**" = true;
       };
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
+
+      # jnoortheen.nix-ide
+      "nix.enableLanguageServer" = false; # keeps crashing
+      "nix.serverPath" = "nixd"; # or nil
+
       "workbench.colorTheme" = "Dark+ (contrast)";
       "[javascript]" = {
         "editor.defaultFormatter" = "biomejs.biome";
@@ -248,16 +256,18 @@ in {
     mutableExtensionsDir = false;
     extensions = with nixVscodeExtensions.vscode-marketplace; [
       # esbenp.prettier-vscode # is biome better? let's see
+      biomejs.biome
+
       github.vscode-github-actions
       github.vscode-pull-request-github
       golang.go
       hashicorp.terraform
       jnoortheen.nix-ide
+      # bbenoist.nix
       k3a.theme-dark-plus-contrast
       ms-vscode.makefile-tools
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
-      biomejs.biome
 
       # dotnet
       ms-dotnettools.vscode-dotnet-runtime
