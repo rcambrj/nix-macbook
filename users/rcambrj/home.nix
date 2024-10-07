@@ -1,20 +1,15 @@
-{ pkgs, pkgs-unstable, nixVscodeExtensions, ... }:
+{ config, flake, inputs, perSystem, pkgs, ... }:
 let
-  me = import ./me.nix;
+  inherit (flake.lib) me;
 in {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
   home.username = me.user;
-  home.homeDirectory = "/Users/${me.user}";
-  # age.secrets.foo.file = ./secrets/foo.age;
-  # secretservice = {
-  #   secretattr = builtins.readFile config.age.secrets.foo.path;
-  # };
+  home.homeDirectory = pkgs.lib.mkForce "/Users/${me.user}";
 
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
     _1password
-    agenix
     asciinema
     coreutils
     curl
@@ -24,8 +19,8 @@ in {
     htop
     iftop
     nodePackages.localtunnel
-    mach-composer # TODO: remove when devshell can do completions
-    pkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
+    perSystem.mach-composer.default # TODO: remove when devshell can do completions
+    perSystem.nixpkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     openssh
     pv
@@ -40,7 +35,6 @@ in {
     unzip
     watch
     wget
-    zed-editor
 
     # vscode tools
     biome
@@ -254,7 +248,8 @@ in {
       };
     };
     mutableExtensionsDir = false;
-    extensions = with nixVscodeExtensions.vscode-marketplace; [
+    # TODO: don't hardcode system
+    extensions = with inputs.nix-vscode-extensions.extensions."aarch64-darwin".vscode-marketplace; [
       # esbenp.prettier-vscode # is biome better? let's see
       biomejs.biome
 
@@ -304,15 +299,14 @@ in {
 
       # completion
       # TODO: why doesn't /Users/rcambrj/.nix-profile/share/zsh/site-functions/_mach-composer work?
-      eval "$(${pkgs.lib.getExe pkgs.mach-composer} completion zsh)"
+      eval "$(${pkgs.lib.getExe perSystem.mach-composer.default} completion zsh)"
     '';
     history = {
       ignoreAllDups = true;
     };
     plugins = [];
     shellAliases = {
-      dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#${me.user}";
-      hmu = "home-manager switch --flake ~/projects/nix/macbook/#${me.user}";
+      dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#macbook";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
       ngc = "nix-collect-garbage -d";
 

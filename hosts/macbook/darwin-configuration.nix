@@ -1,14 +1,22 @@
-{ config, pkgs, pkgs-unstable, homebrew-core, homebrew-cask, homebrew-bundle, lib, ... }:
+args@{ config, flake, inputs, lib, perSystem, pkgs, ... }:
 let
-  me = import ./me.nix;
+  inherit (flake.lib) me;
 in {
   imports = [
-    ./dock
+    inputs.agenix.darwinModules.default
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+    inputs.home-manager.darwinModules.home-manager
+    flake.darwinModules.dock
     # ./builders/banana.nix
-    ./builders/local-qemu.nix
+    # ./builders/local-qemu.nix
   ];
 
+  home-manager.users.rcambrj = import ../../users/rcambrj/home.nix args;
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
 
   nix.package = pkgs.nixVersions.nix_2_21;
   nix.distributedBuilds = true;
@@ -39,13 +47,13 @@ in {
     computerName = me.hostname;
     hostName = me.hostname;
   };
-  age.secrets.foo.file = ./secrets/foo.age;
+  age.secrets.foo.file = ../../secrets/foo.age;
   # secretservice = {
   #   secretattr = builtins.readFile config.age.secrets.foo.path;
   # };
 
   environment.systemPackages = with pkgs; [
-    agenix
+    perSystem.agenix.agenix
     colima
     docker-client
     dockutil
@@ -59,9 +67,9 @@ in {
     enableRosetta = true;
     user = me.user;
     taps = {
-      "homebrew/homebrew-core" = homebrew-core;
-      "homebrew/homebrew-cask" = homebrew-cask;
-      "homebrew/homebrew-bundle" = homebrew-bundle;
+      "homebrew/homebrew-core" = inputs.homebrew-core;
+      "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
     };
     mutableTaps = false;
   };
@@ -120,9 +128,9 @@ in {
     };
   };
 
-  local = {
-    dock.enable = true;
-    dock.entries = [
+  dock = {
+    enable = true;
+    entries = [
       { path = "/Applications/Firefox.app/"; }
       { path = "/Applications/Google Chrome.app/"; }
       { path = "/Applications/1Password.app/"; }

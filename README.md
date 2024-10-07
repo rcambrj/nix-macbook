@@ -2,8 +2,7 @@
 
 ## Getting started
 
-* `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#rcambrj`
-* `home-manager switch --flake .#rcambrj`
+* `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#macbook`
 * Authenticate:
     * 1Password
     * Google Drive
@@ -45,7 +44,6 @@
 ...make changes...
 
 * `dwu` (darwin update)
-* `hmu` (home manager update)
 
 ## Tips
 

@@ -3,6 +3,9 @@
     nixpkgs.url = "nixpkgs/release-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
 
+    blueprint.url = "github:numtide/blueprint";
+    blueprint.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,78 +45,9 @@
       url = "github:rcambrj/mach-composer-cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # newrepo = {
-    #   url = "github:foo/bar";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
-  outputs = inputs@{
-    nixpkgs,
-    nixpkgs-unstable,
-    nix-darwin,
-    home-manager,
-    nix-homebrew,
-    homebrew-bundle,
-    homebrew-core,
-    homebrew-cask,
-
-    nix-vscode-extensions,
-    mach-composer,
-    agenix,
-    # newrepo,
-    ...
-  }: let
-    system = "aarch64-darwin";
-    me = import ./me.nix;
-    pkgs =
-      import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          # allowBroken = true;
-          # allowInsecure = false;
-          # allowUnsupportedSystem = true;
-        };
-        overlays = [
-          mach-composer.overlays.default
-          agenix.overlays.default
-          # newrepo.overlays.default
-        ];
-      };
-    pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          # allowBroken = true;
-          # allowInsecure = false;
-          # allowUnsupportedSystem = true;
-        };
-        overlays = [
-          mach-composer.overlays.default
-          # newrepo.overlays.default
-        ];
-      };
-
-    nixVscodeExtensions = nix-vscode-extensions.extensions.${system};
-
-  in
-  {
-    darwinConfigurations.${me.user} = nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit inputs pkgs pkgs-unstable system homebrew-core homebrew-cask homebrew-bundle; };
-      modules = [
-        nix-homebrew.darwinModules.nix-homebrew
-        # brew-nix.darwinModules.default
-        ./darwin-configuration.nix
-        agenix.nixosModules.default
-      ];
-    };
-    homeConfigurations.${me.user} = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit inputs pkgs pkgs-unstable system nixVscodeExtensions; };
-      modules = [
-        ./home-manager.nix
-      ];
-    };
-
+  outputs = inputs: inputs.blueprint {
+    inherit inputs;
+    nixpkgs.config.allowUnfree = true;
   };
 }

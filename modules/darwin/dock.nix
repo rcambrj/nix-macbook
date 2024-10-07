@@ -4,18 +4,18 @@
 
 with lib;
 let
-  cfg = config.local.dock;
+  cfg = config.dock;
   inherit (pkgs) stdenv dockutil;
 in
 {
   options = {
-    local.dock.enable = mkOption {
+    dock.enable = mkOption {
       description = "Enable dock";
       default = stdenv.isDarwin;
       example = false;
     };
 
-    local.dock.entries = mkOption
+    dock.entries = mkOption
       {
         description = "Entries on the Dock";
         type = with types; listOf (submodule {
