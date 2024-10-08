@@ -42,6 +42,7 @@ in  {
   virtualisation = {
     vmVariant = {
       virtualisation = {
+        diskImage = "/Users/rcambrj/.linux-vm.qcow2";
         host.pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
 
         diskSize = 50 * 1024;
