@@ -23,7 +23,6 @@ in {
     perSystem.nixpkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
     openssh
-    pv
     qemu
     restic
     ripgrep
@@ -107,6 +106,16 @@ in {
       ConnectTimeout = "2";
     };
     matchBlocks = {
+      "vm" = {
+        hostname = "localhost";
+        user = "nixos";
+        port = 2222;
+        extraOptions = {
+          # vm will be recreated regularly
+          UserKnownHostsFile = "/dev/null";
+          StrictHostKeyChecking = "no";
+        };
+      };
       "router" = {
         hostname =  "192.168.142.1";
         user = "root";
@@ -152,11 +161,6 @@ in {
       "coconut" = {
         hostname = "coconut.cambridge.me";
         user = "root";
-        extraOptions = {
-          # currently setting up this machine
-          UserKnownHostsFile = "/dev/null";
-          StrictHostKeyChecking = "no";
-        };
       };
       "lime" = {
         hostname = "51.255.83.152";
