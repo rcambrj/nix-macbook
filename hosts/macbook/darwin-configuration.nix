@@ -8,7 +8,7 @@ in {
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
     # ./builders/banana.nix
-    # ./builders/local-qemu.nix
+    ./builders/local-qemu.nix
   ];
 
   home-manager.users.rcambrj = import ../../users/rcambrj/home.nix args;

@@ -1,5 +1,5 @@
 let
-  me = import ../me.nix;
+  inherit (flake.lib) me;
 in
 {
   nix.buildMachines = [{
