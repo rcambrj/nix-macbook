@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
 let
-  inherit (flake.lib) me;
+  macbook = import ./macbook.nix;
 in {
   environment.systemPackages = with pkgs; [
     colima
@@ -14,11 +14,11 @@ in {
         "-c"
         "/bin/wait4path \"${pkgs.lib.getExe pkgs.colima}\" &amp;&amp; PATH=\"/run/current-system/sw/bin:$PATH\" exec \"${pkgs.lib.getExe pkgs.colima}\" start --foreground"
       ];
-      UserName = me.user;
+      UserName = macbook.main-user;
       RunAtLoad = true;
       KeepAlive = true;
-      # StandardOutPath = /Users/${me.user}/colima.log;
-      # StandardErrorPath = /Users/${me.user}/colima.err;
+      # StandardOutPath = /Users/${macbook.main-user}/colima.log;
+      # StandardErrorPath = /Users/${macbook.main-user}/colima.err;
     };
   };
 }

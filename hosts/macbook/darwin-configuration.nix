@@ -1,6 +1,6 @@
 args@{ config, flake, inputs, lib, perSystem, pkgs, ... }:
 let
-  inherit (flake.lib) me;
+  macbook = import ./macbook.nix;
 in {
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
@@ -16,10 +16,11 @@ in {
     ./docker.nix
   ];
 
-  # home-manager.users.rcambrj.imports = [ ../../users/rcambrj/home.nix ];
-  home-manager.users.rcambrj = import ../../users/rcambrj/home.nix args;
+  home-manager.users.rcambrj.imports = [ ../../users/rcambrj/home.nix ];
+  # home-manager.users.rcambrj = import ../../users/rcambrj/home.nix;
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = { inherit inputs perSystem; };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
@@ -48,10 +49,10 @@ in {
   services.nix-daemon.enable = true;
   security.pam.enableSudoTouchIdAuth = true;
   programs.zsh.enable = true;
-  users.users.${me.user}.shell = pkgs.zsh;
+  users.users.${macbook.main-user}.shell = pkgs.zsh;
   networking = {
-    computerName = me.hostname;
-    hostName = me.hostname;
+    computerName = "rcambrj";
+    hostName = "rcambrj";
   };
 
   # do zsh autocompletion for system packages
@@ -64,15 +65,15 @@ in {
   #     ProgramArguments = [
   #       "/bin/sh"
   #       "-c"
-  #       "/bin/wait4path \"${pkgs.lib.getExe pkgs.rclone}\" &amp;&amp; exec \"${pkgs.lib.getExe pkgs.rclone}\" mount gdrive:/ /Users/${me.user}/gdrive"
+  #       "/bin/wait4path \"${pkgs.lib.getExe pkgs.rclone}\" &amp;&amp; exec \"${pkgs.lib.getExe pkgs.rclone}\" mount gdrive:/ /Users/${macbook.main-user}/gdrive"
   #     ];
-  #     UserName = me.user;
+  #     UserName = macbook.main-user;
   #     RunAtLoad = true;
   #     KeepAlive = {
   #       NetworkState = true;
   #     };
-  #     StandardOutPath = /Users/${me.user}/gdrive.log;
-  #     StandardErrorPath = /Users/${me.user}/gdrive.err;
+  #     StandardOutPath = /Users/${macbook.main-user}/gdrive.log;
+  #     StandardErrorPath = /Users/${macbook.main-user}/gdrive.err;
   #   };
   # };
 }

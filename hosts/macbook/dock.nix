@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
 let
-  inherit (flake.lib) me;
+  macbook = import ./macbook.nix;
 in {
   environment.systemPackages = with pkgs; [
     dockutil
@@ -13,7 +13,7 @@ in {
       { path = "/Applications/Google Chrome.app/"; }
       { path = "/Applications/1Password.app/"; }
       { path = "/Applications/iTerm.app/"; }
-      { path = "/Users/${me.user}/Applications/Home Manager Apps/Visual Studio Code.app/"; }
+      { path = "/Users/${macbook.main-user}/Applications/Home Manager Apps/Visual Studio Code.app/"; }
       { path = "/Applications/Spotify.app/"; }
       { path = "/Applications/Slack.app/"; }
       { path = "/Applications/Microsoft Outlook.app/"; }

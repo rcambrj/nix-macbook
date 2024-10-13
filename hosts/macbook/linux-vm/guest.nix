@@ -1,24 +1,24 @@
 # inspired by https://github.com/NixOS/nixpkgs/blob/4ef5937cf6fb0784049a3a383cc82dfe39f53414/nixos/modules/profiles/macos-builder.nix
 { config, flake, perSystem, pkgs, ... }:
 let
-  inherit (flake.lib) me;
+  macbook = import ../macbook.nix;
 in  {
   imports = [
     ./secrets.nix
   ];
 
   system.stateVersion = "23.11";
-  services.getty.autologinUser = me.user;
-  users.users.${me.user} = {
+  services.getty.autologinUser = macbook.main-user;
+  users.users.${macbook.main-user} = {
     extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = [ flake.lib.ssh-keys.rcambrj ];
 
     # uid <1000 breaks isNormalUser. workaround with isSystemUser+attrs
-    uid = me.macos-uid;
+    uid = macbook.main-uid;
     isSystemUser = true;
     group = "users";
     createHome = true;
-    home = "/home/${me.user}";
+    home = "/home/${macbook.main-user}";
     homeMode = "700";
     useDefaultShell = true;
   };
@@ -40,7 +40,7 @@ in  {
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
-      if (action.id === "org.freedesktop.login1.power-off" && subject.user === "${me.user}") {
+      if (action.id === "org.freedesktop.login1.power-off" && subject.user === "${macbook.main-user}") {
         return "yes";
       } else {
         return "no";
@@ -51,8 +51,8 @@ in  {
   age-template.files.cheap-user-ssh-key = {
     vars.content = builtins.elemAt config.age.identityPaths 0;
     content = "$content";
-    path = "/home/${me.user}/.ssh/id_ed25519";
-    owner = me.user;
+    path = "/home/${macbook.main-user}/.ssh/id_ed25519";
+    owner = macbook.main-user;
   };
 
   services.openssh.hostKeys = [{

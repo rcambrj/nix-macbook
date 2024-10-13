@@ -1,11 +1,11 @@
 { config, flake, inputs, ... }:
 let
-  inherit (flake.lib) me;
+  macbook = import ./macbook.nix;
 in {
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
-    user = me.user;
+    user = macbook.main-user;
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;

@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/release-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    systems.url = "github:nix-systems/default";
 
     blueprint.url = "github:numtide/blueprint";
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
@@ -50,9 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = inputs: inputs.blueprint {
     inherit inputs;
     nixpkgs.config.allowUnfree = true;
-    systems = [ "aarch64-linux" "aarch64-darwin" ];
+    systems = [ "aarch64-darwin" ];
   };
 }

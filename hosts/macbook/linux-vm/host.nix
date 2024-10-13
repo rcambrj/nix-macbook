@@ -1,7 +1,7 @@
 { flake, inputs, pkgs, ... }:
 let
-  inherit (flake.lib) me;
-  workingDirectory = "/Users/${me.user}/.linux-vm";
+  macbook = import ../macbook.nix;
+  workingDirectory = "/Users/${macbook.main-user}/.linux-vm";
   agenixIdentityPath = "${workingDirectory}/agenix-identity";
   vmSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] pkgs.stdenv.hostPlatform.system;
   vm = inputs.nixpkgs.lib.nixosSystem {
@@ -41,8 +41,8 @@ let
                 target = "/var/lib/agenix-identity";
               };
               projects = {
-                source = "/Users/${me.user}/projects";
-                target = "/home/${me.user}/projects";
+                source = "/Users/${macbook.main-user}/projects";
+                target = "/home/${macbook.main-user}/projects";
               };
             };
           }; }; };
@@ -53,7 +53,7 @@ let
 in {
   age.secrets.macbook-linux-vm-ssh-key.path = "${agenixIdentityPath}/id_ed25519";
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
-  age.secrets.macbook-linux-vm-ssh-key.owner = me.user;
+  age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
   launchd.user.agents.linux-vm = {
     serviceConfig = {
@@ -62,7 +62,7 @@ in {
         "-c"
         "/bin/wait4path \"${pkgs.lib.getExe command}\" &amp;&amp; exec \"${pkgs.lib.getExe command}\""
       ];
-      UserName = me.user;
+      UserName = macbook.main-user;
       RunAtLoad = true;
       StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
       StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
