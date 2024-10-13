@@ -48,7 +48,7 @@
       fluo = "nix flake update nix-vscode-extensions mach-composer";
       flua = "flun && fluh && flub && fluo";
 
-      l = "ls -la";
+      l = "ls -lah";
       vim = "nvim";
       ip = "curl ifconfig.co";
       tf = "terraform";
