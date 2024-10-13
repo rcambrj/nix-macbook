@@ -1,11 +1,10 @@
 { pkgs, ... }: {
   imports = [
-    ./home.nix
+    ../../../users/rcambrj/home.nix
     ./vscode.nix
   ];
 
   home.packages = with pkgs; [
     _1password
-    asciinema
   ];
 }

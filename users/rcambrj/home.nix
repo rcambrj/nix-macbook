@@ -14,6 +14,7 @@ in {
   home.homeDirectory = pkgs.lib.mkForce (if pkgs.stdenv.isDarwin then "/Users/${me.user}" else "/home/${me.user}");
 
   home.packages = with pkgs; [
+    asciinema
     coreutils
     curl
     gnupg
