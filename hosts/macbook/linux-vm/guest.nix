@@ -59,4 +59,6 @@ in  {
     type = "ed25519";
     path = builtins.elemAt config.age.identityPaths 0;
   }];
+
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" "armv7l-linux" ];
 }
