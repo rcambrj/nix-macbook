@@ -16,6 +16,9 @@ in {
     ./docker.nix
   ];
 
+  system.stateVersion = 5;
+  nix.channel.enable = false;
+
   home-manager.users.${macbook.main-user}.imports = [ ./home-manager ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;

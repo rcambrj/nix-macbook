@@ -44,7 +44,6 @@
     };
     agenix-template = {
       url = "github:jhillyerd/agenix-template";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     mach-composer = {
       url = "github:rcambrj/mach-composer-cli";
