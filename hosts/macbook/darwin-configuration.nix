@@ -12,7 +12,7 @@ in {
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
-    ./linux-vm.nix
+    ./linux-vm
     ./docker.nix
   ];
 

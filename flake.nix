@@ -41,6 +41,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix-template = {
+      url = "github:jhillyerd/agenix-template";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mach-composer = {
       url = "github:rcambrj/mach-composer-cli";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,5 +53,6 @@
   outputs = inputs: inputs.blueprint {
     inherit inputs;
     nixpkgs.config.allowUnfree = true;
+    systems = [ "aarch64-linux" "aarch64-darwin" ];
   };
 }

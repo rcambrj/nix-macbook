@@ -108,13 +108,8 @@ in {
     matchBlocks = {
       "vm" = {
         hostname = "localhost";
-        user = "nixos";
+        user = me.user;
         port = 2222;
-        extraOptions = {
-          # vm will be recreated regularly
-          UserKnownHostsFile = "/dev/null";
-          StrictHostKeyChecking = "no";
-        };
       };
       "router" = {
         hostname =  "192.168.142.1";
@@ -147,7 +142,7 @@ in {
         };
       };
       "gooseberry" = {
-        hostname =  "192.168.142.23";
+        hostname =  "gooseberry.cambridge.me";
         user = "gooseberry";
       };
       "tacx" = {
@@ -166,6 +161,14 @@ in {
         hostname = "51.255.83.152";
         user = "root";
         port = 15120;
+      };
+      "apple" = {
+        hostname = "apple.cambridge.me";
+        user = "ubuntu";
+      };
+      "orange" = {
+        hostname = "orange.cambridge.me";
+        user = "ubuntu";
       };
     };
   };
@@ -253,7 +256,7 @@ in {
     };
     mutableExtensionsDir = false;
     # TODO: don't hardcode system
-    extensions = with inputs.nix-vscode-extensions.extensions."aarch64-darwin".vscode-marketplace; [
+    extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
       # esbenp.prettier-vscode # is biome better? let's see
       biomejs.biome
 
