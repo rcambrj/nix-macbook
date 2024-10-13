@@ -16,7 +16,7 @@ in {
     ./docker.nix
   ];
 
-  home-manager.users.rcambrj.imports = [ ../../users/rcambrj/home.nix ];
+  home-manager.users.rcambrj.imports = [ ../../users/rcambrj/home-gui.nix ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };

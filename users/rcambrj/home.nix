@@ -5,7 +5,6 @@ in {
   imports = [
     ./ssh.nix
     ./shell.nix
-    ./vscode.nix
     ./git.nix
   ];
 
@@ -15,12 +14,8 @@ in {
   home.homeDirectory = pkgs.lib.mkForce (if pkgs.stdenv.isDarwin then "/Users/${me.user}" else "/home/${me.user}");
 
   home.packages = with pkgs; [
-    # don't install dev tooling here. use local devshell flake + direnv instead.
-    _1password
-    asciinema
     coreutils
     curl
-    dotnet-sdk_8
     gnupg
     htop
     iftop
@@ -29,7 +24,6 @@ in {
     nerdfonts
     openssh
     qemu
-    restic
     ripgrep
     tig
     tmate
