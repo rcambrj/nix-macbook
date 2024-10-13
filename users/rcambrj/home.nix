@@ -12,7 +12,7 @@ in {
   programs.home-manager.enable = true;
   home.stateVersion = "23.11";
   home.username = me.user;
-  home.homeDirectory = pkgs.lib.mkForce "/Users/${me.user}";
+  home.homeDirectory = pkgs.lib.mkForce (if pkgs.stdenv.isDarwin then "/Users/${me.user}" else "/home/${me.user}");
 
   home.packages = with pkgs; [
     # don't install dev tooling here. use local devshell flake + direnv instead.
@@ -22,7 +22,6 @@ in {
     curl
     dotnet-sdk_8
     gnupg
-    gnutar # required to support zstd
     htop
     iftop
     nodePackages.localtunnel

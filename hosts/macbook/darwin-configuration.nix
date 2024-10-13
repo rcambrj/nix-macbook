@@ -17,7 +17,6 @@ in {
   ];
 
   home-manager.users.rcambrj.imports = [ ../../users/rcambrj/home.nix ];
-  # home-manager.users.rcambrj = import ../../users/rcambrj/home.nix;
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };
