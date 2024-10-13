@@ -1,6 +1,30 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   macbook = import ./macbook.nix;
+  spotlightToggles = {
+    APPLICATIONS = true;
+    MENU_EXPRESSION = true;
+    CONTACT = false;
+    MENU_CONVERSION = true;
+    MENU_DEFINITION = false;
+    SOURCE = false;
+    DOCUMENTS = false;
+    EVENT_TODO = false;
+    DIRECTORIES = false;
+    FONTS = false;
+    IMAGES = false;
+    MESSAGES = false;
+    MOVIES = false;
+    MUSIC = false;
+    MENU_OTHER = false;
+    PDF = false;
+    PRESENTATIONS = false;
+    MENU_SPOTLIGHT_SUGGESTIONS = false;
+    SPREADSHEETS = false;
+    SYSTEM_PREFS = true;
+    TIPS = false;
+    BOOKMARKS = false;
+  };
 in {
   system = {
     keyboard = {
@@ -8,7 +32,7 @@ in {
       remapCapsLockToEscape = true;
     };
 
-    activationScripts.postActivation.text = ''
+    activationScripts.macosUserPreferences.text = ''
       # enable this the first time. disable later for speed.
       # softwareupdate --install-rosetta --agree-to-license
 
@@ -103,93 +127,11 @@ in {
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Delete :orderedItems"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems array"
 
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string APPLICATIONS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool true"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MENU_EXPRESSION"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool true"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string CONTACT"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MENU_CONVERSION"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool true"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MENU_DEFINITION"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string SOURCE"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string DOCUMENTS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string EVENT_TODO"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string DIRECTORIES"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string FONTS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string IMAGES"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MESSAGES"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MOVIES"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MUSIC"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MENU_OTHER"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string PDF"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string PRESENTATIONS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string MENU_SPOTLIGHT_SUGGESTIONS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string SPREADSHEETS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string SYSTEM_PREFS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool true"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string TIPS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
-
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string BOOKMARKS"
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool false"
+      ${pkgs.lib.strings.concatStringsSep "\n" (pkgs.lib.mapAttrsFlatten (name: value: ''
+        /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0 dict"
+        /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:name string ${name}"
+        /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.apple.spotlight.plist -c "Add :orderedItems:0:enabled bool ${pkgs.lib.boolToString value}"
+      '') spotlightToggles)}
 
       # Don't slightly dim display on battery
       pmset -b lessbright 0
