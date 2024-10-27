@@ -7,7 +7,7 @@ in {
     extraOptionOverrides  = {
       TCPKeepAlive = "yes";
       ServerAliveInterval = "60";
-      ConnectTimeout = "2";
+      ConnectTimeout = "5";
     };
     matchBlocks = {
       "vm" = {
@@ -49,8 +49,12 @@ in {
         hostname =  "gooseberry.cambridge.me";
         user = "gooseberry";
       };
+      "lingonberry" = {
+        hostname =  "lingonberry.cambridge.me";
+        user = "pi";
+      };
       "tacx" = {
-        hostname =  "tacx.lan";
+        hostname =  "tacx.cambridge.me";
         user = "pi";
       };
       "tomato" = {

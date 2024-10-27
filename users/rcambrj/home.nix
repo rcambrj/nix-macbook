@@ -23,6 +23,7 @@ in {
     nodePackages.localtunnel
     perSystem.nixpkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nerdfonts
+    nix-output-monitor
     openssh
     qemu
     ripgrep

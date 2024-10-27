@@ -32,6 +32,7 @@ in {
       "element"
       "firefox"
       "freecad"
+      "gog-galaxy"
       "google-chrome"
       "google-drive"
       "hot" # menubar temperature
@@ -52,6 +53,7 @@ in {
       "rustdesk"
       "signal"
       "spotify"
+      "steam"
       "tailscale"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"

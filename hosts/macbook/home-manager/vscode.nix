@@ -69,6 +69,9 @@
       "[graphql]" = {
         "editor.defaultFormatter" = "biomejs.biome";
       };
+      "[markdown]" = {
+        "files.trimTrailingWhitespace" = false;
+      };
       "[terraform]" = {
         "editor.defaultFormatter" = "hashicorp.terraform";
       };

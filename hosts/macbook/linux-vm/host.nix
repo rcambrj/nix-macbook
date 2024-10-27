@@ -18,10 +18,8 @@ let
             diskImage = "${workingDirectory}/disk.qcow2";
             host.pkgs = pkgs;
 
-            useNixStoreImage = true;
             writableStore = true;
             writableStoreUseTmpfs = false;
-            # useHostCerts = true;
             graphics = false;
 
             diskSize = 50 * 1024;

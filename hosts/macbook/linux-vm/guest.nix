@@ -29,6 +29,7 @@ in  {
   networking.interfaces.eth0.useDHCP = true;
   networking.nameservers = [ "1.1.1.1" ];
 
+  nix.channel.enable = false;
   nix.settings = {
     trusted-users = [
       "root"
