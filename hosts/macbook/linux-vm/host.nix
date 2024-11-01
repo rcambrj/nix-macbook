@@ -20,9 +20,8 @@ let
             diskImage = "${workingDirectory}/disk.qcow2";
             host.pkgs = pkgs;
 
-            # use a separate store, because host fs is case insensitive
-            useNixStoreImage = true;
             writableStore = true;
+            writableStoreUseTmpfs = true;
 
             graphics = false;
             diskSize = 50 * 1024;
@@ -56,7 +55,7 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
-  launchd.user.agents.linux-vm = builtins.trace vm {
+  launchd.user.agents.linux-vm = {
     serviceConfig = {
       ProgramArguments = [
         "/bin/sh"

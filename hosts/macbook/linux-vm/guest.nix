@@ -13,7 +13,6 @@ in  {
   system.stateVersion = "23.11";
   networking.hostName = "vm";
   nixpkgs.config.allowUnfree = true;
-  # services.getty.autologinUser = macbook.main-user;
   users.users.${macbook.main-user} = {
     extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = [ flake.lib.ssh-keys.rcambrj ];
@@ -31,8 +30,6 @@ in  {
   programs.zsh.enable = true;
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  # environment.enableAllTerminfo = true;
-  # security.sudo.keepTerminfo = false;
 
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;

@@ -157,7 +157,7 @@ in {
       sudo -u ${macbook.main-user} defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
 
       # iTerm2
-      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'HackNFM-Regular 14'"
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'FiraCodeNFM-Reg 14'"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 100000"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Minimum Contrast (Dark)' 0.4"

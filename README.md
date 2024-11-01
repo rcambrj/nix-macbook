@@ -2,6 +2,12 @@
 
 ## Getting started
 
+* install [DeterminateSystems' nix](https://github.com/DeterminateSystems/nix-installer)
+
+```
+./nix-installer-aarch64-darwin install macos --case-sensitive
+```
+
 * `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#macbook`
 * Authenticate:
     * 1Password

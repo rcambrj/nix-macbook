@@ -21,11 +21,11 @@ in
 
       # then uncomment this
       virtualisation = {
-        darwin-builder = {
-          diskSize = 100 * 1024;
-          memorySize = 4 * 1024;
-        };
-        cores = 6;
+       darwin-builder = {
+         diskSize = 100 * 1024;
+         memorySize = 4 * 1024;
+       };
+       cores = 6;
       };
     });
   };

@@ -7,7 +7,7 @@ in {
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
     ./secrets.nix
-    # ./builders/banana.nix
+    # ./builders/minimal-intel.nix
     ./builders/local-qemu.nix
     ./macos-preferences.nix
     ./homebrew.nix
@@ -27,7 +27,7 @@ in {
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  nix.package = pkgs.nixVersions.nix_2_21;
+  nix.package = pkgs.nixVersions.nix_2_23;
   nix.distributedBuilds = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -37,6 +37,7 @@ in {
     "@wheel"
     "@admin"
   ];
+  nix.settings.use-case-hack = false;
   nix.settings.substituters = lib.mkForce config.nix.settings.trusted-substituters;
   nix.settings.trusted-substituters = [
     "https://cache.nixos.org/"

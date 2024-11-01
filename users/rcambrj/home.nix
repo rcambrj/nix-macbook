@@ -22,7 +22,6 @@ in {
     iftop
     nodePackages.localtunnel
     perSystem.nixpkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
-    nerdfonts
     nix-output-monitor
     openssh
     qemu
@@ -36,6 +35,11 @@ in {
     unzip
     watch
     wget
+
+    # fonts
+    # for iTerm2
+    fira-code-nerdfont # FiraCodeNFM-Reg
+    # TODO: which pkgs contains HackNFM-Regular ?
   ];
 
   fonts.fontconfig.enable = true;
