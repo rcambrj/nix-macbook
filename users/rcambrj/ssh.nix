@@ -4,11 +4,11 @@ let
 in {
   programs.ssh = {
     enable = true;
-    extraOptionOverrides  = {
-      TCPKeepAlive = "yes";
-      ServerAliveInterval = "60";
-      ConnectTimeout = "5";
-    };
+    extraConfig = ''
+      TCPKeepAlive = yes
+      ServerAliveInterval = 60
+      ConnectTimeout = 60
+    '';
     matchBlocks = {
       "vm" = {
         hostname = "localhost";
@@ -72,7 +72,7 @@ in {
       };
       "apple" = {
         hostname = "apple.cambridge.me";
-        user = "ubuntu";
+        user = "root";
       };
       "orange" = {
         hostname = "orange.cambridge.me";

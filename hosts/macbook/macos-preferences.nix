@@ -33,8 +33,10 @@ in {
     };
 
     activationScripts.macosUserPreferences.text = ''
-      # enable this the first time. disable later for speed.
-      # softwareupdate --install-rosetta --agree-to-license
+      if [ ! -f /Library/Apple/usr/share/rosetta/rosetta ]; then
+        echo "Installing rosetta..."
+        softwareupdate --install-rosetta --agree-to-license
+      fi
 
       # https://disable-gatekeeper.github.io/
       spctl --master-disable

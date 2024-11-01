@@ -57,6 +57,8 @@ in {
       "tailscale"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
+      "vmware-fusion"
+      "vscodium"
       "winbox"
       "zerotier-one"
     ];

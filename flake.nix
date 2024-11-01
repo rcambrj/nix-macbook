@@ -45,8 +45,11 @@
     agenix-template = {
       url = "github:jhillyerd/agenix-template";
     };
-    mach-composer = {
-      url = "github:rcambrj/mach-composer-cli";
+
+    # vscode experiment
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

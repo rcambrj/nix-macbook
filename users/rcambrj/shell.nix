@@ -1,8 +1,4 @@
 { pkgs, perSystem, ... }: {
-  home.packages = with pkgs; [
-    perSystem.mach-composer.default # TODO: remove when devshell can do completions
-  ];
-
   programs.zsh = {
     enable = true;
     autocd = false;
@@ -28,10 +24,6 @@
 
       set-window-title
       add-zsh-hook precmd set-window-title
-
-      # completion
-      # TODO: why doesn't /Users/rcambrj/.nix-profile/share/zsh/site-functions/_mach-composer work?
-      eval "$(${pkgs.lib.getExe perSystem.mach-composer.default} completion zsh)"
     '';
     history = {
       ignoreAllDups = true;
@@ -41,12 +33,6 @@
       dwu = "darwin-rebuild switch --flake ~/projects/nix/macbook/#macbook";
       dwa = "/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u";
       ngc = "sudo nix-collect-garbage -d";
-
-      flun = "nix flake update nixpkgs";
-      fluh = "nix flake update home-manager";
-      flub = "nix flake update nix-homebrew homebrew-bundle homebrew-core homebrew-cask";
-      fluo = "nix flake update nix-vscode-extensions mach-composer";
-      flua = "flun && fluh && flub && fluo";
 
       l = "ls -lah";
       vim = "nvim";

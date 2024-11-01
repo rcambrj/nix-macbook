@@ -4,7 +4,8 @@ let
   workingDirectory = "/Users/${macbook.main-user}/.linux-vm";
   agenixIdentityPath = "${workingDirectory}/agenix-identity";
   vmSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] pkgs.stdenv.hostPlatform.system;
-  vm = inputs.nixpkgs.lib.nixosSystem {
+
+  vm = inputs.nixpkgs-unstable.lib.nixosSystem {
       system = vmSystem;
       specialArgs = {
         inherit inputs flake;
@@ -14,14 +15,16 @@ let
       };
       modules = [
         ./guest.nix
-        { virtualisation = { vmVariant = { virtualisation = {
+        {
+          virtualisation.vmVariant.virtualisation = {
             diskImage = "${workingDirectory}/disk.qcow2";
             host.pkgs = pkgs;
 
+            # use a separate store, because host fs is case insensitive
+            useNixStoreImage = true;
             writableStore = true;
-            writableStoreUseTmpfs = false;
-            graphics = false;
 
+            graphics = false;
             diskSize = 50 * 1024;
             memorySize = 4 * 1024;
 
@@ -43,7 +46,7 @@ let
                 target = "/home/${macbook.main-user}/projects";
               };
             };
-          }; }; };
+          };
         }
       ];
     };
@@ -53,7 +56,7 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
-  launchd.user.agents.linux-vm = {
+  launchd.user.agents.linux-vm = builtins.trace vm {
     serviceConfig = {
       ProgramArguments = [
         "/bin/sh"
