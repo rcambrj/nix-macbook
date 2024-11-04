@@ -9,6 +9,7 @@
 ```
 
 * `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#macbook`
+    * builder vm will fail unless iteratively built up, check comments in `/hosts/macbook/builders`
 * Authenticate:
     * 1Password
     * Google Drive

@@ -1,7 +1,6 @@
 { flake, pkgs, ... }:
-let
-  macbook = import ./macbook.nix;
-in {
+with flake.lib;
+{
   environment.systemPackages = with pkgs; [
     colima
     docker-client

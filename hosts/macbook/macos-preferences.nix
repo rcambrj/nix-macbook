@@ -1,6 +1,6 @@
 { flake, pkgs, ... }:
+with flake.lib;
 let
-  macbook = import ./macbook.nix;
   spotlightToggles = {
     APPLICATIONS = true;
     MENU_EXPRESSION = true;

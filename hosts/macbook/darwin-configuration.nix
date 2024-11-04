@@ -1,7 +1,6 @@
 args@{ config, flake, inputs, lib, perSystem, pkgs, ... }:
-let
-  macbook = import ./macbook.nix;
-in {
+with flake.lib;
+{
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
     inputs.home-manager.darwinModules.home-manager
@@ -12,7 +11,7 @@ in {
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
-    ./linux-vm
+    ./linux-vm.nix
     ./docker.nix
   ];
 

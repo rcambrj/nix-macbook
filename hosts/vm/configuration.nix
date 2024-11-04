@@ -1,18 +1,41 @@
 # inspired by https://github.com/NixOS/nixpkgs/blob/4ef5937cf6fb0784049a3a383cc82dfe39f53414/nixos/modules/profiles/macos-builder.nix
-{ config, flake, inputs, modulesPath, perSystem, pkgs, ... }:
-let
-  macbook = import ../macbook.nix;
-in  {
+{ config, flake, inputs, lib, modulesPath, perSystem, pkgs, ... }:
+with flake.lib;
+{
   imports = [
     "${toString modulesPath}/profiles/qemu-guest.nix"
     inputs.home-manager.nixosModules.home-manager
     ./secrets.nix
-    ./vscode-experiment.nix
+    # ./vscode-experiment.nix
   ];
+
+  # nix build --print-out-paths -L '.#nixosConfigurations.vm.config.system.build.image'
+  system.build.image = (import "${toString modulesPath}/../lib/make-disk-image.nix" {
+    inherit lib config pkgs;
+    format = "qcow2";
+    partitionTableType = "efi";
+    touchEFIVars = true;
+    copyChannel = false;
+    diskSize = "auto";
+    additionalSpace = "64M";
+  });
 
   system.stateVersion = "23.11";
   networking.hostName = "vm";
+  nixpkgs.hostPlatform = "aarch64-linux";
   nixpkgs.config.allowUnfree = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+  boot.kernelParams = [
+    "console=ttyAMA0,115200n8"
+    "console=tty0"
+    "boot.shell_on_fail"
+    "root=LABEL=nixos"
+  ];
   users.users.${macbook.main-user} = {
     extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = [ flake.lib.ssh-keys.rcambrj ];
@@ -45,16 +68,18 @@ in  {
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id === "org.freedesktop.login1.power-off" && subject.user === "${macbook.main-user}") {
-        return "yes";
-      } else {
-        return "no";
-      }
-    })
-  '';
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/ESP";
+      fsType = "vfat";
+    };
+    "/" = {
+      # device = "/dev/root";
+      device = "/dev/disk/by-label/nixos";
+      neededForBoot = true;
+      fsType = "ext4";
+    };
+  };
 
   systemd.tmpfiles.settings = {
     "10-main-user-ssh" = {
@@ -83,7 +108,7 @@ in  {
 
   boot.binfmt.emulatedSystems = [ "x86_64-linux" "armv7l-linux" ];
 
-  home-manager.users.${macbook.main-user}.imports = [ ../../../users/rcambrj/home.nix ];
+  home-manager.users.${macbook.main-user}.imports = [ ../../users/rcambrj/home.nix ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };

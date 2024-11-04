@@ -1,7 +1,6 @@
 { config, flake, inputs, ... }:
-let
-  macbook = import ./macbook.nix;
-in {
+with flake.lib;
+{
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
@@ -55,6 +54,7 @@ in {
       "spotify"
       "steam"
       "tailscale"
+      "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
       "vmware-fusion"

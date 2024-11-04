@@ -11,9 +11,14 @@ in {
     '';
     matchBlocks = {
       "vm" = {
-        hostname = "localhost";
-        user = me.user;
+        hostname = "vm.local";
+        user = "vm";
         port = 2222;
+        extraOptions = {
+          # actively working on this vm
+          UserKnownHostsFile = "/dev/null";
+          StrictHostKeyChecking = "no";
+        };
       };
       "router" = {
         hostname =  "192.168.142.1";

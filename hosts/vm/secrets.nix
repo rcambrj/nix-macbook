@@ -14,5 +14,5 @@ in  {
   age.identityPaths = [ "/var/lib/agenix-identity/id_ed25519" ];
 
   # all secrets used on this host:
-  age.secrets.foo.file = ../../../secrets/foo.age;
+  age.secrets.foo.file = ../../secrets/foo.age;
 }

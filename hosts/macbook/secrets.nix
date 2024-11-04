@@ -1,7 +1,6 @@
 { flake, inputs, perSystem, pkgs, ... }:
-let
-  macbook = import ./macbook.nix;
-in  {
+with flake.lib;
+{
   imports = [
     inputs.agenix.darwinModules.default
     inputs.agenix-template.nixosModules.default
