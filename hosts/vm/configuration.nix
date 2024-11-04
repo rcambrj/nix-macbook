@@ -6,18 +6,17 @@ with flake.lib;
     "${toString modulesPath}/profiles/qemu-guest.nix"
     inputs.home-manager.nixosModules.home-manager
     ./secrets.nix
-    # ./vscode-experiment.nix
+    ./vscode-experiment.nix
   ];
 
-  # nix build --print-out-paths -L '.#nixosConfigurations.vm.config.system.build.image'
+  # # nix build --print-out-paths -L '.#nixosConfigurations.vm.config.system.build.image'
   system.build.image = (import "${toString modulesPath}/../lib/make-disk-image.nix" {
     inherit lib config pkgs;
     format = "qcow2";
     partitionTableType = "efi";
     touchEFIVars = true;
     copyChannel = false;
-    diskSize = "auto";
-    additionalSpace = "64M";
+    diskSize = toString (64 * 1024);
   });
 
   system.stateVersion = "23.11";
@@ -68,18 +67,59 @@ with flake.lib;
     experimental-features = [ "nix-command" "flakes" ];
   };
 
+  boot.growPartition = true;
   fileSystems = {
     "/boot" = {
-      device = "/dev/disk/by-label/ESP";
+      device = "/dev/vda1";
       fsType = "vfat";
     };
     "/" = {
       # device = "/dev/root";
-      device = "/dev/disk/by-label/nixos";
+      device = "/dev/vda2";
       neededForBoot = true;
       fsType = "ext4";
     };
+    "/home/${macbook.main-user}/projects" = {
+      device = "projects";
+      fsType = "9p";
+      options = [
+        "trans=virtio"
+        "version=9p2000.L"
+        "x-systemd.requires=modprobe@9pnet_virtio.service"
+      ];
+    };
+    "/var/lib/agenix-identity" = {
+      device = "agenix";
+      fsType = "9p";
+      options = [
+        "trans=virtio"
+        "version=9p2000.L"
+        "x-systemd.requires=modprobe@9pnet_virtio.service"
+      ];
+    };
   };
+
+  networking.wireless.enable = false;
+  services.connman.enable = false;
+  networking.dhcpcd.extraConfig = "noarp";
+  system.requiredKernelConfig =
+    with config.lib.kernelConfig;
+    [
+      (isEnabled "VIRTIO_BLK")
+      (isEnabled "VIRTIO_PCI")
+      (isEnabled "VIRTIO_NET")
+      (isEnabled "EXT4_FS")
+      (isEnabled "NET_9P_VIRTIO")
+      (isEnabled "9P_FS")
+      (isYes "BLK_DEV")
+      (isYes "PCI")
+      (isYes "NETDEVICES")
+      (isYes "NET_CORE")
+      (isYes "INET")
+      (isYes "NETWORK_FILESYSTEMS")
+      (isYes "SERIAL_8250_CONSOLE")
+      (isYes "SERIAL_8250")
+    ];
 
   systemd.tmpfiles.settings = {
     "10-main-user-ssh" = {

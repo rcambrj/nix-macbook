@@ -26,7 +26,7 @@ in {
     openssh
     qemu
     ripgrep
-    # sysz # installing sysz breaks the linux-vm zsh for some reason
+    sysz
     tig
     tmate
     tmux

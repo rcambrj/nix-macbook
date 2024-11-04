@@ -11,8 +11,8 @@ in {
     '';
     matchBlocks = {
       "vm" = {
-        hostname = "vm.local";
-        user = "vm";
+        hostname = "localhost";
+        user = me.user;
         port = 2222;
         extraOptions = {
           # actively working on this vm
