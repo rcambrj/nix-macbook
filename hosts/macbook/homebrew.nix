@@ -43,8 +43,6 @@ with flake.lib;
       "macfuse"
       "macs-fan-control"
       "messenger"
-      "microsoft-outlook"
-      "microsoft-teams"
       "music-decoy" # prevents play/pause from opening Apple Music
       "orcaslicer"
       "postman-agent"
