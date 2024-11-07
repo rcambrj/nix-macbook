@@ -16,7 +16,8 @@ with flake.lib;
     enable = true;
     onActivation = {
       cleanup = "uninstall";
-      upgrade = false;
+      upgrade = true;
+      autoUpdate = true;
     };
     taps = builtins.attrNames config.nix-homebrew.taps;
     brews = [];
