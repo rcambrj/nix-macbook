@@ -45,13 +45,6 @@
     agenix-template = {
       url = "github:jhillyerd/agenix-template";
     };
-
-    # vscode experiment
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs: inputs.blueprint {

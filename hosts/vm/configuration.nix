@@ -6,7 +6,6 @@ with flake.lib;
     "${toString modulesPath}/profiles/qemu-guest.nix"
     inputs.home-manager.nixosModules.home-manager
     ./secrets.nix
-    ./vscode-experiment.nix
   ];
 
   # # nix build --print-out-paths -L '.#nixosConfigurations.vm.config.system.build.image'
