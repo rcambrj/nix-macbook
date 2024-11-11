@@ -31,12 +31,13 @@ with flake.lib;
       "discord"
       "element"
       "firefox"
-      "freecad"
+      # "freecad" # cask is old 0.21, download 1.0 manually
       "gog-galaxy"
       "google-chrome"
       "google-drive"
       "hot" # menubar temperature
       "graphiql"
+      "imhex"
       "iterm2"
       # "lingon-x" # launchd plists. damnit sha doesnt match
       "lunar"
@@ -45,6 +46,7 @@ with flake.lib;
       "messenger"
       "music-decoy" # prevents play/pause from opening Apple Music
       "orcaslicer"
+      "paragon-extfs"
       "postman-agent"
       "private-internet-access"
       "rectangle"
@@ -57,7 +59,6 @@ with flake.lib;
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
       "vmware-fusion"
-      "vscodium"
       "winbox"
       "zerotier-one"
     ];

@@ -15,9 +15,11 @@ in {
 
   home.packages = with pkgs; [
     asciinema
+    binwalk
     coreutils
     curl
     gnupg
+    gnutar zstd
     htop
     iftop
     nodePackages.localtunnel
