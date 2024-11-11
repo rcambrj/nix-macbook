@@ -37,6 +37,7 @@
         * remove rule "prompt from running browsers"
     * Lunar
         * configure licence
+        * disable `Check for network light sensors periodically`
     * Rectangle
     * Hot
     * Postman Agent
