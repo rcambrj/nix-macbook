@@ -25,10 +25,12 @@ in {
         user = "root";
       };
       "blueberry" = {
+        # auth and home assistant
         hostname =  "blueberry.cambridge.me";
         user = "nixos";
       };
       "cranberry" = {
+        # media
         hostname =  "cranberry.cambridge.me";
         user = "nixos";
       };
@@ -51,15 +53,22 @@ in {
         };
       };
       "gooseberry" = {
+        # 3d printer nanopi
         hostname =  "gooseberry.cambridge.me";
         user = "gooseberry";
       };
       "lingonberry" = {
+        # what's this?
         hostname =  "lingonberry.cambridge.me";
         user = "pi";
       };
       "tacx" = {
         hostname =  "tacx.cambridge.me";
+        user = "pi";
+      };
+      "blackberry" = {
+        # paper printer raspi
+        hostname = "blackberry.cambridge.me";
         user = "pi";
       };
       "tomato" = {
