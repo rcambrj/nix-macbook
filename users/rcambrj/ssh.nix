@@ -15,7 +15,7 @@ in {
         user = me.user;
         port = 2222;
         extraOptions = {
-          # actively working on this vm
+          # mitm unlikely to localhost
           UserKnownHostsFile = "/dev/null";
           StrictHostKeyChecking = "no";
         };
@@ -58,12 +58,8 @@ in {
         user = "gooseberry";
       };
       "lingonberry" = {
-        # what's this?
+        # tacx raspi
         hostname =  "lingonberry.cambridge.me";
-        user = "pi";
-      };
-      "tacx" = {
-        hostname =  "tacx.cambridge.me";
         user = "pi";
       };
       "blackberry" = {
@@ -72,23 +68,28 @@ in {
         user = "pi";
       };
       "tomato" = {
+        # racknerd shitbox
         hostname =  "tomato.cambridge.me";
         user = "root";
       };
       "coconut" = {
+        # serverhost shitbox
         hostname = "coconut.cambridge.me";
         user = "root";
       };
       "lime" = {
+        # gullo's shitbox
         hostname = "51.255.83.152";
         user = "root";
         port = 15120;
       };
       "apple" = {
+        # oracle cloud free x86_64
         hostname = "apple.cambridge.me";
         user = "root";
       };
       "orange" = {
+        # oracle cloud free aarch64
         hostname = "orange.cambridge.me";
         user = "ubuntu";
       };
