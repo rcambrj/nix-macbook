@@ -9,6 +9,10 @@
     terraform
   ];
 
+  programs.zsh.shellAliases = {
+    c = "codium";
+  };
+
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -102,9 +106,11 @@
       tamasfe.even-better-toml
 
       # dotnet
-      ms-dotnettools.vscode-dotnet-runtime
-      ms-dotnettools.csharp
-      ms-dotnettools.csdevkit
+      # ms-dotnettools.vscode-dotnet-runtime
+      # ms-dotnettools.csharp
+      # ms-dotnettools.csdevkit
+
+      continue.continue
     ];
   };
 }
