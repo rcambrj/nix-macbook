@@ -5,6 +5,7 @@ with flake.lib;
   imports = [
     "${toString modulesPath}/profiles/qemu-guest.nix"
     inputs.home-manager.nixosModules.home-manager
+    flake.nixosModules.common
     ./secrets.nix
   ];
 
