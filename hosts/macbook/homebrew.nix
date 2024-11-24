@@ -32,6 +32,7 @@ with flake.lib;
       "element"
       "firefox"
       # "freecad" # cask is old 0.21, download 1.0 manually
+      "ghidra" "temurin"
       "gog-galaxy"
       "google-chrome"
       "google-drive"
@@ -49,6 +50,7 @@ with flake.lib;
       "paragon-extfs"
       "postman-agent"
       "private-internet-access"
+      "raspberry-pi-imager"
       "rectangle"
       "rustdesk"
       "signal"
@@ -68,7 +70,7 @@ with flake.lib;
       whatsapp = 310633997;
       slack = 803453959;
       dns-sd-browser = 1381004916;
-      ibar = 6443843900;
+      ibar-pro = 6737150304;
       quick-camera = 598853070;
     };
   };

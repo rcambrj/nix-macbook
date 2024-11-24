@@ -22,6 +22,8 @@
     * Spotify
     * Private Internet Access
 * `rclone config` for gdrive
+* Download + install Paragon extFS
+    * authenticate licence
 * Start once + start on login:
 	* iBar
     * ZeroTier
@@ -40,6 +42,7 @@
         * disable `Check for network light sensors periodically`
     * Rectangle
     * Hot
+        * Ignore sensors: Tf06 Tf16 Tf26 Tf36 Tf46
     * Postman Agent
     * Music Decoy
     * Battery

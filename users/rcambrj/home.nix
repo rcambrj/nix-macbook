@@ -18,6 +18,7 @@ in {
     binwalk
     coreutils
     curl
+    dtc # device-tree-compiler
     gnupg
     gnutar zstd
     htop
@@ -25,6 +26,7 @@ in {
     nodePackages.localtunnel
     perSystem.nixpkgs-unstable.ncdu # TODO: https://github.com/NixOS/nixpkgs/issues/290512
     nix-output-monitor
+    openocd
     openssh
     qemu
     ripgrep

@@ -55,8 +55,6 @@ with flake.lib;
 
   networking.useDHCP = false;
   networking.interfaces.eth0.useDHCP = true;
-  # TODO: test if this is necessary?
-  networking.nameservers = [ "1.1.1.1" ];
 
   nix.channel.enable = false;
   nix.settings = {

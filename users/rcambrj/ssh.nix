@@ -53,19 +53,29 @@ in {
         };
       };
       "gooseberry" = {
-        # 3d printer nanopi
+        # 3d printer (nanopi neo)
         hostname =  "gooseberry.cambridge.me";
         user = "gooseberry";
       };
       "lingonberry" = {
-        # tacx raspi
+        # tacx (raspi 3)
         hostname =  "lingonberry.cambridge.me";
         user = "pi";
       };
       "blackberry" = {
-        # paper printer raspi
+        # paper printer (raspi zero w)
         hostname = "blackberry.cambridge.me";
         user = "pi";
+      };
+      "mulberry" = {
+        # ??? (raspi 4)
+        hostname = "mulberry.cambridge.me";
+        user = "root";
+      };
+      "gojiberry" = {
+        # ??? (raspi 5)
+        hostname = "gojiberry.cambridge.me";
+        user = "root";
       };
       "tomato" = {
         # racknerd shitbox

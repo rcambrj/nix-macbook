@@ -87,6 +87,13 @@
         "editor.defaultFormatter" = "golang.go";
         "formatting.gofumpt" = true;
       };
+      # AI
+      "continue.enableTabAutocomplete" = false;
+      "continue.showInlineTip" = false;
+      "continue.telemetryEnabled" = false;
+      # "terminal.integrated.commandsToSkipShell" = [
+      #   # "continue.acceptDiff"
+      # ];
     };
     mutableExtensionsDir = false;
     # TODO: don't hardcode system
@@ -104,6 +111,7 @@
       ms-vscode.makefile-tools
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
+      stkb.rewrap # alt+q to wrap
 
       # dotnet
       # ms-dotnettools.vscode-dotnet-runtime
@@ -111,6 +119,12 @@
       # ms-dotnettools.csdevkit
 
       continue.continue
+    ];
+    keybindings = [
+      {
+        command = "editor.action.insertLineBefore";
+        key = "shift+cmd+enter";
+      }
     ];
   };
 }

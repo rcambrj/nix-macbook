@@ -5,10 +5,10 @@ with flake.lib;
     inputs.nix-homebrew.darwinModules.nix-homebrew
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
-    flake.nixosModules.common
     ./secrets.nix
     # ./builders/minimal-intel.nix
     ./builders/local-qemu.nix
+    flake.nixosModules.common
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
