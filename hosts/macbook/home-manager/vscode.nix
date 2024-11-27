@@ -93,31 +93,33 @@
       "continue.telemetryEnabled" = false;
     };
     mutableExtensionsDir = false;
-    extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
+    extensions =
+      with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}; [
       # general
-      k3a.theme-dark-plus-contrast
-      mkhl.direnv
-      stkb.rewrap # alt+q to wrap
-      continue.continue
-      github.vscode-github-actions
-      github.vscode-pull-request-github
+      vscode-marketplace.k3a.theme-dark-plus-contrast
+      vscode-marketplace.mkhl.direnv
+      vscode-marketplace.stkb.rewrap # alt+q to wrap
+      vscode-marketplace.continue.continue
+      vscode-marketplace.github.vscode-github-actions
+      vscode-marketplace.github.vscode-pull-request-github
+      open-vsx.jeanp413.open-remote-ssh
 
       # language-specific
-      golang.go
-      hashicorp.terraform
-      jnoortheen.nix-ide
-      # bbenoist.nix
-      ms-vscode.makefile-tools
-      orsenkucher.vscode-graphql
-      tamasfe.even-better-toml
-      pinage404.rust-extension-pack
-      # esbenp.prettier-vscode
-      biomejs.biome
+      vscode-marketplace.golang.go
+      vscode-marketplace.hashicorp.terraform
+      vscode-marketplace.jnoortheen.nix-ide
+      # vscode-marketplace.bbenoist.nix
+      vscode-marketplace.ms-vscode.makefile-tools
+      vscode-marketplace.orsenkucher.vscode-graphql
+      vscode-marketplace.tamasfe.even-better-toml
+      vscode-marketplace.pinage404.rust-extension-pack
+      # vscode-marketplace.esbenp.prettier-vscode
+      vscode-marketplace.biomejs.biome
 
       # dotnet
-      # ms-dotnettools.vscode-dotnet-runtime
-      # ms-dotnettools.csharp
-      # ms-dotnettools.csdevkit
+      # vscode-marketplace.ms-dotnettools.vscode-dotnet-runtime
+      # vscode-marketplace.ms-dotnettools.csharp
+      # vscode-marketplace.ms-dotnettools.csdevkit
     ];
     keybindings = [
       {
