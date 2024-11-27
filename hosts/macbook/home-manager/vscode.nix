@@ -91,37 +91,37 @@
       "continue.enableTabAutocomplete" = false;
       "continue.showInlineTip" = false;
       "continue.telemetryEnabled" = false;
-      # "terminal.integrated.commandsToSkipShell" = [
-      #   # "continue.acceptDiff"
-      # ];
     };
     mutableExtensionsDir = false;
-    # TODO: don't hardcode system
     extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
-      # esbenp.prettier-vscode # is biome better? let's see
-      biomejs.biome
-
+      # general
+      k3a.theme-dark-plus-contrast
+      mkhl.direnv
+      stkb.rewrap # alt+q to wrap
+      continue.continue
       github.vscode-github-actions
       github.vscode-pull-request-github
+
+      # language-specific
       golang.go
       hashicorp.terraform
       jnoortheen.nix-ide
       # bbenoist.nix
-      k3a.theme-dark-plus-contrast
       ms-vscode.makefile-tools
       orsenkucher.vscode-graphql
       tamasfe.even-better-toml
-      stkb.rewrap # alt+q to wrap
+      pinage404.rust-extension-pack
+      # esbenp.prettier-vscode
+      biomejs.biome
 
       # dotnet
       # ms-dotnettools.vscode-dotnet-runtime
       # ms-dotnettools.csharp
       # ms-dotnettools.csdevkit
-
-      continue.continue
     ];
     keybindings = [
       {
+        # https://github.com/continuedev/continue/issues/2913
         command = "editor.action.insertLineBefore";
         key = "shift+cmd+enter";
       }

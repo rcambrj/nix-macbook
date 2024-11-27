@@ -20,6 +20,7 @@ in {
     curl
     dtc # device-tree-compiler
     gnupg
+    gnumake
     gnutar zstd
     htop
     iftop
