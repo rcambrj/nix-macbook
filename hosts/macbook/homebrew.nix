@@ -62,7 +62,6 @@ with flake.lib;
       "utm"
       "vmware-fusion"
       "winbox"
-      "zerotier-one"
     ];
     masApps = {
       # for apps which incessantly update themselves

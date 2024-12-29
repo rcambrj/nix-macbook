@@ -9,13 +9,13 @@
     terraform
   ];
 
-  programs.zsh.shellAliases = {
-    c = "codium";
-  };
+  # programs.zsh.shellAliases = {
+  #   c = "codium";
+  # };
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    # package = pkgs.vscodium; # want liveshare goddamnit
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
     userSettings = {
@@ -50,6 +50,7 @@
         "**/.git/objects/**" = true;
         "**/node_modules/**" = true;
       };
+      "makefile.configureOnOpen" = true;
 
       # jnoortheen.nix-ide
       "nix.enableLanguageServer" = false; # keeps crashing
@@ -91,20 +92,39 @@
       "continue.enableTabAutocomplete" = false;
       "continue.showInlineTip" = false;
       "continue.telemetryEnabled" = false;
+      # workaround https://github.com/nix-community/nixos-vscode-server/issues/82
+      "remote.SSH.defaultExtensions" = [
+        "ms-vsliveshare.vsliveshare"
+        "mkhl.direnv"
+        "golang.go"
+        "hashicorp.terraform"
+        "jnoortheen.nix-ide"
+        "ms-vscode.makefile-tools"
+        "orsenkucher.vscode-graphql"
+        "tamasfe.even-better-toml"
+        "pinage404.rust-extension-pack"
+        "biomejs.biome"
+        "ms-python.python"
+        "dingzhaojie.bit-peek"
+      ];
     };
     mutableExtensionsDir = false;
     extensions =
       with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}; [
       # general
+      vscode-marketplace.ms-vsliveshare.vsliveshare
+      vscode-marketplace.ms-vscode-remote.remote-ssh
       vscode-marketplace.k3a.theme-dark-plus-contrast
       vscode-marketplace.mkhl.direnv
       vscode-marketplace.stkb.rewrap # alt+q to wrap
       vscode-marketplace.continue.continue
       vscode-marketplace.github.vscode-github-actions
       vscode-marketplace.github.vscode-pull-request-github
-      open-vsx.jeanp413.open-remote-ssh
+      vscode-marketplace.dingzhaojie.bit-peek
+      # open-vsx.jeanp413.open-remote-ssh
 
       # language-specific
+      vscode-marketplace.ms-python.python
       vscode-marketplace.golang.go
       vscode-marketplace.hashicorp.terraform
       vscode-marketplace.jnoortheen.nix-ide

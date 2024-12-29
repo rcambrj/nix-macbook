@@ -62,6 +62,10 @@ in {
         hostname =  "lingonberry.cambridge.me";
         user = "pi";
       };
+      "chromebook" = {
+        hostname =  "chromebook.cambridge.me";
+        user = "chromebook";
+      };
       "blackberry" = {
         # paper printer (raspi zero w)
         hostname = "blackberry.cambridge.me";
