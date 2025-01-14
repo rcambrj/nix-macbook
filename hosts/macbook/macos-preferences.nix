@@ -30,6 +30,7 @@ in {
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;
+      nonUS.remapTilde = true;
     };
 
     activationScripts.macosUserPreferences.text = ''

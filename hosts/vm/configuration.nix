@@ -146,7 +146,10 @@ with flake.lib;
 
   boot.binfmt.emulatedSystems = [ "x86_64-linux" "armv7l-linux" ];
 
-  home-manager.users.${macbook.main-user}.imports = [ ../../users/rcambrj/home.nix ];
+  home-manager.users.${macbook.main-user}.imports = [
+    inputs.dotfiles.homeModules.rcambrj-console
+    { home.stateVersion = "23.11"; }
+  ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };

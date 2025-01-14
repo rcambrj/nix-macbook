@@ -32,13 +32,12 @@ with flake.lib;
       "element"
       "firefox"
       # "freecad" # cask is old 0.21, download 1.0 manually
-      "ghidra" "temurin"
+      # "ghidra" "temurin" "imhex"
       "gog-galaxy"
       "google-chrome"
       "google-drive"
       "hot" # menubar temperature
       "graphiql"
-      "imhex"
       "iterm2"
       # "lingon-x" # launchd plists. damnit sha doesnt match
       "lunar"
@@ -60,7 +59,7 @@ with flake.lib;
       "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
-      "vmware-fusion"
+      # "vmware-fusion"
       "winbox"
     ];
     masApps = {

@@ -27,7 +27,7 @@ with flake.lib;
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  nix.package = pkgs.nixVersions.nix_2_23;
+  nix.package = pkgs.nixVersions.latest;
   nix.distributedBuilds = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

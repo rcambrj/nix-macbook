@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/release-24.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
 
@@ -13,7 +13,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -44,6 +44,10 @@
     };
     agenix-template = {
       url = "github:jhillyerd/agenix-template";
+    };
+
+    dotfiles = {
+      url = "github:rcambrj/dotfiles";
     };
   };
 
