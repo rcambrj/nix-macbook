@@ -32,7 +32,7 @@ with flake.lib;
       "element"
       "firefox"
       # "freecad" # cask is old 0.21, download 1.0 manually
-      # "ghidra" "temurin" "imhex"
+      "ghidra" "temurin" "imhex"
       "gog-galaxy"
       "google-chrome"
       "google-drive"
@@ -45,6 +45,7 @@ with flake.lib;
       "macs-fan-control"
       "messenger"
       "music-decoy" # prevents play/pause from opening Apple Music
+      "obs"
       "orcaslicer"
       "paragon-extfs"
       "postman-agent"
@@ -60,6 +61,7 @@ with flake.lib;
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
       # "vmware-fusion"
+      "vuescan"
       "winbox"
     ];
     masApps = {
@@ -69,7 +71,6 @@ with flake.lib;
       slack = 803453959;
       dns-sd-browser = 1381004916;
       ibar-pro = 6737150304;
-      quick-camera = 598853070;
     };
   };
 }

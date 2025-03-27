@@ -19,6 +19,7 @@ with flake.lib;
       { path = "/Applications/WhatsApp.app"; }
       { path = "/Applications/Signal.app"; }
       { path = "/Applications/Messenger.app"; }
+      { path = "/Applications/Element.app"; }
     ];
   };
 }

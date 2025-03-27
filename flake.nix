@@ -1,7 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:numtide/nixpkgs-unfree?ref=nixos-unstable";
     systems.url = "github:nix-systems/default";
 
     blueprint.url = "github:numtide/blueprint";
@@ -34,10 +33,6 @@
       flake = false;
     };
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,11 +43,11 @@
 
     dotfiles = {
       url = "github:rcambrj/dotfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs: inputs.blueprint {
     inherit inputs;
-    nixpkgs.config.allowUnfree = true;
   };
 }

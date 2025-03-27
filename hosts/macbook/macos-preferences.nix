@@ -40,7 +40,7 @@ in {
       fi
 
       # https://disable-gatekeeper.github.io/
-      spctl --master-disable
+      sudo spctl --master-disable
 
       # lock screen
       # TODO

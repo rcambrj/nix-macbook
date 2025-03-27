@@ -25,7 +25,6 @@ with flake.lib;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  nixpkgs.config.allowUnfree = true;
 
   nix.package = pkgs.nixVersions.latest;
   nix.distributedBuilds = true;
@@ -38,8 +37,7 @@ with flake.lib;
     "@admin"
   ];
   nix.settings.use-case-hack = false;
-  services.nix-daemon.enable = true;
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
   programs.zsh.enable = true;
   users.users.${macbook.main-user}.shell = pkgs.zsh;
   networking = {
