@@ -61,7 +61,7 @@ with flake.lib;
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
       # "vmware-fusion"
-      "vuescan"
+      # "vuescan" # cannot install 9.8.27
       "winbox"
     ];
     masApps = {

@@ -49,5 +49,6 @@
 
   outputs = inputs: inputs.blueprint {
     inherit inputs;
+    nixpkgs.config.allowUnfree = true;
   };
 }

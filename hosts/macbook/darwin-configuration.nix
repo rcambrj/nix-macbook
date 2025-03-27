@@ -25,6 +25,7 @@ with flake.lib;
   home-manager.extraSpecialArgs = { inherit inputs perSystem; };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
 
   nix.package = pkgs.nixVersions.latest;
   nix.distributedBuilds = true;
