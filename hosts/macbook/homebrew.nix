@@ -23,6 +23,7 @@ with flake.lib;
     brews = [];
     casks = [
       "1password"
+      "android-studio"
       "arq"
       "balenaetcher"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
