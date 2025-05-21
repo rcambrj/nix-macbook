@@ -71,3 +71,12 @@ for i in `defaults domains | tr ',' '\n'`; do echo "********* READING DEFAULT DO
 ```
 nix run github:ryantm/agenix -- -e secrets/foo.age
 ```
+
+### Broken things after an update?
+
+`System Preferences` => `Privacy & Security` => grant terminal permissions to:
+
+* `App Management`
+* `Developer Tools`
+* `Input Monitoring`
+* `Local Network`
