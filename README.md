@@ -48,6 +48,7 @@
     * Battery
         * `battery maintain 60`
     * Mac Fan Control
+    * Youtube Music (create PWA from Chrome)
 * Remove all notification panel widgets
 * Set `Automatically dim brightness` off
 * Set `True Tone` off

@@ -13,7 +13,7 @@ with flake.lib;
       { path = "/Applications/1Password.app"; }
       { path = "/Applications/iTerm.app"; }
       { path = "/Users/${macbook.main-user}/Applications/Home Manager Apps/Visual Studio Code.app"; }
-      { path = "/Applications/YouTube Music Desktop App.app"; }
+      { path = "/Users/${macbook.main-user}/Applications/Chrome\ Apps.localized/YouTube\ Music.app"; }
       { path = "/Applications/Calendar.app"; }
       { path = "/Applications/Slack.app"; }
       { path = "/Applications/Telegram.app"; }

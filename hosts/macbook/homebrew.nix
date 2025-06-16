@@ -63,7 +63,7 @@ with flake.lib;
       "utm"
       # "vmware-fusion"
       # "vuescan" # cannot install 9.8.27
-      "ytmdesktop-youtube-music"
+      # "ytmdesktop-youtube-music" # use Chrome PWA due to https://github.com/ytmdesktop/ytmdesktop/issues/1308
       "winbox"
     ];
     masApps = {
