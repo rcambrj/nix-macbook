@@ -63,6 +63,7 @@ with flake.lib;
       "utm"
       # "vmware-fusion"
       # "vuescan" # cannot install 9.8.27
+      "ytmdesktop-youtube-music"
       "winbox"
     ];
     masApps = {
