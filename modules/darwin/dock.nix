@@ -44,7 +44,7 @@ in
             cfg.entries;
         in
         {
-          system.activationScripts.postUserActivation.text = ''
+          system.activationScripts.configureDock.text = ''
             ${dockutil}/bin/dockutil --no-restart --remove all
             ${createEntries}
             killall Dock

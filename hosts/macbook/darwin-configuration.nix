@@ -19,6 +19,7 @@ with flake.lib;
   system.stateVersion = 5;
   nix.channel.enable = false;
 
+  system.primaryUser = macbook.main-user;
   home-manager.users.${macbook.main-user}.imports = [ ./home-manager ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
