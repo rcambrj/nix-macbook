@@ -57,7 +57,6 @@ with flake.lib;
       "signal"
       "spotify"
       "steam"
-      "tailscale"
       "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"

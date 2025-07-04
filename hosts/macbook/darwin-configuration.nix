@@ -6,14 +6,16 @@ with flake.lib;
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
     ./secrets.nix
-    # ./builders/minimal-intel.nix
-    ./builders/local-qemu.nix
     flake.nixosModules.common
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
     ./linux-vm.nix
     ./docker.nix
+
+    ./builders/local-qemu.nix
+    # ./builders/minimal-intel.nix
+    # ./builders/orange.nix
   ];
 
   system.stateVersion = 5;
@@ -23,7 +25,10 @@ with flake.lib;
   home-manager.users.${macbook.main-user}.imports = [ ./home-manager ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs perSystem; };
+  home-manager.extraSpecialArgs = {
+    inherit inputs perSystem;
+    hostname = config.networking.hostName;
+  };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;

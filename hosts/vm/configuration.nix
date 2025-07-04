@@ -152,5 +152,8 @@ with flake.lib;
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit inputs perSystem; };
+  home-manager.extraSpecialArgs = {
+    inherit inputs perSystem;
+    hostname = config.networking.hostName;
+  };
 }
