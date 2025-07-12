@@ -14,6 +14,7 @@ with flake.lib;
       { path = "/Applications/iTerm.app"; }
       { path = "/Users/${macbook.main-user}/Applications/Home Manager Apps/Visual Studio Code.app"; }
       { path = "/Users/${macbook.main-user}/Applications/Chrome\ Apps.localized/YouTube\ Music.app"; }
+      { path = "/Users/${macbook.main-user}/Applications/Chrome\ Apps.localized/SoundCloud.app"; }
       { path = "/Applications/Calendar.app"; }
       { path = "/Applications/Slack.app"; }
       { path = "/Applications/Telegram.app"; }

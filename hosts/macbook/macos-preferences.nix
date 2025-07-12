@@ -33,14 +33,15 @@ in {
       nonUS.remapTilde = true;
     };
 
-    activationScripts.macosUserPreferences.text = ''
+    activationScripts.postActivation.text = ''
       if [ ! -f /Library/Apple/usr/share/rosetta/rosetta ]; then
         echo "Installing rosetta..."
         softwareupdate --install-rosetta --agree-to-license
       fi
 
       # https://disable-gatekeeper.github.io/
-      sudo spctl --master-disable
+      # TODO: fix "Globally disabling the assessment system needs to be confirmed in System Settings."
+      # sudo spctl --master-disable
 
       # lock screen
       # TODO
@@ -168,6 +169,8 @@ in {
       killall Dock
       # this makes spotlight categories stick https://community.jamf.com/t5/jamf-pro/spotlight-customization/m-p/52579
       killall cfprefsd
+
+      echo >&2 "MacOS preferences setup complete."
     '';
   };
 
