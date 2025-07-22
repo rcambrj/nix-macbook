@@ -11,7 +11,7 @@ let
     ${pkgs.qemu}/bin/qemu-system-aarch64 \
       -device virtio-gpu-pci \
       -cpu host \
-      -smp cpus=10,sockets=1,cores=10,threads=1 \
+      -smp 4 \
       -machine virt,gic-version=3 \
       -accel hvf \
       -m 4096 \
@@ -29,7 +29,8 @@ let
       -drive if=none,media=disk,id=drive7E789365-AB50-4E8C-9A29-E59C6971BB8E,file="${diskImage}",discard=unmap,detect-zeroes=unmap \
       -name vm \
       -device virtio-rng-pci \
-      -net nic,netdev=user.0,model=virtio -netdev user,id=user.0,hostfwd=tcp:127.0.0.1:2222-:22,"" \
+      -net nic,netdev=netdev0,model=e1000 \
+      -netdev user,id=netdev0,hostfwd=tcp:127.0.0.1:2222-:22 \
       -drive if=pflash,format=raw,unit=0,file=${pkgs.qemu}/share/qemu/edk2-aarch64-code.fd,readonly=on \
       $@
   '';
@@ -42,13 +43,13 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
+  # TODO: networking is broken when vm is started by launchd.
+  # launch manually for now. annoying but whatever.
+  #
   # launchd.user.agents.linux-vm = {
+  #   command = "${pkgs.lib.getExe start-linux-vm} -nographic";
   #   serviceConfig = {
-  #     ProgramArguments = [
-  #       "/bin/sh"
-  #       "-c"
-  #       "/bin/wait4path \"${pkgs.lib.getExe start-linux-vm}\" &amp;&amp; exec \"${pkgs.lib.getExe start-linux-vm}\" -nographic"
-  #     ];
+  #     Label = "linux-vm";
   #     UserName = macbook.main-user;
   #     RunAtLoad = true;
   #     StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
