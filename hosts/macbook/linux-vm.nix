@@ -7,7 +7,6 @@ let
   agenixIdentityPath = "${workingDirectory}/agenix-identity";
   vmSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] pkgs.stdenv.hostPlatform.system;
 
-  # TODO: remove dependency on UTM aarch64 firmware edk2-aarch64-code.fd
   start-linux-vm = pkgs.writeShellScriptBin "start-linux-vm" ''
     ${pkgs.qemu}/bin/qemu-system-aarch64 \
       -device virtio-gpu-pci \
@@ -31,7 +30,7 @@ let
       -name vm \
       -device virtio-rng-pci \
       -net nic,netdev=user.0,model=virtio -netdev user,id=user.0,hostfwd=tcp:127.0.0.1:2222-:22,"" \
-      -drive if=pflash,format=raw,unit=0,file=/Applications/UTM.app/Contents/Resources/qemu/edk2-aarch64-code.fd,readonly=on \
+      -drive if=pflash,format=raw,unit=0,file=${pkgs.qemu}/share/qemu/edk2-aarch64-code.fd,readonly=on \
       $@
   '';
 in {
@@ -43,18 +42,18 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
-  launchd.user.agents.linux-vm = {
-    serviceConfig = {
-      ProgramArguments = [
-        "/bin/sh"
-        "-c"
-        "/bin/wait4path \"${pkgs.lib.getExe start-linux-vm}\" &amp;&amp; exec \"${pkgs.lib.getExe start-linux-vm}\" -nographic"
-      ];
-      UserName = macbook.main-user;
-      RunAtLoad = true;
-      StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
-      StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
-      KeepAlive = true;
-    };
-  };
+  # launchd.user.agents.linux-vm = {
+  #   serviceConfig = {
+  #     ProgramArguments = [
+  #       "/bin/sh"
+  #       "-c"
+  #       "/bin/wait4path \"${pkgs.lib.getExe start-linux-vm}\" &amp;&amp; exec \"${pkgs.lib.getExe start-linux-vm}\" -nographic"
+  #     ];
+  #     UserName = macbook.main-user;
+  #     RunAtLoad = true;
+  #     StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
+  #     StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
+  #     KeepAlive = true;
+  #   };
+  # };
 }

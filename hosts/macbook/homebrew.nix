@@ -60,6 +60,7 @@ with flake.lib;
       "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
+      "vlc"
       # "vmware-fusion"
       # "vuescan" # cannot install 9.8.27
       # "ytmdesktop-youtube-music" # use Chrome PWA due to https://github.com/ytmdesktop/ytmdesktop/issues/1308
