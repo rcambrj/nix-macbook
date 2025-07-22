@@ -53,9 +53,6 @@ with flake.lib;
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  networking.useDHCP = false;
-  networking.interfaces.eth0.useDHCP = true;
-
   nix.channel.enable = false;
   nix.settings = {
     trusted-users = [
@@ -97,9 +94,21 @@ with flake.lib;
     };
   };
 
+  systemd.network.enable = true;
+  networking.useDHCP = false;
+  networking.useNetworkd = true;
+  systemd.network = {
+    networks = {
+      "10-wired" = {
+        matchConfig.Name = "e*";
+        networkConfig = {
+          DHCP = "yes";
+        };
+      };
+    };
+  };
   networking.wireless.enable = false;
   services.connman.enable = false;
-  networking.dhcpcd.extraConfig = "noarp";
   system.requiredKernelConfig =
     with config.lib.kernelConfig;
     [
