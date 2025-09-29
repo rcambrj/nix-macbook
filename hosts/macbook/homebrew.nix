@@ -37,8 +37,8 @@ with flake.lib;
       "gog-galaxy"
       "google-chrome"
       "google-drive"
-      "hot" # menubar temperature
       "graphiql"
+      "hot" # menubar temperature
       "iterm2"
       # "lingon-x" # launchd plists. damnit sha doesnt match
       "lunar"
@@ -54,7 +54,6 @@ with flake.lib;
       "raspberry-pi-imager"
       "rectangle"
       "rustdesk"
-      "signal"
       "spotify"
       "steam"
       "transmission"
@@ -73,6 +72,8 @@ with flake.lib;
       slack = 803453959;
       dns-sd-browser = 1381004916;
       ibar-pro = 6737150304;
+      # fluffy-chat = 1551469600; # no such ID?
+      harvest = 506189836;
     };
   };
 }

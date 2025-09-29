@@ -1,9 +1,10 @@
-{ flake, inputs, perSystem, pkgs, ... }:
+{ config, flake, inputs, perSystem, pkgs, ... }:
 with flake.lib;
 {
   imports = [
     inputs.agenix.darwinModules.default
-    inputs.agenix-template.nixosModules.default
+    # TODO: add nix-darwin support to agenix-template
+    # inputs.agenix-template.nixosModules.default
   ];
 
   environment.systemPackages = with pkgs; [

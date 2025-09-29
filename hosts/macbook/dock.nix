@@ -19,7 +19,6 @@ with flake.lib;
       { path = "/Applications/Slack.app"; }
       { path = "/Applications/Telegram.app"; }
       { path = "/Applications/WhatsApp.app"; }
-      { path = "/Applications/Signal.app"; }
       { path = "/Applications/Messenger.app"; }
       { path = "/Applications/Element.app"; }
     ];

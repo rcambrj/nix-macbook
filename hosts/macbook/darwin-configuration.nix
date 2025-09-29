@@ -55,6 +55,9 @@ with flake.lib;
   # do zsh autocompletion for system packages
   environment.pathsToLink = [ "/share/zsh" ];
 
+  environment.systemPackages = with pkgs; [
+      iproute2mac
+  ];
 
   # TODO: figure out how to have rclone cache the remote disk locally. too slow to fetch each item on demand.
   # launchd.user.agents.gdrive = {
