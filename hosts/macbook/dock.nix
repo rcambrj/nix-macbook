@@ -17,6 +17,7 @@ with flake.lib;
       { path = "/Users/${macbook.main-user}/Applications/Chrome\ Apps.localized/SoundCloud.app"; }
       { path = "/Applications/Calendar.app"; }
       { path = "/Applications/Slack.app"; }
+      { path = "/Applications/Signal.app"; }
       { path = "/Applications/Telegram.app"; }
       { path = "/Applications/WhatsApp.app"; }
       { path = "/Applications/Messenger.app"; }

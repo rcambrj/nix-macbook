@@ -54,6 +54,7 @@ with flake.lib;
       "raspberry-pi-imager"
       "rectangle"
       "rustdesk"
+      "signal"
       "spotify"
       "steam"
       "transmission"
