@@ -58,22 +58,4 @@ with flake.lib;
   environment.systemPackages = with pkgs; [
       iproute2mac
   ];
-
-  # TODO: figure out how to have rclone cache the remote disk locally. too slow to fetch each item on demand.
-  # launchd.user.agents.gdrive = {
-  #   serviceConfig = {
-  #     ProgramArguments = [
-  #       "/bin/sh"
-  #       "-c"
-  #       "/bin/wait4path \"${pkgs.lib.getExe pkgs.rclone}\" &amp;&amp; exec \"${pkgs.lib.getExe pkgs.rclone}\" mount gdrive:/ /Users/${macbook.main-user}/gdrive"
-  #     ];
-  #     UserName = macbook.main-user;
-  #     RunAtLoad = true;
-  #     KeepAlive = {
-  #       NetworkState = true;
-  #     };
-  #     StandardOutPath = /Users/${macbook.main-user}/gdrive.log;
-  #     StandardErrorPath = /Users/${macbook.main-user}/gdrive.err;
-  #   };
-  # };
 }

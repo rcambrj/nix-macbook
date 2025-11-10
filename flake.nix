@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:numtide/nixpkgs-unfree?ref=nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     systems.url = "github:nix-systems/default";
 
     blueprint.url = "github:numtide/blueprint";

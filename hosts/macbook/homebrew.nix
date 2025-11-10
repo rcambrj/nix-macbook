@@ -45,6 +45,7 @@ with flake.lib;
       "macfuse"
       "macs-fan-control"
       "messenger"
+      "moonlight"
       "music-decoy" # prevents play/pause from opening Apple Music
       "obs"
       "orcaslicer"

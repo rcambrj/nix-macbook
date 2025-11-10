@@ -7,12 +7,8 @@ with flake.lib;
   ];
 
   launchd.user.agents.colima = {
+    script = "${pkgs.lib.getExe pkgs.colima} start --foreground";
     serviceConfig = {
-      ProgramArguments = [
-        "/bin/sh"
-        "-c"
-        "/bin/wait4path \"${pkgs.lib.getExe pkgs.colima}\" &amp;&amp; PATH=\"/run/current-system/sw/bin:$PATH\" exec \"${pkgs.lib.getExe pkgs.colima}\" start --foreground"
-      ];
       UserName = macbook.main-user;
       RunAtLoad = true;
       KeepAlive = true;
