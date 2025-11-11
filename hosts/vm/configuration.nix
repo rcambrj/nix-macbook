@@ -140,13 +140,12 @@ with flake.lib;
     };
   };
 
-  age-template.files.cheap-user-ssh-key = {
-    vars.content = builtins.elemAt config.age.identityPaths 0;
-    content = "$content";
-    path = "/home/${macbook.main-user}/.ssh/id_ed25519";
-    owner = macbook.main-user;
-    group = "users";
+  system.activationScripts.cheap-user-ssh-key-symlink = {
+    text = ''
+      ln -s /var/lib/agenix-identity/id_ed25519 /home/${macbook.main-user}/.ssh/id_ed25519
+    '';
   };
+
 
   services.openssh.hostKeys = [{
     type = "ed25519";
