@@ -695,7 +695,8 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
-        "systems": "systems_10"
+        "systems": "systems_10",
+        "virby": "virby"
       }
     },
     "systems": {
@@ -845,6 +846,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "virby": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756625193,
+        "narHash": "sha256-UbsstuHRMC81x3NvCkcGjzzSnBxECmEYleTnVlhG0PA=",
+        "owner": "quinneden",
+        "repo": "virby-nix-darwin",
+        "rev": "9349061ed88552e4aeed9370dc0e66b5d3195251",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quinneden",
+        "repo": "virby-nix-darwin",
         "type": "github"
       }
     },

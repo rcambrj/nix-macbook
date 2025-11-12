@@ -6,20 +6,21 @@ with flake.lib;
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
     ./secrets.nix
-    flake.nixosModules.common
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
-    ./linux-vm.nix
     ./docker.nix
+    ./nix-conf.nix
 
-    ./builders/local-qemu.nix
+    ./builders/linux-builder.nix
+    # ./builders/virby.nix
     # ./builders/minimal-intel.nix
     # ./builders/orange.nix
+
+    # ./linux-vm.nix
   ];
 
   system.stateVersion = 5;
-  nix.channel.enable = false;
 
   system.primaryUser = macbook.main-user;
   home-manager.users.${macbook.main-user}.imports = [ ./home-manager ];
@@ -33,17 +34,6 @@ with flake.lib;
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
-  nix.package = pkgs.nixVersions.latest;
-  nix.distributedBuilds = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = false; # https://github.com/NixOS/nix/issues/7273
-  nix.settings.trusted-users = [
-    "root"
-    "@wheel"
-    "@admin"
-  ];
-  nix.settings.use-case-hack = false;
   security.pam.services.sudo_local.touchIdAuth = true;
   programs.zsh.enable = true;
   users.users.${macbook.main-user}.shell = pkgs.zsh;

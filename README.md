@@ -1,15 +1,30 @@
 # Nix Macbook configuration
 
-## Getting started
+## Uninstall
+
+* `sudo darwin-uninstaller`
+
+* `sudo /nix/nix-installer uninstall`
+
+## Install
 
 * install [DeterminateSystems' nix](https://github.com/DeterminateSystems/nix-installer)
 
-```
-./nix-installer-aarch64-darwin install macos --case-sensitive
-```
+    > [!IMPORTANT]
+    > `--case-insensitive` is critical due to `nix.settings.use-case-hack = false`.
+    > Disabling the case hack leads to unpredictable behaviour.
 
-* `/run/current-system/sw/bin/nix run github:LnL7/nix-darwin -- switch --flake .#macbook`
-    * builder vm will fail unless iteratively built up, check comments in `/hosts/macbook/builders`
+    ```
+    curl -fsSL https://install.determinate.systems/nix | sh -s -- install macos --case-sensitive --prefer-upstream-nix
+    ```
+
+    > prefer OG nix because Determinate Nix flake cannot manage `/etc/nix.conf` with `nix.settings.*`, all config must go into `/etc/nix.custom.conf`. This last file may be managed with `environment.etc` or `systemd.tmpfiles`, but I've not confirmed.
+
+* In Spotlight search `Full Disk Access` and grant `nix` access.
+
+* `sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake .#macbook`
+
+    
 * Authenticate:
     * 1Password
     * Google Drive

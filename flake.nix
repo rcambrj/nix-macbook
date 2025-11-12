@@ -1,4 +1,13 @@
 {
+  nixConfig = {
+    extra-substituters = [
+      "https://virby-nix-darwin.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "virby-nix-darwin.cachix.org-1:z9GiEZeBU5bEeoDQjyfHPMGPBaIQJOOvYOOjGMKIlLo="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     systems.url = "github:nix-systems/default";
@@ -42,6 +51,11 @@
 
     dotfiles = {
       url = "github:rcambrj/dotfiles";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    virby = {
+      url = "github:quinneden/virby-nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

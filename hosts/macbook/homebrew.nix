@@ -49,7 +49,7 @@ with flake.lib;
       "music-decoy" # prevents play/pause from opening Apple Music
       "obs"
       "orcaslicer"
-      "paragon-extfs"
+      # "paragon-extfs" # doesn't like being installed with brew
       "postman-agent"
       "private-internet-access"
       "raspberry-pi-imager"
