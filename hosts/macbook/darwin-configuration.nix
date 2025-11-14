@@ -17,7 +17,7 @@ with flake.lib;
     # ./builders/minimal-intel.nix
     # ./builders/orange.nix
 
-    # ./linux-vm.nix
+    ./linux-vm.nix
   ];
 
   system.stateVersion = 5;
