@@ -20,11 +20,11 @@ in
       boot.binfmt.emulatedSystems = builderEmulatesSystems;
       nix.gc.automatic = true;
       virtualisation = {
-       darwin-builder = {
-         diskSize = 200 * 1024;
-         memorySize = 4 * 1024;
-       };
-       cores = 6;
+        darwin-builder = {
+          diskSize = 100 * 1024;
+          memorySize = 4 * 1024;
+        };
+        cores = 6;
       };
     });
   };
