@@ -39,12 +39,13 @@ with flake.lib;
       "google-drive"
       "graphiql"
       "hot" # menubar temperature
-      "iterm2"
+      "iterm2" "ghostty" "wezterm" "kitty"
       # "lingon-x" # launchd plists. damnit sha doesnt match
       "lunar"
       "macfuse"
       "macs-fan-control"
       "messenger"
+      "microsoft-outlook" "microsoft-teams" "twingate"
       "moonlight"
       "music-decoy" # prevents play/pause from opening Apple Music
       "obs"
