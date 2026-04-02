@@ -5,12 +5,14 @@ with flake.lib;
     inputs.nix-homebrew.darwinModules.nix-homebrew
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
+    flake.darwinModules.ollama
     ./secrets.nix
     ./macos-preferences.nix
     ./homebrew.nix
     ./dock.nix
     ./docker.nix
     ./nix-conf.nix
+    ./inference.nix
 
     ./builders/linux-builder.nix
     # ./builders/virby.nix
