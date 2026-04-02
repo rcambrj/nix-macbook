@@ -59,6 +59,7 @@ with flake.lib;
       "signal"
       "spotify"
       "steam"
+      "the-unarchiver"
       "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
       "utm"
@@ -69,14 +70,16 @@ with flake.lib;
       "winbox"
     ];
     masApps = {
+      # TODO: this seems to always fail
+
       # for apps which incessantly update themselves
-      telegram = 747648890;
-      whatsapp = 310633997;
-      slack = 803453959;
-      dns-sd-browser = 1381004916;
-      ibar-pro = 6737150304;
+      # telegram = 747648890;
+      # whatsapp = 310633997;
+      # slack = 803453959;
+      # dns-sd-browser = 1381004916;
+      # ibar-pro = 6737150304;
       # fluffy-chat = 1551469600; # no such ID?
-      harvest = 506189836;
+      # harvest = 506189836;
     };
   };
 }
