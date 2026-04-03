@@ -49,6 +49,6 @@ with flake.lib;
 
   environment.systemPackages = with pkgs; [
       iproute2mac
-      (nixos-rebuild-ng.override { withNgSuffix = false; })
+      nixos-rebuild-ng
   ];
 }
