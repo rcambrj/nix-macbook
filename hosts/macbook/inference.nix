@@ -14,6 +14,7 @@
   ];
 
   # ~/.config/opencode
+  # [...]
   # "permission": {
   #   "websearch": "ask",
   #   "webfetch": "ask",
@@ -33,6 +34,13 @@
   #     "kubectl get *": "allow",
   #     "kubectl logs *": "allow",
   #     "tar *": "allow"
+  #   }
+  # }
+  # [...]
+  # "qwen3.5:cloud": {
+  #   "modalities": {
+  #     "input": ["text", "image"],
+  #     "output": ["text"]
   #   }
   # }
 
