@@ -4,6 +4,15 @@
     package = perSystem.nixpkgs-ollama.ollama;
   };
 
+  services.lmstudio = {
+    enable = true;
+    port = 1234;
+    environmentVariables = {
+      MTL_HUD_ENABLED = "1";
+      METAL_DEVICE_WRAPPER_TYPE = "1";
+    };
+  };
+
   environment.systemPackages = let
     opencodeWithSearch = writeScriptBin "opencode" ''
       OPENCODE_ENABLE_EXA=1 ${lib.getExe opencode}
