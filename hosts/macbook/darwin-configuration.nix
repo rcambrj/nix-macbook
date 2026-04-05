@@ -12,7 +12,7 @@ with flake.lib;
     ./dock.nix
     ./docker.nix
     ./nix-conf.nix
-    ./inference.nix
+    ./inference
 
     ./builders/linux-builder.nix
     # ./builders/virby.nix
