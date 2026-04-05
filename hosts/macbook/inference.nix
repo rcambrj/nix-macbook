@@ -36,11 +36,18 @@
   #     "tar *": "allow"
   #   }
   # }
-  # [...]
-  # "qwen3.5:cloud": {
-  #   "modalities": {
-  #     "input": ["text", "image"],
-  #     "output": ["text"]
+  # "model": "ollama/qwen3.5:cloud",
+  # "default_agent": "plan",
+  # "provider": {
+  #   "ollama": {
+  #     "models": {
+  #       "qwen3.5:cloud": {
+  #         "modalities": {
+  #           "input": ["text", "image"],
+  #           "output": ["text"]
+  #         }
+  #       }
+  #     }
   #   }
   # }
 
