@@ -39,7 +39,34 @@ stdenv.mkDerivation {
     substituteInPlace "$indexJs" --replace-quiet "'/Applications'" "'/'"
 
     # Re-sign the app bundle after patching, otherwise macOS reports it as damaged
-    codesign --force --deep --sign - "$out/Applications/LM Studio.app"
+    # Note: sigtool (used in Nix) only signs individual Mach-O files, not bundles
+    # Sign all Mach-O binaries (executables and libraries) inside the bundle
+    appBundle="$out/Applications/LM Studio.app"
+    
+    # Sign the main executable
+    mainExe="$appBundle/Contents/MacOS/LM Studio"
+    if [ -f "$mainExe" ] && file "$mainExe" 2>/dev/null | grep -q "Mach-O"; then
+      codesign --force --sign - "$mainExe"
+    fi
+    
+    # Sign nested frameworks and libraries
+    if [ -d "$appBundle/Contents/Frameworks" ]; then
+      find "$appBundle/Contents/Frameworks" -type f \( -name "*.dylib" -o -name "*.so" \) | while read -r file; do
+        if file "$file" 2>/dev/null | grep -q "Mach-O"; then
+          codesign --force --sign - "$file"
+        fi
+      done || true
+    fi
+    
+    # Sign executables inside any nested .app bundles (but not the bundles themselves)
+    find "$appBundle/Contents" -path "*/Contents/MacOS/*" -type f | while read -r file; do
+      if file "$file" 2>/dev/null | grep -q "Mach-O"; then
+        codesign --force --sign - "$file"
+      fi
+    done || true
+    
+    # Note: We cannot sign the .app bundle directory itself with sigtool
+    # The individual binaries are signed, which allows the app to run
 
     runHook postInstall
   '';
