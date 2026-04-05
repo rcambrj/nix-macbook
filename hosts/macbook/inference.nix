@@ -8,15 +8,17 @@
     package = perSystem.nixpkgs-ollama.ollama;
   };
 
-  services.lmstudio = {
-    enable = true;
-    package = perSystem.self.lmstudio;
-    port = 1234;
-    environmentVariables = {
-      MTL_HUD_ENABLED = "1";
-      METAL_DEVICE_WRAPPER_TYPE = "1";
-    };
-  };
+  # prefer the homebrew gui and background process
+  homebrew.casks = ["lm-studio"];
+  # services.lmstudio = {
+  #   enable = true;
+  #   package = perSystem.self.lmstudio;
+  #   port = 1234;
+  #   environmentVariables = {
+  #     MTL_HUD_ENABLED = "1";
+  #     METAL_DEVICE_WRAPPER_TYPE = "1";
+  #   };
+  # };
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
