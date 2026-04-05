@@ -1,4 +1,8 @@
-{ lib, pkgs, perSystem, ... }: {
+{ flake, lib, pkgs, perSystem, ... }: {
+  imports = [
+    flake.darwinModules.lmstudio
+  ];
+
   services.ollama = {
     enable = true;
     package = perSystem.nixpkgs-ollama.ollama;
@@ -6,6 +10,7 @@
 
   services.lmstudio = {
     enable = true;
+    package = perSystem.self.lmstudio;
     port = 1234;
     environmentVariables = {
       MTL_HUD_ENABLED = "1";
@@ -14,8 +19,8 @@
   };
 
   environment.systemPackages = let
-    opencodeWithSearch = writeScriptBin "opencode" ''
-      OPENCODE_ENABLE_EXA=1 ${lib.getExe opencode}
+    opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
+      OPENCODE_ENABLE_EXA=1 ${lib.getExe pkgs.opencode}
     '';
   in with pkgs; [
     perSystem.claude-code-nix.default
