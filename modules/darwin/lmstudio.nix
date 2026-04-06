@@ -63,7 +63,8 @@ in {
       serviceConfig = {
         KeepAlive = true;
         RunAtLoad = true;
-        ProgramArguments = [ "${cfg.package}/bin/lms" "server" "start" "--port" "${toString cfg.port}" ];
+        # TODO: this just starts the GUI, where is `lms`?
+        ProgramArguments = [ "${cfg.package}/Applications/LM\ Studio.app/Contents/MacOS/LM\ Studio" "server" "start" "--port" "${toString cfg.port}" ];
 
         EnvironmentVariables = cfg.environmentVariables // {
           OLLAMA_HOST = "${cfg.host}:${toString cfg.port}";
