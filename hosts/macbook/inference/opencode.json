@@ -26,10 +26,38 @@
   "model": "ollama/qwen3.5:cloud",
   "default_agent": "plan",
   "enabled_providers": [
+    "ollama",
     "lmstudio",
-    "ollama"
+    "apple-intelligence"
   ],
   "provider": {
+    "ollama": {
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        "qwen3.5:cloud": {
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          },
+          "name": "qwen3.5:cloud",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "qwen3.5": {
+          "name": "qwen3.5",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
     "lmstudio": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LM Studio",
@@ -53,28 +81,15 @@
         }
       }
     },
-    "ollama": {
-      "name": "Ollama",
+    "apple-intelligence": {
+      "name": "Apple Intelligence",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
+        "baseURL": "http://127.0.0.1:11435/v1"
       },
       "models": {
-        "qwen3.5": {
-          "_launch": true,
-          "name": "qwen3.5",
-          "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
-          }
-        },
-        "qwen3.5:cloud": {
-          "_launch": true,
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          },
-          "name": "qwen3.5:cloud",
+        "apple-foundationmodel": {
+          "name": "apple-foundationmodel",
           "modalities": {
             "input": ["text", "image"],
             "output": ["text"]

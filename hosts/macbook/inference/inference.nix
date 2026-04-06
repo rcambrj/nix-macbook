@@ -1,4 +1,4 @@
-{ flake, lib, pkgs, perSystem, ... }: {
+{ flake, inputs, lib, pkgs, perSystem, ... }: {
   imports = [
     flake.darwinModules.lmstudio
   ];
@@ -8,7 +8,11 @@
     package = perSystem.nixpkgs-ollama.ollama;
   };
 
+  nix-homebrew.taps = {
+      "arthur-ficial/homebrew-tap" = inputs.arthur-ficial;
+  };
   # prefer the homebrew gui and background process
+  homebrew.brews = ["arthur-ficial/tap/apfel"];
   homebrew.casks = ["lm-studio"];
   # services.lmstudio = {
   #   enable = true;

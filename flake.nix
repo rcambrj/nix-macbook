@@ -43,6 +43,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    arthur-ficial = {
+      url = "github:Arthur-Ficial/homebrew-tap";
+      flake = false;
+    };
 
     agenix = {
       url = "github:ryantm/agenix";

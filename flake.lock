@@ -77,6 +77,22 @@
         "type": "github"
       }
     },
+    "arthur-ficial": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775400720,
+        "narHash": "sha256-EMPzAO5X/RQjDY3vzclnDVaec4omIq8NVS4SmIa22G0=",
+        "owner": "Arthur-Ficial",
+        "repo": "homebrew-tap",
+        "rev": "23fdebcf5f4d615f130a8bf7cafdc1e1e509d4dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Arthur-Ficial",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
@@ -772,6 +788,7 @@
       "inputs": {
         "agenix": "agenix",
         "agenix-template": "agenix-template",
+        "arthur-ficial": "arthur-ficial",
         "blueprint": "blueprint",
         "claude-code-nix": "claude-code-nix",
         "dotfiles": "dotfiles",
