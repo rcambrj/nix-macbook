@@ -27,6 +27,7 @@ with flake.lib;
       "arq"
       "balenaetcher"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
+      "bitwarden"
       "choosy" # browser selector
       "db-browser-for-sqlite"
       "discord"
@@ -44,7 +45,6 @@ with flake.lib;
       "lunar"
       "macfuse"
       "macs-fan-control"
-      "messenger"
       "microsoft-outlook" "microsoft-teams" "twingate"
       "moonlight"
       "music-decoy" # prevents play/pause from opening Apple Music
@@ -73,7 +73,6 @@ with flake.lib;
       # TODO: this seems to always fail
 
       # for apps which incessantly update themselves
-      # telegram = 747648890;
       # whatsapp = 310633997;
       # slack = 803453959;
       # dns-sd-browser = 1381004916;
