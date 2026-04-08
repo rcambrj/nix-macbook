@@ -26,7 +26,7 @@
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
-      OPENCODE_ENABLE_EXA=1 ${lib.getExe pkgs.opencode}
+      OPENCODE_ENABLE_EXA=1 ${lib.getExe pkgs.opencode} $@
     '';
   in with pkgs; [
     perSystem.claude-code-nix.default
