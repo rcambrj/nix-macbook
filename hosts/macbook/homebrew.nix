@@ -27,7 +27,6 @@ with flake.lib;
       "arq"
       "balenaetcher"
       "battery" # https://github.com/mhaeuser/Battery-Toolkit looks better but no cask
-      "bitwarden"
       "choosy" # browser selector
       "db-browser-for-sqlite"
       "discord"

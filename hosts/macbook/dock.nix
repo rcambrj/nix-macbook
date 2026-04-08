@@ -10,7 +10,6 @@ with flake.lib;
     entries = [
       { path = "/Applications/Firefox.app"; }
       { path = "/Applications/Google Chrome.app"; }
-      { path = "/Applications/Bitwarden.app"; }
       { path = "/Applications/1Password.app"; }
       { path = "/Applications/iTerm.app"; }
       { path = "/Users/${macbook.main-user}/Applications/Home Manager Apps/Visual Studio Code.app"; }
