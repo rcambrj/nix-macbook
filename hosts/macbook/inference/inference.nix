@@ -5,7 +5,7 @@
 
   services.ollama = {
     enable = true;
-    package = perSystem.nixpkgs-ollama.ollama;
+    package = pkgs.ollama;
   };
 
   nix-homebrew.taps = {
@@ -26,7 +26,7 @@
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
-      OPENCODE_ENABLE_EXA=1 ${lib.getExe pkgs.opencode} $@
+      OPENCODE_ENABLE_EXA=1 ${lib.getExe perSystem.opencode.opencode} $@
     '';
   in with pkgs; [
     perSystem.claude-code-nix.default

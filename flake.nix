@@ -12,7 +12,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     systems.url = "github:nix-systems/default";
 
-    nixpkgs-ollama.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     claude-code-nix.url = "github:sadjow/claude-code-nix";
 
     blueprint.url = "github:numtide/blueprint";
@@ -63,6 +62,11 @@
 
     virby = {
       url = "github:quinneden/virby-nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    opencode = {
+      url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
