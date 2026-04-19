@@ -69,6 +69,13 @@
       url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opencode-sandbox = {
+      url = "github:rcambrj/opencode-sandbox";
+      inputs.nixpkgs.follows = "nixpkgs";
+
+      # TODO: this causes a failure, why?
+      # inputs.opencode.follows = "opencode";
+    };
   };
 
   outputs = inputs: inputs.blueprint {

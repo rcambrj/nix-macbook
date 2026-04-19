@@ -7,4 +7,7 @@ in {
 
   # openrouter.ai
   "secrets/openrouter-ai-key.age".publicKeys = [ sshKeys.rcambrj sshKeys.linux-vm ];
+
+  # opencode-go
+  "secrets/opencode-go-api-key.age".publicKeys = [ sshKeys.rcambrj sshKeys.linux-vm ];
 }

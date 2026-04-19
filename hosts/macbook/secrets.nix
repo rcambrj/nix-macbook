@@ -4,7 +4,7 @@ with flake.lib;
   imports = [
     inputs.agenix.darwinModules.default
     # TODO: add nix-darwin support to agenix-template
-    # inputs.agenix-template.nixosModules.default
+    inputs.agenix-template.nixosModules.default
   ];
 
   environment.systemPackages = with pkgs; [
