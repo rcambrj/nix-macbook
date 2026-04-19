@@ -819,11 +819,11 @@
         "opencode": "opencode_2"
       },
       "locked": {
-        "lastModified": 1776611929,
-        "narHash": "sha256-aPk2qM/jwFvL4G+zn5jVxOvzX0xp8l5tc2YJdFBMvEg=",
+        "lastModified": 1776631077,
+        "narHash": "sha256-PuNSh+lcgPgUD9jQOIchtlB0CMaKkxWddn7A6EFW6F8=",
         "owner": "rcambrj",
         "repo": "opencode-sandbox",
-        "rev": "b4eefcc688173621566ac1cc398a57ebcdc40c9c",
+        "rev": "8237322f3f7a10b08b8e6de9684545b17005c625",
         "type": "github"
       },
       "original": {
