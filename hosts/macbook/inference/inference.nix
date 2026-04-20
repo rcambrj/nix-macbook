@@ -31,10 +31,10 @@ with flake.lib;
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
-      OPENCODE_ENABLE_EXA=1 ${lib.getExe perSystem.opencode.opencode} $@
+      OPENCODE_ENABLE_EXA=1 ${lib.getExe perSystem.numtide-llm-agents.opencode} $@
     '';
   in with pkgs; [
-    perSystem.claude-code-nix.default
+    perSystem.numtide-llm-agents.claude-code
     opencodeWithSearch
   ];
 
@@ -74,11 +74,6 @@ with flake.lib;
     '';
 
     extraModules = [{
-      nix.settings.experimental-features = [ "nix-command" "flakes" ]; # TODO: upstream
-      programs.git = {
-        enable = true;
-        config.safe.directory = [ "*" ]; # TODO: upstream
-      };
       virtualisation.cores = lib.mkForce 8;
       virtualisation.memorySize = lib.mkForce 16384;
     }];

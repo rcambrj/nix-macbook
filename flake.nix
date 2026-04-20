@@ -12,8 +12,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     systems.url = "github:nix-systems/default";
 
-    claude-code-nix.url = "github:sadjow/claude-code-nix";
-
     blueprint.url = "github:numtide/blueprint";
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -65,16 +63,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    opencode = {
-      url = "github:anomalyco/opencode";
+    numtide-llm-agents = {
+      url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     opencode-sandbox = {
       url = "github:rcambrj/opencode-sandbox";
       inputs.nixpkgs.follows = "nixpkgs";
-
-      # TODO: this causes a failure, why?
-      # inputs.opencode.follows = "opencode";
+      inputs.numtide-llm-agents.follows = "numtide-llm-agents";
     };
   };
 
