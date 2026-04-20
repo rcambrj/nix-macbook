@@ -68,15 +68,19 @@ with flake.lib;
           "https://raw.githubusercontent.com/rcambrj/opencode/refs/heads/main/AGENTS.md"
         ];
       });
-
-      extraModules = [
-        (pkgs: {
-          environment.systemPackages = [ pkgs.nix ];
-        })
-      ];
     in pkgs.runCommand "opencode-sandbox-config" {} ''
       mkdir -p "$out"
       cp ${opencode-json} "$out/opencode.json"
     '';
+
+    extraModules = [{
+      nix.settings.experimental-features = [ "nix-command" "flakes" ]; # TODO: upstream
+      programs.git = {
+        enable = true;
+        config.safe.directory = [ "*" ]; # TODO: upstream
+      };
+      virtualisation.cores = lib.mkForce 8;
+      virtualisation.memorySize = lib.mkForce 16384;
+    }];
   };
 }
