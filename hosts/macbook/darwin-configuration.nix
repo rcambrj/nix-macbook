@@ -15,7 +15,7 @@ with flake.lib;
     ./inference
 
     ./builders/linux-builder.nix
-    # ./builders/virby.nix
+    ./builders/virby.nix
     # ./builders/minimal-intel.nix
     # ./builders/orange.nix
 
