@@ -161,6 +161,9 @@ in {
       ${writeDefaultMainUser} com.apple.menuextra.clock ShowDayOfWeek -bool true
 
       # iTerm2
+      ${writeDefaultMainUser} com.googlecode.iterm2 DisableWindowSizeSnap -bool true
+      ${writeDefaultMainUser} com.googlecode.iterm2 HideTab -bool false
+      ${writeDefaultMainUser} com.googlecode.iterm2 ShowFullScreenTabBar -bool true
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Normal Font' 'FiraCodeNFM-Reg 14'"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Scrollback Lines' 100000"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
