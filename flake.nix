@@ -40,10 +40,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    arthur-ficial = {
-      url = "github:Arthur-Ficial/homebrew-tap";
-      flake = false;
-    };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -67,8 +63,8 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    opencode-sandbox = {
-      url = "github:rcambrj/opencode-sandbox";
+    agent-sandbox = {
+      url = "github:rcambrj/nix-agent-sandbox";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.numtide-llm-agents.follows = "numtide-llm-agents";
     };

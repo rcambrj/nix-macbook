@@ -5,7 +5,6 @@ with flake.lib;
     inputs.nix-homebrew.darwinModules.nix-homebrew
     inputs.home-manager.darwinModules.home-manager
     flake.darwinModules.dock
-    flake.darwinModules.ollama
     ./secrets.nix
     ./macos-preferences.nix
     ./homebrew.nix

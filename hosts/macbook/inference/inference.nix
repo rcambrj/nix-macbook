@@ -2,32 +2,10 @@
 with flake.lib;
 {
   imports = [
-    flake.darwinModules.lmstudio
-    inputs.opencode-sandbox.nixosModules.opencode-sandbox
+    inputs.agent-sandbox.nixosModules.opencode-sandbox
   ];
 
-  age.secrets.opencode-go-api-key.file = ../../../secrets/opencode-go-api-key.age;
-
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama;
-  };
-
-  nix-homebrew.taps = {
-      "arthur-ficial/homebrew-tap" = inputs.arthur-ficial;
-  };
-  # prefer the homebrew gui and background process
-  homebrew.brews = ["arthur-ficial/tap/apfel"];
   homebrew.casks = ["lm-studio"];
-  # services.lmstudio = {
-  #   enable = true;
-  #   package = perSystem.self.lmstudio;
-  #   port = 1234;
-  #   environmentVariables = {
-  #     MTL_HUD_ENABLED = "1";
-  #     METAL_DEVICE_WRAPPER_TYPE = "1";
-  #   };
-  # };
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
@@ -38,13 +16,19 @@ with flake.lib;
     opencodeWithSearch
   ];
 
-  programs.opencode-sandbox = {
+  programs.opencode-sandbox = let
+    lmStudioPort = 1234;
+  in {
     enable = true;
+
+    package = perSystem.agent-sandbox.opencode-sandbox.override {
+      showBootLogs = true;
+    };
 
     envFile = "/Users/${macbook.main-user}/.config/opencode-sandbox/env";
     dataDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/data";
     cacheDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/cache";
-
+    exposeHostPorts = [ lmStudioPort ];
     configDir = let
       opencode-json = pkgs.writeText "opencode.json" (builtins.toJSON {
         "$schema" = "https://opencode.ai/config.json";
@@ -52,21 +36,25 @@ with flake.lib;
         permission = {
           # sandboxed as root, go wild
           "*" = "allow";
+          "question" = "deny";
         };
         default_agent = "plan";
         agent = {
-          plan = {
-            mode =  "primary";
-            model =  "openai/gpt-5.4";
-          };
-          build =  {
-            mode =  "primary";
-            model =  "opencode-go/qwen3.5-plus";
-          };
+          # plan.model = "openai/gpt-5.4"; build.model = "openai/gpt-5.4-mini";
+          plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.3-codex";
+          # plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.4-mini";
+          # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/minimax-m2.7";
+          # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/qwen3.5-plus";
         };
         instructions = [
           "https://raw.githubusercontent.com/rcambrj/opencode/refs/heads/main/AGENTS.md"
         ];
+        provider.lm-studio = {
+          name = "lm-studio";
+          npm = "@ai-sdk/openai-compatible";
+          options.baseURL = "http://127.0.0.1:${toString lmStudioPort}/v1";
+          models."qwen3.5-4b-mlx".name = "qwen3.5-4b-mlx";
+        };
       });
     in pkgs.runCommand "opencode-sandbox-config" {} ''
       mkdir -p "$out"
@@ -74,8 +62,8 @@ with flake.lib;
     '';
 
     extraModules = [{
-      virtualisation.cores = lib.mkForce 8;
-      virtualisation.memorySize = lib.mkForce 16384;
+      microvm.vcpu = lib.mkForce 8;
+      microvm.mem = lib.mkForce 16384;
     }];
   };
 }

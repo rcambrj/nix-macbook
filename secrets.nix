@@ -4,10 +4,4 @@ let
 in {
   "secrets/macbook-linux-vm-ssh-key.age".publicKeys = [ sshKeys.rcambrj ];
   "secrets/foo.age".publicKeys = [ sshKeys.rcambrj sshKeys.linux-vm ];
-
-  # openrouter.ai
-  "secrets/openrouter-ai-key.age".publicKeys = [ sshKeys.rcambrj sshKeys.linux-vm ];
-
-  # opencode-go
-  "secrets/opencode-go-api-key.age".publicKeys = [ sshKeys.rcambrj sshKeys.linux-vm ];
 }

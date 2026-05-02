@@ -61,7 +61,7 @@
           "dotfiles",
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1770165109,
@@ -77,35 +77,45 @@
         "type": "github"
       }
     },
-    "arthur-ficial": {
-      "flake": false,
+    "agent-sandbox": {
+      "inputs": {
+        "blueprint": "blueprint",
+        "microvm": "microvm",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "numtide-llm-agents": [
+          "numtide-llm-agents"
+        ]
+      },
       "locked": {
-        "lastModified": 1775930282,
-        "narHash": "sha256-jbh6DdT3dTEsOyPwrwdcwqRjh1U0arRfhcLpi32N1hM=",
-        "owner": "Arthur-Ficial",
-        "repo": "homebrew-tap",
-        "rev": "b3d56d27e8142dffc3ef8039bee0e6a4aba2d681",
+        "lastModified": 1777745406,
+        "narHash": "sha256-Tq0q6jtxf4KImX0BygkRvOCjmZ9DAMnUuMdRy7zQBXg=",
+        "owner": "rcambrj",
+        "repo": "nix-agent-sandbox",
+        "rev": "bdb2fea7514065cf3442b5a2579a174bf71541e4",
         "type": "github"
       },
       "original": {
-        "owner": "Arthur-Ficial",
-        "repo": "homebrew-tap",
+        "owner": "rcambrj",
+        "repo": "nix-agent-sandbox",
         "type": "github"
       }
     },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
+          "agent-sandbox",
           "nixpkgs"
         ],
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1771437256,
-        "narHash": "sha256-bLqwib+rtyBRRVBWhMuBXPCL/OThfokA+j6+uH7jDGU=",
+        "lastModified": 1776249299,
+        "narHash": "sha256-Dt9t1TGRmJFc0xVYhttNBD6QsAgHOHCArqGa0AyjrJY=",
         "owner": "numtide",
         "repo": "blueprint",
-        "rev": "06ee7190dc2620ea98af9eb225aa9627b68b0e33",
+        "rev": "56131e8628f173d24a27f6d27c0215eff57e40dd",
         "type": "github"
       },
       "original": {
@@ -117,10 +127,9 @@
     "blueprint_2": {
       "inputs": {
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ],
-        "systems": "systems_4"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1771437256,
@@ -140,17 +149,16 @@
       "inputs": {
         "nixpkgs": [
           "dotfiles",
-          "fusuma",
           "nixpkgs"
         ],
         "systems": "systems_5"
       },
       "locked": {
-        "lastModified": 1724053269,
-        "narHash": "sha256-DinmPyxmUSLjBUYMe3eK0GKykwe33vWbVTmp7++P4Ng=",
+        "lastModified": 1771437256,
+        "narHash": "sha256-bLqwib+rtyBRRVBWhMuBXPCL/OThfokA+j6+uH7jDGU=",
         "owner": "numtide",
         "repo": "blueprint",
-        "rev": "766302be9063650ca6578e5ba09cc4260b0da29c",
+        "rev": "06ee7190dc2620ea98af9eb225aa9627b68b0e33",
         "type": "github"
       },
       "original": {
@@ -163,7 +171,7 @@
       "inputs": {
         "nixpkgs": [
           "dotfiles",
-          "fusuma-plugin-appmatcher",
+          "fusuma",
           "nixpkgs"
         ],
         "systems": "systems_6"
@@ -186,10 +194,33 @@
       "inputs": {
         "nixpkgs": [
           "dotfiles",
-          "nix-pi-loader",
+          "fusuma-plugin-appmatcher",
           "nixpkgs"
         ],
         "systems": "systems_7"
+      },
+      "locked": {
+        "lastModified": 1724053269,
+        "narHash": "sha256-DinmPyxmUSLjBUYMe3eK0GKykwe33vWbVTmp7++P4Ng=",
+        "owner": "numtide",
+        "repo": "blueprint",
+        "rev": "766302be9063650ca6578e5ba09cc4260b0da29c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "blueprint",
+        "type": "github"
+      }
+    },
+    "blueprint_6": {
+      "inputs": {
+        "nixpkgs": [
+          "dotfiles",
+          "nix-pi-loader",
+          "nixpkgs"
+        ],
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1753215027,
@@ -205,7 +236,7 @@
         "type": "github"
       }
     },
-    "blueprint_6": {
+    "blueprint_7": {
       "inputs": {
         "nixpkgs": [
           "numtide-llm-agents",
@@ -215,28 +246,6 @@
           "numtide-llm-agents",
           "systems"
         ]
-      },
-      "locked": {
-        "lastModified": 1776249299,
-        "narHash": "sha256-Dt9t1TGRmJFc0xVYhttNBD6QsAgHOHCArqGa0AyjrJY=",
-        "owner": "numtide",
-        "repo": "blueprint",
-        "rev": "56131e8628f173d24a27f6d27c0215eff57e40dd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "blueprint",
-        "type": "github"
-      }
-    },
-    "blueprint_7": {
-      "inputs": {
-        "nixpkgs": [
-          "opencode-sandbox",
-          "nixpkgs"
-        ],
-        "systems": "systems_11"
       },
       "locked": {
         "lastModified": 1776249299,
@@ -374,7 +383,7 @@
       "inputs": {
         "agenix": "agenix_2",
         "agenix-template": "agenix-template_2",
-        "blueprint": "blueprint_2",
+        "blueprint": "blueprint_3",
         "disko": "disko",
         "fusuma": "fusuma",
         "fusuma-plugin-appmatcher": "fusuma-plugin-appmatcher",
@@ -388,15 +397,15 @@
           "nixpkgs"
         ],
         "nixpkgs-netbird": "nixpkgs-netbird",
-        "systems": "systems_8",
+        "systems": "systems_9",
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1776243741,
-        "narHash": "sha256-1OgCNJaNxFH5RIQcsRMvxbEPfmKe9lAvXQQ5xR10Muo=",
+        "lastModified": 1777448070,
+        "narHash": "sha256-StDx46EGAhh98FyiVvcS9VFmrnF0V9DPO5KV+s9HnIY=",
         "owner": "rcambrj",
         "repo": "dotfiles",
-        "rev": "9d4bfb25991af3c0031d3cc8e71b60e662b1cf61",
+        "rev": "4ee0ffb586e133535fd0cbe9acb97210bede7743",
         "type": "github"
       },
       "original": {
@@ -442,7 +451,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_9"
+        "systems": "systems_10"
       },
       "locked": {
         "lastModified": 1681202837,
@@ -460,7 +469,7 @@
     },
     "fusuma": {
       "inputs": {
-        "blueprint": "blueprint_3",
+        "blueprint": "blueprint_4",
         "nixpkgs": [
           "dotfiles",
           "nixpkgs"
@@ -482,7 +491,7 @@
     },
     "fusuma-plugin-appmatcher": {
       "inputs": {
-        "blueprint": "blueprint_4",
+        "blueprint": "blueprint_5",
         "nixpkgs": [
           "dotfiles",
           "nixpkgs"
@@ -649,6 +658,28 @@
         "type": "github"
       }
     },
+    "microvm": {
+      "inputs": {
+        "nixpkgs": [
+          "agent-sandbox",
+          "nixpkgs"
+        ],
+        "spectrum": "spectrum"
+      },
+      "locked": {
+        "lastModified": 1776340739,
+        "narHash": "sha256-s4FDictJlPtY6Shd6scG5hgrDMiHth09+svtvTA5NLA=",
+        "owner": "microvm-nix",
+        "repo": "microvm.nix",
+        "rev": "2f2f62fdfdca2750e3399f66bd03986ab967e5ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "microvm-nix",
+        "repo": "microvm.nix",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -690,7 +721,7 @@
     },
     "nix-pi-loader": {
       "inputs": {
-        "blueprint": "blueprint_5",
+        "blueprint": "blueprint_6",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
           "dotfiles",
@@ -835,13 +866,13 @@
     },
     "numtide-llm-agents": {
       "inputs": {
-        "blueprint": "blueprint_6",
+        "blueprint": "blueprint_7",
         "bun2nix": "bun2nix",
         "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_10",
+        "systems": "systems_11",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -858,36 +889,12 @@
         "type": "github"
       }
     },
-    "opencode-sandbox": {
-      "inputs": {
-        "blueprint": "blueprint_7",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "numtide-llm-agents": [
-          "numtide-llm-agents"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776720183,
-        "narHash": "sha256-/hLy6aBUGIraQYueUGlH3wXYf6wtSvjtwm+Ejnr2gSs=",
-        "owner": "rcambrj",
-        "repo": "opencode-sandbox",
-        "rev": "1fd098cd2e939e5458b9a1a2bec6fd9209e96dd7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rcambrj",
-        "repo": "opencode-sandbox",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "agenix-template": "agenix-template",
-        "arthur-ficial": "arthur-ficial",
-        "blueprint": "blueprint",
+        "agent-sandbox": "agent-sandbox",
+        "blueprint": "blueprint_2",
         "dotfiles": "dotfiles",
         "home-manager": "home-manager_4",
         "homebrew-bundle": "homebrew-bundle",
@@ -897,9 +904,24 @@
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
         "numtide-llm-agents": "numtide-llm-agents",
-        "opencode-sandbox": "opencode-sandbox",
         "systems": "systems_12",
         "virby": "virby"
+      }
+    },
+    "spectrum": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772189877,
+        "narHash": "sha256-i1p90Rgssb//aNiTDFq46ZG/fk3LmyRLChtp/9lddyA=",
+        "ref": "refs/heads/main",
+        "rev": "fe39e122d898f66e89ffa17d4f4209989ccb5358",
+        "revCount": 1255,
+        "type": "git",
+        "url": "https://spectrum-os.org/git/spectrum"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://spectrum-os.org/git/spectrum"
       }
     },
     "systems": {
