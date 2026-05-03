@@ -20,11 +20,7 @@ with flake.lib;
     lmStudioPort = 1234;
   in {
     enable = true;
-
-    package = perSystem.agent-sandbox.opencode-sandbox.override {
-      showBootLogs = true;
-    };
-
+    showBootLogs = true;
     envFile = "/Users/${macbook.main-user}/.config/opencode-sandbox/env";
     dataDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/data";
     cacheDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/cache";
