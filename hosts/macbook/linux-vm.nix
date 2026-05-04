@@ -43,18 +43,21 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
-  # TODO: networking is broken when vm is started by launchd.
-  # launch manually for now. annoying but whatever.
-  #
-  # launchd.user.agents.linux-vm = {
-  #   command = "${pkgs.lib.getExe start-linux-vm} -nographic";
-  #   serviceConfig = {
-  #     Label = "linux-vm";
-  #     UserName = macbook.main-user;
-  #     RunAtLoad = true;
-  #     StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
-  #     StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
-  #     KeepAlive = true;
-  #   };
-  # };
+  launchd.user.agents.linux-vm = {
+    command = "${pkgs.lib.getExe start-linux-vm} -display none";
+    serviceConfig = {
+      Label = "linux-vm";
+      UserName = macbook.main-user;
+      WorkingDirectory = builtins.toPath workingDirectory;
+      EnvironmentVariables = {
+        HOME = "/Users/${macbook.main-user}";
+        USER = macbook.main-user;
+        LOGNAME = macbook.main-user;
+      };
+      RunAtLoad = true;
+      StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
+      StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
+      KeepAlive = true;
+    };
+  };
 }
