@@ -43,21 +43,22 @@ in {
   age.secrets.macbook-linux-vm-ssh-key.symlink = false;
   age.secrets.macbook-linux-vm-ssh-key.owner = macbook.main-user;
 
-  launchd.user.agents.linux-vm = {
-    command = "${pkgs.lib.getExe start-linux-vm} -display none";
-    serviceConfig = {
-      Label = "linux-vm";
-      UserName = macbook.main-user;
-      WorkingDirectory = builtins.toPath workingDirectory;
-      EnvironmentVariables = {
-        HOME = "/Users/${macbook.main-user}";
-        USER = macbook.main-user;
-        LOGNAME = macbook.main-user;
-      };
-      RunAtLoad = true;
-      StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
-      StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
-      KeepAlive = true;
-    };
-  };
+  # this works, just not always needed
+  # launchd.user.agents.linux-vm = {
+  #   command = "${pkgs.lib.getExe start-linux-vm} -display none";
+  #   serviceConfig = {
+  #     Label = "linux-vm";
+  #     UserName = macbook.main-user;
+  #     WorkingDirectory = builtins.toPath workingDirectory;
+  #     EnvironmentVariables = {
+  #       HOME = "/Users/${macbook.main-user}";
+  #       USER = macbook.main-user;
+  #       LOGNAME = macbook.main-user;
+  #     };
+  #     RunAtLoad = true;
+  #     StandardOutPath = builtins.toPath "${workingDirectory}/stdout.log";
+  #     StandardErrorPath = builtins.toPath "${workingDirectory}/stderr.log";
+  #     KeepAlive = true;
+  #   };
+  # };
 }
