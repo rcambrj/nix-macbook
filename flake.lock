@@ -89,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777888880,
-        "narHash": "sha256-wAp9qtJy/U5/oh85TNVIkLcFNX2qdatQARR6glLCkUY=",
+        "lastModified": 1778364239,
+        "narHash": "sha256-dItsq1V0V+8ydDMNESochVEZfpNDBtD+aGFoeBTzofo=",
         "owner": "rcambrj",
         "repo": "nix-agent-sandbox",
-        "rev": "632d15eccb17e7c613abbd3eb58ded7d5fd3cff1",
+        "rev": "c7961106836e8a0b4fa8b92af699014a9f7fc1d8",
         "type": "github"
       },
       "original": {
@@ -237,6 +237,29 @@
       }
     },
     "blueprint_7": {
+      "inputs": {
+        "nixpkgs": [
+          "dotfiles",
+          "unifi-os-server",
+          "nixpkgs"
+        ],
+        "systems": "systems_10"
+      },
+      "locked": {
+        "lastModified": 1776249299,
+        "narHash": "sha256-Dt9t1TGRmJFc0xVYhttNBD6QsAgHOHCArqGa0AyjrJY=",
+        "owner": "numtide",
+        "repo": "blueprint",
+        "rev": "56131e8628f173d24a27f6d27c0215eff57e40dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "blueprint",
+        "type": "github"
+      }
+    },
+    "blueprint_8": {
       "inputs": {
         "nixpkgs": [
           "numtide-llm-agents",
@@ -397,14 +420,15 @@
         ],
         "nixpkgs-netbird": "nixpkgs-netbird",
         "systems": "systems_9",
+        "unifi-os-server": "unifi-os-server",
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1777448070,
-        "narHash": "sha256-StDx46EGAhh98FyiVvcS9VFmrnF0V9DPO5KV+s9HnIY=",
+        "lastModified": 1778256347,
+        "narHash": "sha256-AHvdNAGweMrN9TgPNNXjq3smu3CVnJSi1OViSYOnNVs=",
         "owner": "rcambrj",
         "repo": "dotfiles",
-        "rev": "4ee0ffb586e133535fd0cbe9acb97210bede7743",
+        "rev": "e38bfc646484207827b0b873e56daf9a9829590d",
         "type": "github"
       },
       "original": {
@@ -450,7 +474,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_10"
+        "systems": "systems_11"
       },
       "locked": {
         "lastModified": 1681202837,
@@ -850,13 +874,13 @@
     },
     "numtide-llm-agents": {
       "inputs": {
-        "blueprint": "blueprint_7",
+        "blueprint": "blueprint_8",
         "bun2nix": "bun2nix",
         "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_11",
+        "systems": "systems_12",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -888,7 +912,7 @@
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs",
         "numtide-llm-agents": "numtide-llm-agents",
-        "systems": "systems_12",
+        "systems": "systems_13",
         "virby": "virby"
       }
     },
@@ -954,6 +978,21 @@
       }
     },
     "systems_12": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_13": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1106,6 +1145,28 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "unifi-os-server": {
+      "inputs": {
+        "blueprint": "blueprint_7",
+        "nixpkgs": [
+          "dotfiles",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778253712,
+        "narHash": "sha256-kxsIFdRqNltGk/ze7zipYct9lFVZdDtfV4xxuH8ijvA=",
+        "owner": "rcambrj",
+        "repo": "unifi-os-server",
+        "rev": "0822d513367ea1ee9e30bfa084d74b5ee92338eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcambrj",
+        "repo": "unifi-os-server",
         "type": "github"
       }
     },
