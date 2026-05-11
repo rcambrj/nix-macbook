@@ -51,6 +51,7 @@
 
     dotfiles = {
       url = "github:rcambrj/dotfiles";
+      # url = "/Users/rcambrj/projects/nix/dotfiles";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
