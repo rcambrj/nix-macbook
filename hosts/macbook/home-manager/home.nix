@@ -13,5 +13,13 @@
     _1password-cli
   ];
 
+  services.macos-remap-keys = {
+    enable = true;
+    keyboard = {
+      Capslock = "Escape";
+      NonUSBackslash = "GraveAccent";
+    };
+  };
+
   home.stateVersion = "23.11";
 }

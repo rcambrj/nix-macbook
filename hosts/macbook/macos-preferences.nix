@@ -27,12 +27,6 @@ let
   };
 in {
   system = {
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-      nonUS.remapTilde = true;
-    };
-
     activationScripts.postActivation.text = let
       writeDefaultMainUser = "sudo -u ${macbook.main-user} defaults write";
       staticWallpaperPath = "/System/Library/Desktop Pictures/Solid Colors/Black.png";
