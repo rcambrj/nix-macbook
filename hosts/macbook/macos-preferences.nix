@@ -35,6 +35,8 @@ in {
 
     activationScripts.postActivation.text = let
       writeDefaultMainUser = "sudo -u ${macbook.main-user} defaults write";
+      staticWallpaperPath = "/System/Library/Desktop Pictures/Solid Colors/Black.png";
+      staticWallpaperUrl = "file:///System/Library/Desktop%20Pictures/Solid%20Colors/Black.png";
     in ''
       if [ ! -f /Library/Apple/usr/share/rosetta/rosetta ]; then
         echo "Installing rosetta..."
@@ -49,7 +51,14 @@ in {
       # TODO
 
       # Wallpaper
-      osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"/System/Library/Desktop Pictures/Solid Colors/Black.png\" as POSIX file"
+      osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"${staticWallpaperPath}\" as POSIX file"
+      ${writeDefaultMainUser} com.apple.wallpaper SystemWallpaperURL -string "${staticWallpaperUrl}"
+      ${writeDefaultMainUser} com.apple.screensaver idleTime -int 0
+
+      wallpaperStore="/Users/${macbook.main-user}/Library/Application Support/com.apple.wallpaper/Store/Index.plist"
+      if [ -f "$wallpaperStore" ] && /usr/bin/grep -aq "com.apple.wallpaper.choice.sonoma" "$wallpaperStore"; then
+        rm -f "$wallpaperStore"
+      fi
 
       # dock
       ${writeDefaultMainUser} com.apple.dock autohide -bool true
@@ -172,6 +181,8 @@ in {
       # refresh settings
       sudo -u ${macbook.main-user} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
       killall Dock
+      killall WallpaperAgent || true
+      killall WallpaperVideoExtension || true
       # this makes spotlight categories stick https://community.jamf.com/t5/jamf-pro/spotlight-customization/m-p/52579
       killall cfprefsd
 
@@ -181,7 +192,7 @@ in {
 
   launchd.user.agents.killWallpaperVideoExtension = {
     # WallpaperVideoExtension comes alive even if not used
-    command = "pgrep WallpaperVideoExtension | xargs kill -9";
+    command = "pgrep -x WallpaperVideoExtension > /dev/null && killall -9 WallpaperVideoExtension || true";
     serviceConfig.StartInterval = 30;
   };
 }
