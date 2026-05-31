@@ -321,11 +321,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777369708,
-        "narHash": "sha256-1xW7cRZNsFNPQD+cE0fwnLVStnDth0HSoASEIFeT7uI=",
+        "lastModified": 1778445566,
+        "narHash": "sha256-oQvcadh2BCkrog+SGrG6YffKJrveYpjj3TdQJWaKhaM=",
         "owner": "nix-community",
         "repo": "bun2nix",
-        "rev": "e659e1cc4b8e1b21d0aa85f1c481f9db61ecfa98",
+        "rev": "2499dedd70744dba1815875b854818a3019e9e4c",
         "type": "github"
       },
       "original": {
@@ -418,17 +418,16 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nixpkgs-netbird": "nixpkgs-netbird",
         "systems": "systems_9",
         "unifi-os-server": "unifi-os-server",
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1778528019,
-        "narHash": "sha256-ZI49qrSx4dBdgKvNTn6zw+vJZEfHnGug2PbRNZPpZ5E=",
+        "lastModified": 1780227593,
+        "narHash": "sha256-70EbBUrogPct9bjnsdu81YO2IYqVLlSNPhnzUgUMuPU=",
         "owner": "rcambrj",
         "repo": "dotfiles",
-        "rev": "23a12a58e5aa4a121d4d1487dd9ec8eac73a9b32",
+        "rev": "3532b560e7b2af462046d7a8592e8d7343a08088",
         "type": "github"
       },
       "original": {
@@ -459,11 +458,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777678872,
-        "narHash": "sha256-EPIFsulyon7Z1vLQq5Fk64GR8L7cQsT+IPhcsukVbgk=",
+        "lastModified": 1778716662,
+        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "5250617bffd85403b14dbf43c3870e7f255d2c16",
+        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
         "type": "github"
       },
       "original": {
@@ -856,22 +855,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-netbird": {
-      "locked": {
-        "lastModified": 1762844143,
-        "narHash": "sha256-SlybxLZ1/e4T2lb1czEtWVzDCVSTvk9WLwGhmxFmBxI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "numtide-llm-agents": {
       "inputs": {
         "blueprint": "blueprint_8",
@@ -884,11 +867,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1777747917,
-        "narHash": "sha256-frKWdcmmMAkbQIFkpT7FMlCk04cWU485cDF8FxDMu58=",
+        "lastModified": 1779082717,
+        "narHash": "sha256-TE2ynGDxq6ahXlzxCDfatOYcnvvsOIi/QTMIZS0gWq0=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "162beb6d6eb85b7b67ce34eacc9d09a965acdd28",
+        "rev": "1f1ede7969673edd1d35764f5c930ecf96487156",
         "type": "github"
       },
       "original": {
@@ -1157,11 +1140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778253712,
-        "narHash": "sha256-kxsIFdRqNltGk/ze7zipYct9lFVZdDtfV4xxuH8ijvA=",
+        "lastModified": 1779905745,
+        "narHash": "sha256-mIrNCroVlpe1PAXYwTcvpHwZuSDMyggZ4Hmg0ptaPFw=",
         "owner": "rcambrj",
         "repo": "unifi-os-server",
-        "rev": "0822d513367ea1ee9e30bfa084d74b5ee92338eb",
+        "rev": "4d02e29ca94c59ee5ceb286f13705d039deb2f9b",
         "type": "github"
       },
       "original": {
