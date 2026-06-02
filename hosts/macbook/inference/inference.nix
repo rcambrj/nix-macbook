@@ -1,5 +1,9 @@
 { config, flake, inputs, lib, pkgs, perSystem, ... }:
 with flake.lib;
+let
+  llamaCppModel = "devstral-small-2507-ud-q4_k_xl-64k";
+  llamaCppPort = 8080;
+in
 {
   imports = [
     inputs.agent-sandbox.nixosModules.opencode-sandbox
@@ -17,22 +21,47 @@ with flake.lib;
     opencodeWithSearch
   ];
 
-  launchd.user.agents.llama-cpp-gemma = let
-    llamaCppPort = 8080;
+  launchd.user.agents.llama-cpp = let
+    llamaCppArgs = [
+      # Model selection
+      "-hf" "unsloth/Devstral-Small-2507-GGUF"
+      "--hf-file" "Devstral-Small-2507-UD-Q4_K_XL.gguf"
+      "--alias" llamaCppModel
+
+      # Memory and context
+      "--ctx-size" "65536"
+      "--cache-type-k" "q4_0"
+      "--cache-type-v" "q4_0"
+      "--gpu-layers" "all"
+
+      # Sampling
+      "--temp" "0.15"
+      "--min-p" "0.01"
+
+      # Idle and prompt cache behavior
+      "--cache-ram" "0"
+      "--sleep-idle-seconds" "300"
+
+      # Chat/template support
+      "--jinja"
+
+      # API
+      "--host" "127.0.0.1"
+      "--port" (toString llamaCppPort)
+    ];
   in {
-    command = "${pkgs.llama-cpp}/bin/llama-server -hf ggml-org/gemma-4-E4B-it-GGUF --alias gemma-4-e4b-it --host 127.0.0.1 --port ${toString llamaCppPort}";
+    command = lib.escapeShellArgs ([ "${pkgs.llama-cpp}/bin/llama-server" ] ++ llamaCppArgs);
     serviceConfig = {
       UserName = macbook.main-user;
       RunAtLoad = true;
       KeepAlive = true;
-      StandardOutPath = "/Users/${macbook.main-user}/Library/Logs/llama-cpp-gemma.log";
-      StandardErrorPath = "/Users/${macbook.main-user}/Library/Logs/llama-cpp-gemma.err";
+      StandardOutPath = "/Users/${macbook.main-user}/Library/Logs/llama-cpp.log";
+      StandardErrorPath = "/Users/${macbook.main-user}/Library/Logs/llama-cpp.err";
     };
   };
 
   programs.opencode-sandbox = let
     lmStudioPort = 1234;
-    llamaCppPort = 8080;
   in {
     enable = true;
     showBootLogs = true;
@@ -70,7 +99,14 @@ with flake.lib;
           name = "llama-cpp";
           npm = "@ai-sdk/openai-compatible";
           options.baseURL = "http://127.0.0.1:${toString llamaCppPort}/v1";
-          models."gemma-4-e4b-it".name = "gemma-4-e4b-it";
+          models."${llamaCppModel}" = {
+            name = llamaCppModel;
+            tool_call = true;
+            limit = {
+              context = 65536;
+              output = 4096;
+            };
+          };
         };
       });
     in pkgs.runCommand "opencode-sandbox-config" {} ''
