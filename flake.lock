@@ -423,11 +423,11 @@
         "vscode-server": "vscode-server"
       },
       "locked": {
-        "lastModified": 1780227593,
-        "narHash": "sha256-70EbBUrogPct9bjnsdu81YO2IYqVLlSNPhnzUgUMuPU=",
+        "lastModified": 1780574226,
+        "narHash": "sha256-U2/N/IJ38Xus+PfVQ3+1q/1joWJC/1LAQYIlhKSQpho=",
         "owner": "rcambrj",
         "repo": "dotfiles",
-        "rev": "3532b560e7b2af462046d7a8592e8d7343a08088",
+        "rev": "9e46d7fdde02edba4db3a9e0c646ef9934b6dd19",
         "type": "github"
       },
       "original": {

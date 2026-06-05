@@ -172,6 +172,13 @@ in {
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Custom Directory' Recycle"
       /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c "Set :'New Bookmarks':0:'Minimum Contrast (Dark)' 0.4"
 
+      # iTerm2 for zed
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c 'Delete :"New Bookmarks":0:"Semantic History"' || true
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c 'Add :"New Bookmarks":0:"Semantic History" dict'
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c 'Add :"New Bookmarks":0:"Semantic History":action string command'
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c 'Add :"New Bookmarks":0:"Semantic History":text string path=\"\\1\"; line=\"\\2\"; column=\"\\(semanticHistory.columnNumber)\"; cd \"\\5\" && /etc/profiles/per-user/${macbook.main-user}/bin/zeditor --existing \"$path''${line:+:$line}''${column:+:$column}\"'
+      /usr/libexec/PlistBuddy /Users/${macbook.main-user}/Library/Preferences/com.googlecode.iterm2.plist -c 'Add :"New Bookmarks":0:"Semantic History":editor string dev.zed.zed'
+
       # refresh settings
       sudo -u ${macbook.main-user} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
       killall Dock
