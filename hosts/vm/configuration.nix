@@ -22,7 +22,6 @@ with flake.lib;
   system.stateVersion = "23.11";
   networking.hostName = "vm";
   nixpkgs.hostPlatform = "aarch64-linux";
-  nixpkgs.config.allowUnfree = true;
   boot.loader.grub = {
     enable = true;
     device = "nodev";

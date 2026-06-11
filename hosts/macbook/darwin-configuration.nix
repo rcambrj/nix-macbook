@@ -33,7 +33,6 @@ with flake.lib;
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  nixpkgs.config.allowUnfree = true;
 
   security.pam.services.sudo_local.touchIdAuth = true;
   programs.zsh.enable = true;
