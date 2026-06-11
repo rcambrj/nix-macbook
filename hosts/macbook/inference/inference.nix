@@ -13,7 +13,7 @@ in
 
   environment.systemPackages = let
     opencodeWithSearch = pkgs.writeScriptBin "opencode" ''
-      OPENCODE_ENABLE_EXA=1 ${lib.getExe perSystem.numtide-llm-agents.opencode} $@
+      OPENCODE_ENABLE_EXA=1 OPENCODE_EXPERIMENTAL_WEBSOCKETS=1 ${lib.getExe perSystem.numtide-llm-agents.opencode} $@
     '';
   in with pkgs; [
     llama-cpp
