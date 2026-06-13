@@ -31,8 +31,8 @@ in
 
       # Memory and context
       "--ctx-size" "32768"
-      "--cache-type-k" "q8_0"
-      "--cache-type-v" "q8_0"
+      # "--cache-type-k" "q8_0"
+      # "--cache-type-v" "q8_0"
       "--flash-attn" "on"
       "--gpu-layers" "all"
 
