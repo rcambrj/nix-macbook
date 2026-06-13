@@ -18,6 +18,7 @@ in
   in with pkgs; [
     llama-cpp
     perSystem.numtide-llm-agents.claude-code
+    perSystem.numtide-llm-agents.semble
     opencodeWithSearch
   ];
 
