@@ -1,7 +1,7 @@
-{ config, flake, inputs, lib, pkgs, perSystem, ... }:
+{ flake, inputs, lib, pkgs, perSystem, ... }:
 with flake.lib;
 let
-  llamaCppModel = "devstral-small-2507-ud-q4_k_xl-64k";
+  llamaCppModel = "llama-cpp";
   llamaCppPort = 8080;
 in
 {
@@ -25,14 +25,15 @@ in
   launchd.user.agents.llama-cpp = let
     llamaCppArgs = [
       # Model selection
-      "-hf" "unsloth/Devstral-Small-2507-GGUF"
-      "--hf-file" "Devstral-Small-2507-UD-Q4_K_XL.gguf"
+      "-hf" "unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF"
+      "--hf-file" "Qwen3-Coder-30B-A3B-Instruct-UD-Q4_K_XL.gguf"
       "--alias" llamaCppModel
 
       # Memory and context
-      "--ctx-size" "65536"
-      "--cache-type-k" "q4_0"
-      "--cache-type-v" "q4_0"
+      "--ctx-size" "32768"
+      "--cache-type-k" "q8_0"
+      "--cache-type-v" "q8_0"
+      "--flash-attn" "on"
       "--gpu-layers" "all"
 
       # Sampling
@@ -104,7 +105,7 @@ in
             name = llamaCppModel;
             tool_call = true;
             limit = {
-              context = 65536;
+              context = 32768;
               output = 4096;
             };
           };
