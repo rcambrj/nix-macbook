@@ -20,7 +20,9 @@ with flake.lib;
       autoUpdate = true;
     };
     taps = builtins.attrNames config.nix-homebrew.taps;
-    brews = [];
+    brews = [
+      "bruno-cli"
+    ];
     casks = [
       "1password"
       "arq"
@@ -45,6 +47,7 @@ with flake.lib;
       "music-decoy" # prevents play/pause from opening Apple Music
       "orcaslicer"
       # "paragon-extfs" # doesn't like being installed with brew
+      "postman" "bruno"
       "private-internet-access"
       "raspberry-pi-imager"
       "rectangle"
@@ -53,6 +56,7 @@ with flake.lib;
       "spotify"
       "steam"
       "tailscale-app"
+      "thaw" # menubar tool
       "the-unarchiver"
       "transmission"
       # "topnotch" # black menubar hides the notch. not needed with black wallpaper
