@@ -10,9 +10,7 @@
     enable = true;
     rosetta = true;
     speedFactor = 1000;
-    onDemand = {
-      enable = true;
-      ttl = 1; # Idle timeout in minutes
-    };
+    # store hash mismatches occur when virby is powered off (maybe), so keep it on
+    onDemand.enable = false;
   };
 }
