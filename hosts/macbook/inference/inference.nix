@@ -62,63 +62,66 @@ in
     };
   };
 
-  programs.opencode-sandbox = let
-    lmStudioPort = 1234;
-  in {
-    enable = true;
-    showBootLogs = true;
-    envFile = "/Users/${macbook.main-user}/.config/opencode-sandbox/env";
-    dataDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/data";
-    cacheDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/cache";
-    exposeHostPorts = [ lmStudioPort llamaCppPort ];
-    configDir = let
-      opencode-json = pkgs.writeText "opencode.json" (builtins.toJSON {
-        "$schema" = "https://opencode.ai/config.json";
-        autoupdate = false;
-        permission = {
-          # sandboxed as root, go wild
-          "*" = "allow";
-          "question" = "deny";
-        };
-        default_agent = "plan";
-        agent = {
-          # plan.model = "openai/gpt-5.4"; build.model = "openai/gpt-5.4-mini";
-          plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.3-codex";
-          # plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.4-mini";
-          # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/minimax-m2.7";
-          # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/qwen3.5-plus";
-        };
-        instructions = [
-          "https://raw.githubusercontent.com/rcambrj/opencode/refs/heads/main/AGENTS.md"
-        ];
-        provider.lm-studio = {
-          name = "lm-studio";
-          npm = "@ai-sdk/openai-compatible";
-          options.baseURL = "http://127.0.0.1:${toString lmStudioPort}/v1";
-          models."qwen3.5-4b-mlx".name = "qwen3.5-4b-mlx";
-        };
-        provider.llama-cpp = {
-          name = "llama-cpp";
-          npm = "@ai-sdk/openai-compatible";
-          options.baseURL = "http://127.0.0.1:${toString llamaCppPort}/v1";
-          models."${llamaCppModel}" = {
-            name = llamaCppModel;
-            tool_call = true;
-            limit = {
-              context = 32768;
-              output = 4096;
-            };
-          };
-        };
-      });
-    in pkgs.runCommand "opencode-sandbox-config" {} ''
-      mkdir -p "$out"
-      cp ${opencode-json} "$out/opencode.json"
-    '';
+  # haven't used or maintained nix-agent-sandbox in a while and now
+  # there is an eval error. comment for now.
+  #
+  # programs.opencode-sandbox = let
+  #   lmStudioPort = 1234;
+  # in {
+  #   enable = true;
+  #   showBootLogs = true;
+  #   envFile = "/Users/${macbook.main-user}/.config/opencode-sandbox/env";
+  #   dataDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/data";
+  #   cacheDir = "/Users/${macbook.main-user}/.config/opencode-sandbox/cache";
+  #   exposeHostPorts = [ lmStudioPort llamaCppPort ];
+  #   configDir = let
+  #     opencode-json = pkgs.writeText "opencode.json" (builtins.toJSON {
+  #       "$schema" = "https://opencode.ai/config.json";
+  #       autoupdate = false;
+  #       permission = {
+  #         # sandboxed as root, go wild
+  #         "*" = "allow";
+  #         "question" = "deny";
+  #       };
+  #       default_agent = "plan";
+  #       agent = {
+  #         # plan.model = "openai/gpt-5.4"; build.model = "openai/gpt-5.4-mini";
+  #         plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.3-codex";
+  #         # plan.model = "openai/gpt-5.3-codex"; build.model = "openai/gpt-5.4-mini";
+  #         # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/minimax-m2.7";
+  #         # plan.model = "opencode-go/glm-5.1"; build.model = "opencode-go/qwen3.5-plus";
+  #       };
+  #       instructions = [
+  #         "https://raw.githubusercontent.com/rcambrj/opencode/refs/heads/main/AGENTS.md"
+  #       ];
+  #       provider.lm-studio = {
+  #         name = "lm-studio";
+  #         npm = "@ai-sdk/openai-compatible";
+  #         options.baseURL = "http://127.0.0.1:${toString lmStudioPort}/v1";
+  #         models."qwen3.5-4b-mlx".name = "qwen3.5-4b-mlx";
+  #       };
+  #       provider.llama-cpp = {
+  #         name = "llama-cpp";
+  #         npm = "@ai-sdk/openai-compatible";
+  #         options.baseURL = "http://127.0.0.1:${toString llamaCppPort}/v1";
+  #         models."${llamaCppModel}" = {
+  #           name = llamaCppModel;
+  #           tool_call = true;
+  #           limit = {
+  #             context = 32768;
+  #             output = 4096;
+  #           };
+  #         };
+  #       };
+  #     });
+  #   in pkgs.runCommand "opencode-sandbox-config" {} ''
+  #     mkdir -p "$out"
+  #     cp ${opencode-json} "$out/opencode.json"
+  #   '';
 
-    extraModules = [{
-      microvm.vcpu = lib.mkForce 8;
-      microvm.mem = lib.mkForce 16384;
-    }];
-  };
+  #   extraModules = [{
+  #     microvm.vcpu = lib.mkForce 8;
+  #     microvm.mem = lib.mkForce 16384;
+  #   }];
+  # };
 }
