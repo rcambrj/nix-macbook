@@ -7,6 +7,7 @@ with flake.lib;
     flake.darwinModules.dock
     ./secrets.nix
     ./macos-preferences.nix
+    ./microsoft-autoupdate.nix
     ./homebrew.nix
     ./dock.nix
     ./docker.nix
